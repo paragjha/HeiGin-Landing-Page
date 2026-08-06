@@ -15,12 +15,13 @@ export function Hero() {
         <h1 className="text-display mx-auto mt-7 max-w-4xl text-[clamp(2.6rem,6.4vw,4.6rem)]">
           Close more deals
           <br />
-          on WhatsApp
+          with less follow-up
         </h1>
 
         <p className="mx-auto mt-6 max-w-2xl text-[17px] leading-relaxed text-muted-foreground">
-          Heigin is the India-first CRM for SMBs. Capture leads from WhatsApp, IndiaMART and calls,
-          let AI write the follow-ups, and run your whole pipeline with a team of three.
+          Heigin is the India-first CRM for SMBs. Keep every lead, contact and deal in one place,
+          let AI draft the follow-ups, and run your whole pipeline with a team of three.
+          WhatsApp automation lands soon.
         </p>
 
         <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
