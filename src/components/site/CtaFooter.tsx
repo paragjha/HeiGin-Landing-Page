@@ -59,7 +59,7 @@ export function CtaFooter() {
             <span className="font-display italic text-muted-foreground">on WhatsApp?</span>
           </h2>
           <p className="mx-auto mt-5 max-w-xl text-[17px] leading-relaxed text-muted-foreground">
-            1,200+ Indian SMBs are already on the Heigin waitlist. Early access rolls out weekly —
+            1,200+ Indian SMBs are already on the Heigin waitlist. Early access rolls out weekly,
             three seats free when your invite lands.
           </p>
           <div className="mt-8 flex flex-wrap justify-center gap-3">
@@ -77,7 +77,7 @@ export function CtaFooter() {
             <div>
               <Logo />
               <p className="mt-4 max-w-xs text-[14px] leading-relaxed text-muted-foreground">
-                The India-first, AI-first CRM for SMBs — with WhatsApp automation built in.
+                The India-first, AI-first CRM for SMBs, with WhatsApp automation built in.
               </p>
               <a
                 href="mailto:heiginofficial@gmail.com"

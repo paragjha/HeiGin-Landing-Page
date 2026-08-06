@@ -14,7 +14,7 @@ const steps = [
   {
     n: "Step 03",
     t: "Switch on AI workflows",
-    b: "Turn on instant replies, follow-up nudges, and lead scoring. Even a three-person team is selling on day one — no consultant needed.",
+    b: "Turn on instant replies, follow-up nudges, and lead scoring. Even a three-person team is selling on day one, no consultant needed.",
   },
 ];
 

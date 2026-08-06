@@ -29,7 +29,7 @@ export const solutions: Solution[] = [
     h1Italic: "in an afternoon",
     sub: "No admin, no consultant, no six-week rollout. Import your contacts, connect one WhatsApp number, and your whole team is selling on Heigin before the day ends.",
     problem:
-      "Most CRMs assume you have an ops person. You don't. You have three people who sell, quote, and deliver — and a WhatsApp inbox that never stops. Anything that takes a week to configure will never get configured.",
+      "Most CRMs assume you have an ops person. You don't. You have three people who sell, quote, and deliver, and a WhatsApp inbox that never stops. Anything that takes a week to configure will never get configured.",
     stats: [
       { value: "1 afternoon", label: "Typical time to go live" },
       { value: "3 seats", label: "Free for the first 14 days" },
@@ -90,7 +90,7 @@ export const solutions: Solution[] = [
       { title: "Routing that fits your floor", body: "Round-robin, territory or product-line assignment, with automatic reassignment when someone is on leave." },
       { title: "Nothing goes cold quietly", body: "SLA timers on first reply and follow-ups, with escalation to a manager when a lead is about to age out." },
       { title: "Reporting without spreadsheets", body: "Source-wise conversion, rep-wise activity and stage-wise ageing, refreshed live." },
-      { title: "Onboard reps in a day", body: "A new joiner opens a contact and reads the whole history — calls, chats, quotes — in one scroll." },
+      { title: "Onboard reps in a day", body: "A new joiner opens a contact and reads the whole history (calls, chats, quotes) in one scroll." },
     ],
     workflow: [
       { step: "01", title: "Define ownership", body: "Set territories, product lines and round-robin rules per source." },
@@ -129,7 +129,7 @@ export const solutions: Solution[] = [
     eyebrow: "Multi-branch",
     h1: "Every branch on one board,",
     h1Italic: "roll-ups included",
-    sub: "Run separate territories, price lists and WhatsApp numbers per branch — and still see one consolidated pipeline at head office.",
+    sub: "Run separate territories, price lists and WhatsApp numbers per branch, and still see one consolidated pipeline at head office.",
     problem:
       "Each branch keeps its own sheet, its own WhatsApp number and its own version of the price list. Consolidating a monthly number means five phone calls and a lot of copy-paste.",
     stats: [
@@ -180,7 +180,7 @@ export const solutions: Solution[] = [
     eyebrow: "Retail & D2C",
     h1: "Turn WhatsApp enquiries into",
     h1Italic: "repeat buyers",
-    sub: "Catalogues, offers, order updates and re-order nudges — all on the number your customers already message you from.",
+    sub: "Catalogues, offers, order updates and re-order nudges, all on the number your customers already message you from.",
     problem:
       "Customers ask for the price list on WhatsApp, buy once, and then disappear. There's no record of what they bought, so there's nothing to send them three months later.",
     stats: [
@@ -216,7 +216,7 @@ export const solutions: Solution[] = [
       rows: [
         { a: "Aisha Khan", b: "Table linen set", c: "Mumbai", d: "Re-order due", tone: "warn" },
         { a: "Rohit Sen", b: "Cotton throws", c: "Kolkata", d: "Paid", tone: "ok" },
-        { a: "Divya N.", b: "—", c: "Kochi", d: "No reply", tone: "err" },
+        { a: "Divya N.", b: "N/A", c: "Kochi", d: "No reply", tone: "err" },
       ],
     },
     related: [
@@ -233,7 +233,7 @@ export const solutions: Solution[] = [
     h1Italic: "site visit to booking",
     sub: "Capture leads from portals and ads, route them to the right broker in seconds, and keep every site visit and follow-up on one board.",
     problem:
-      "Portal leads are expensive and perishable. If the first call doesn't happen within minutes, the buyer has already spoken to three other projects — and nobody can tell you which broker dropped it.",
+      "Portal leads are expensive and perishable. If the first call doesn't happen within minutes, the buyer has already spoken to three other projects, and nobody can tell you which broker dropped it.",
     stats: [
       { value: "< 60s", label: "Lead-to-first-call target" },
       { value: "3.2x", label: "More site visits booked" },
@@ -292,7 +292,7 @@ export const solutions: Solution[] = [
     ],
     outcomes: [
       { title: "Answer at 10pm", body: "Automated replies share the course brochure, fee structure and counselling slots outside office hours." },
-      { title: "Counselling pipeline", body: "Enquiry, counselling, demo, enrolment — a stage board built for admissions, not enterprise sales." },
+      { title: "Counselling pipeline", body: "Enquiry, counselling, demo, enrolment: a stage board built for admissions, not enterprise sales." },
       { title: "Parent-friendly reminders", body: "Demo class and fee-due reminders on WhatsApp in the parent's preferred language." },
       { title: "Batch and stream fields", body: "Track board, stream, target exam and preferred batch on the student record." },
     ],

@@ -5,7 +5,7 @@ import { CtaFooter } from "@/components/site/CtaFooter";
 import { Frame, HatchDivider, Container } from "@/components/site/Rails";
 import { posts } from "@/content/blog";
 
-const title = "Blog — Heigin CRM";
+const title = "Blog: Heigin CRM";
 const description =
   "Playbooks, data and product notes on selling with WhatsApp, AI workflows and CRM for Indian SMBs.";
 

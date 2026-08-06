@@ -6,17 +6,17 @@ const features = [
   {
     icon: Bot,
     title: "AI Copilot everywhere",
-    body: "Ask for today's hot leads, draft a WhatsApp reply in Hinglish, or log a call — from any screen, in plain language.",
+    body: "Ask for today's hot leads, draft a WhatsApp reply in Hinglish, or log a call, from any screen, in plain language.",
   },
   {
     icon: BarChart3,
     title: "Lead scoring that explains itself",
-    body: "Every lead gets a score and a reason — budget signals, reply speed, source quality — so a three-person team calls the right person first.",
+    body: "Every lead gets a score and a reason (budget signals, reply speed, source quality) so a three-person team calls the right person first.",
   },
   {
     icon: Search,
     title: "Smart search",
-    body: "\"Bengaluru leads from IndiaMART who never replied\" — type it the way you'd say it and get the list instantly.",
+    body: "\"Bengaluru leads from IndiaMART who never replied\": type it the way you'd say it and get the list instantly.",
   },
   {
     icon: Focus,
@@ -26,12 +26,12 @@ const features = [
   {
     icon: ShieldQuestion,
     title: "India-first by design",
-    body: "Rupee pipelines, GST invoices, Hindi and regional-language replies, DPDP-aligned data residency — not a US CRM with a currency toggle.",
+    body: "Rupee pipelines, GST invoices, Hindi and regional-language replies, DPDP-aligned data residency: not a US CRM with a currency toggle.",
   },
   {
     icon: Workflow,
     title: "WhatsApp automation",
-    body: "Auto-reply to new enquiries in seconds, send catalogues, chase quotes, and nudge silent deals — all on the official Business API.",
+    body: "Auto-reply to new enquiries in seconds, send catalogues, chase quotes, and nudge silent deals, all on the official Business API.",
   },
 ];
 
@@ -47,7 +47,7 @@ export function AiFeatures() {
           </h2>
           <p className="mt-4 text-[17px] leading-relaxed text-muted-foreground">
             Most CRMs are databases you have to feed. Heigin replies to enquiries, scores leads,
-            writes follow-ups and updates the pipeline on its own — so a team of three runs like a
+            writes follow-ups and updates the pipeline on its own, so a team of three runs like a
             team of ten.
           </p>
           <div className="mt-7 flex flex-wrap gap-3">

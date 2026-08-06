@@ -12,7 +12,7 @@ import { Security } from "@/components/site/Security";
 import { Pricing } from "@/components/site/Pricing";
 import { CtaFooter } from "@/components/site/CtaFooter";
 
-const title = "Heigin — India's AI-First CRM with WhatsApp Automation";
+const title = "Heigin: India's AI-First CRM with WhatsApp Automation";
 const description =
   "An India-first CRM for SMBs: capture leads from WhatsApp and IndiaMART, automate follow-ups with AI, and run your pipeline with a team of three.";
 

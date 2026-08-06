@@ -78,13 +78,13 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Heigin — India's AI-First CRM" },
+      { title: "Heigin: India's AI-First CRM" },
       {
         name: "description",
         content: "AI-first CRM for Indian SMBs, with WhatsApp automation built in.",
       },
       { name: "author", content: "Heigin" },
-      { property: "og:title", content: "Heigin — India's AI-First CRM" },
+      { property: "og:title", content: "Heigin: India's AI-First CRM" },
       {
         property: "og:description",
         content: "AI-first CRM for Indian SMBs, with WhatsApp automation built in.",

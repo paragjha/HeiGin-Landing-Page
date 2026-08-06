@@ -8,7 +8,7 @@ import { postBySlug, posts } from "@/content/blog";
 export const Route = createFileRoute("/blog/$slug")({
   head: ({ params }) => {
     const p = postBySlug[params.slug];
-    const title = p ? `${p.title} — Heigin Blog` : "Article — Heigin Blog";
+    const title = p ? `${p.title}: Heigin Blog` : "Article: Heigin Blog";
     const description = p ? p.excerpt.slice(0, 155) : "Heigin blog article.";
     return {
       meta: [

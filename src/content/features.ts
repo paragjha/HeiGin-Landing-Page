@@ -20,7 +20,7 @@ export const features: Feature[] = [
     eyebrow: "Contacts",
     h1: "Every lead in one place,",
     h1Italic: "not five phones",
-    sub: "Contacts, chats, calls, and quotes on a single record. Import an Excel sheet, sync IndiaMART, or forward an existing WhatsApp thread — Heigin de-duplicates and maps the fields for you.",
+    sub: "Contacts, chats, calls, and quotes on a single record. Import an Excel sheet, sync IndiaMART, or forward an existing WhatsApp thread: Heigin de-duplicates and maps the fields for you.",
     problem:
       "Your customer list is in three places and none of them agree. There's an Excel file from last year, a WhatsApp group where quotes get forwarded, and whatever is saved on each rep's personal phone. When someone leaves, part of the list leaves too.",
     capabilities: [
@@ -52,7 +52,7 @@ export const features: Feature[] = [
     faq: [
       {
         q: "Can I import from my current CRM?",
-        a: "Yes — export to Excel or CSV and upload. Direct importers for popular tools are on the roadmap.",
+        a: "Yes, export to Excel or CSV and upload. Direct importers for popular tools are on the roadmap.",
       },
       {
         q: "What happens to duplicates?",
@@ -157,7 +157,7 @@ export const features: Feature[] = [
     faq: [
       {
         q: "Do I need a special phone system?",
-        a: "Not for basic logging. Full call recording and routing need Telephony — see that page.",
+        a: "Not for basic logging. Full call recording and routing need Telephony: see that page.",
       },
       {
         q: "Can follow-ups be automatic?",
@@ -208,7 +208,7 @@ export const features: Feature[] = [
     faq: [
       {
         q: "Can I turn AI off?",
-        a: "Yes — Copilot can be switched off per workspace or per user by an owner.",
+        a: "Yes, Copilot can be switched off per workspace or per user by an owner.",
       },
       {
         q: "Does it send messages on its own?",
@@ -286,7 +286,7 @@ export const features: Feature[] = [
     h1Italic: "not the relationship",
     sub: "New enquiry gets a reply in seconds. A silent deal gets a nudge on day four. A large discount waits for the owner. You build it once by picking from lists, and it runs whether or not anyone is at a desk.",
     problem:
-      "The work that loses deals is the boring work — replying at 9pm, chasing on the fourth day, remembering the quote expires Friday. It's the first thing to slip when the team is busy, which is exactly when it matters most.",
+      "The work that loses deals is the boring work: replying at 9pm, chasing on the fourth day, remembering the quote expires Friday. It's the first thing to slip when the team is busy, which is exactly when it matters most.",
     capabilities: [
       {
         title: "Start with what happened",
@@ -317,7 +317,7 @@ export const features: Feature[] = [
       { q: "How many workflows can I run?", a: "Five on Starter, unlimited from Growth up." },
       {
         q: "Can I test before it's live?",
-        a: "Yes — run a workflow in draft against recent records and read the log before switching it on.",
+        a: "Yes, run a workflow in draft against recent records and read the log before switching it on.",
       },
       {
         q: "What if it goes wrong at 2am?",
@@ -338,7 +338,7 @@ export const features: Feature[] = [
     h1Italic: "without leaving the deal",
     sub: "Build a GST quotation from the deal, convert it to an invoice when it's won, and send a payment link in the same WhatsApp thread. Numbers stay where the conversation is.",
     problem:
-      "The quote gets built in Excel, the invoice in Tally, the payment reminder in WhatsApp — and the deal record in the CRM knows about none of it. Reconciling the three is somebody's Saturday.",
+      "The quote gets built in Excel, the invoice in Tally, the payment reminder in WhatsApp, and the deal record in the CRM knows about none of it. Reconciling the three is somebody's Saturday.",
     capabilities: [
       {
         title: "Quotations that follow GST rules",
@@ -376,7 +376,7 @@ export const features: Feature[] = [
       },
       {
         q: "What about e-invoicing and returns?",
-        a: "Scope for IRN, e-way bills, and return formats is being finalised before launch — we'll publish specifics rather than promise them now.",
+        a: "Scope for IRN, e-way bills, and return formats is being finalised before launch: we'll publish specifics rather than promise them now.",
       },
     ],
     related: [
@@ -390,7 +390,7 @@ export const features: Feature[] = [
     eyebrow: "Telephony",
     h1: "Every call logged,",
     h1Italic: "including the one you missed",
-    sub: "Connect your calling provider and every call — placed, received, or missed — lands on the contact with a recording and a follow-up task attached.",
+    sub: "Connect your calling provider and every call (placed, received, or missed) lands on the contact with a recording and a follow-up task attached.",
     problem:
       "Calls are where Indian SMB deals are actually won, and they're the least recorded thing in the business. A rep leaves and takes four hundred conversations with them.",
     capabilities: [
@@ -422,7 +422,7 @@ export const features: Feature[] = [
     faq: [
       {
         q: "Which providers do you connect to?",
-        a: "Heigin connects to your existing cloud telephony account — the launch provider list is being confirmed and will be published here.",
+        a: "Heigin connects to your existing cloud telephony account: the launch provider list is being confirmed and will be published here.",
       },
       {
         q: "Do you sell me numbers?",
