@@ -10,7 +10,7 @@ const meetings = [
 
 export function Platform() {
   return (
-    <section id="platform" className="py-20 md:py-28">
+    <section id="platform" className="py-14 md:py-28">
       <Container>
         <SectionTitle
           title={
@@ -85,8 +85,8 @@ export function Platform() {
 
       {/* split feature pair */}
       <div className="mt-16 grid border-t border-dashed border-border md:grid-cols-2">
-        <div className="border-b border-dashed border-border p-10 md:border-b-0 md:border-r">
-          <div className="mx-auto flex h-56 max-w-md items-end justify-center gap-3">
+        <div className="border-b border-dashed border-border p-6 md:border-b-0 md:border-r md:p-10">
+          <div className="mx-auto flex h-56 max-w-md items-end justify-center gap-1.5 sm:gap-3">
             {[
               { n: "Meera D.", s: "Docs pending", tone: "bg-warning-soft text-warning", h: "h-32" },
               { n: "Arjun S.", s: "Approved", tone: "bg-success-soft text-success", h: "h-44" },
@@ -94,7 +94,7 @@ export function Platform() {
             ].map((c) => (
               <div
                 key={c.n}
-                className={`flex ${c.h} w-36 flex-col justify-between rounded-2xl border border-border bg-card p-4 shadow-[var(--shadow-card)]`}
+                className={`flex ${c.h} w-24 flex-col justify-between rounded-2xl border border-border bg-card p-2.5 shadow-[var(--shadow-card)] sm:w-36 sm:p-4`}
               >
                 <span className="size-8 rounded-full bg-surface-2" />
                 <div>
@@ -115,7 +115,7 @@ export function Platform() {
           </div>
         </div>
 
-        <div className="p-10">
+        <div className="p-6 md:p-10">
           <div className="mx-auto flex h-56 max-w-md items-center">
             <div className="w-full rounded-2xl border border-border bg-card p-4 shadow-[var(--shadow-card)]">
               <div className="flex gap-2 text-[12.5px]">

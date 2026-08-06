@@ -2,7 +2,7 @@ import { Container } from "./Rails";
 
 export function Quote() {
   return (
-    <section className="py-24">
+    <section className="py-12 md:py-24">
       <Container className="text-center">
         <p className="text-display mx-auto max-w-3xl text-[clamp(1.6rem,3.4vw,2.4rem)] leading-tight">
           “We answer every WhatsApp enquiry in under three minutes now, with three people. Heigin

@@ -75,13 +75,13 @@ export function AiFeatures() {
             ].map((p) => (
               <div
                 key={p.n}
-                className="flex items-center justify-between rounded-lg border border-border px-3 py-2.5 text-[13px]"
+                className="flex flex-wrap items-center justify-between gap-x-2 gap-y-0.5 rounded-lg border border-border px-3 py-2.5 text-[13px]"
               >
                 <span className="font-medium">{p.n}</span>
                 <span className="text-muted-foreground">{p.d}</span>
               </div>
             ))}
-            <div className="flex items-center justify-between rounded-lg bg-accent-soft px-3 py-2.5 text-[13px]">
+            <div className="flex flex-wrap items-center justify-between gap-x-2 gap-y-0.5 rounded-lg bg-accent-soft px-3 py-2.5 text-[13px]">
               <span className="font-medium text-accent">Draft WhatsApp follow-ups</span>
               <span className="text-accent">2 ready to send</span>
             </div>
