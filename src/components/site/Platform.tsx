@@ -1,5 +1,4 @@
 import { ArrowUp, CircleHelp, Home } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import { Container, SectionTitle } from "./Rails";
 
 const meetings = [
@@ -22,12 +21,6 @@ export function Platform() {
           }
           description="One workspace for people, money, and customers. Connect your tools, automate approvals, and let AI keep everyone moving."
         />
-
-        <div className="mt-8 flex justify-center">
-          <Button variant="outline" className="rounded-lg bg-card">
-            See a demo
-          </Button>
-        </div>
 
         {/* copilot mock */}
         <div className="relative mt-16">

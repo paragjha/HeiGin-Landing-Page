@@ -1,6 +1,5 @@
 import { Link } from "@tanstack/react-router";
 import type { ReactNode } from "react";
-import { Button } from "@/components/ui/button";
 import { Logo } from "./Logo";
 import { WaitlistButton } from "./Waitlist";
 
@@ -64,9 +63,6 @@ export function CtaFooter() {
           </p>
           <div className="mt-8 flex flex-wrap justify-center gap-3">
             <WaitlistButton size="lg" className="rounded-lg px-6" />
-            <Button size="lg" variant="outline" className="rounded-lg bg-card px-6">
-              See WhatsApp demo
-            </Button>
           </div>
         </div>
       </section>
@@ -96,7 +92,7 @@ export function CtaFooter() {
                     <li key={l}>
                       <LinkOrAnchor to={routeFor[l]}>
                         {l}
-                        {l === "GST Invoicing" && (
+                        {(l === "GST Invoicing" || l === "WhatsApp Inbox" || l === "Integrations") && (
                           <span className="ml-1.5 rounded bg-warning-soft px-1.5 py-0.5 text-[10px] text-warning">
                             Soon
                           </span>

@@ -25,7 +25,15 @@ import { ThemeToggle } from "./ThemeToggle";
 import { Logo } from "./Logo";
 import { WaitlistButton } from "./Waitlist";
 
-type Item = { icon: LucideIcon; title: string; desc: string; to?: string };
+type Item = { icon: LucideIcon; title: string; desc: string; to?: string; soon?: boolean };
+
+function SoonChip() {
+  return (
+    <span className="ml-2 inline-block shrink-0 rounded-full border border-border bg-surface-2 px-1.5 py-[1px] align-middle font-mono text-[9.5px] uppercase tracking-[0.12em] text-muted-foreground">
+      Soon
+    </span>
+  );
+}
 
 type MenuDef = {
   label: string;
@@ -51,16 +59,16 @@ const menus: MenuDef[] = [
         heading: "AI & Automation",
         items: [
           { icon: Sparkles, title: "AI Copilot", desc: "Ask, draft, and act", to: "/ai-copilot" },
-          { icon: MessageCircle, title: "WhatsApp Inbox", desc: "Shared team inbox", to: "/whatsapp-inbox" },
+          { icon: MessageCircle, title: "WhatsApp Inbox", desc: "Shared team inbox", to: "/whatsapp-inbox", soon: true },
           { icon: Workflow, title: "Workflows", desc: "Automate the busywork", to: "/workflows" },
         ],
       },
       {
         heading: "India-first",
         items: [
-          { icon: Receipt, title: "GST Invoicing", desc: "Quote to paid, in one flow", to: "/gst-invoicing" },
-          { icon: Plug, title: "Integrations", desc: "IndiaMART, Tally, Razorpay", to: "/integrations" },
-          { icon: Phone, title: "Telephony", desc: "Exotel, Knowlarity, Ozonetel", to: "/telephony" },
+          { icon: Receipt, title: "GST Invoicing", desc: "Quote to paid, in one flow", to: "/gst-invoicing", soon: true },
+          { icon: Plug, title: "Integrations", desc: "IndiaMART, Tally, Razorpay", to: "/integrations", soon: true },
+          { icon: Phone, title: "Telephony", desc: "Exotel, Knowlarity, Ozonetel", to: "/telephony", soon: true },
         ],
       },
     ],
@@ -187,9 +195,6 @@ export function Nav() {
             <Search className="size-[17px]" />
           </button>
           <ThemeToggle />
-          <a href="#pricing" className="ml-1 text-sm text-muted-foreground hover:text-foreground">
-            Sign in
-          </a>
           <WaitlistButton size="sm" className="rounded-lg" />
         </div>
 
@@ -218,7 +223,10 @@ export function Nav() {
                             <it.icon className="size-4" />
                           </span>
                           <span>
-                            <span className="block text-[14px] font-medium">{it.title}</span>
+                            <span className="block text-[14px] font-medium">
+                              {it.title}
+                              {it.soon && <SoonChip />}
+                            </span>
                             <span className="block text-[12.5px] text-muted-foreground">
                               {it.desc}
                             </span>
@@ -268,6 +276,7 @@ export function Nav() {
                   className="text-sm text-muted-foreground"
                 >
                   {it.title}
+                  {it.soon && <SoonChip />}
                 </Link>
               ) : null,
             )}

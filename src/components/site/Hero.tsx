@@ -1,5 +1,4 @@
 import { Sparkles } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import { WorkspaceMock } from "./WorkspaceMock";
 import { Container } from "./Rails";
 import { WaitlistButton } from "./Waitlist";
@@ -28,9 +27,6 @@ export function Hero() {
           <WaitlistButton size="lg" className="rounded-lg px-6">
             Join waitlist
           </WaitlistButton>
-          <Button size="lg" variant="outline" className="rounded-lg bg-card px-6">
-            See WhatsApp demo
-          </Button>
         </div>
 
         <div className="mt-16 text-left">

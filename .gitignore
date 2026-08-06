@@ -37,3 +37,9 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+.vercel
+.env*
+
+# Local Claude Code preferences (not project content)
+CLAUDE.md.txt
