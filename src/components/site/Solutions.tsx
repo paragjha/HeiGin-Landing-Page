@@ -3,7 +3,7 @@ import { cn } from "@/lib/utils";
 import { Section, SectionHeader } from "./Section";
 
 const byRole = [
-  { t: "Founder / Owner", b: "See every lead, quote, and rupee of pipeline in one view — without asking anyone for an update." },
+  { t: "Founder / Owner", b: "See every lead, quote, and rupee of pipeline in one view, without asking anyone for an update." },
   { t: "Sales Rep", b: "Your day, planned: who to call, what to send on WhatsApp, and which deals go cold tomorrow." },
   { t: "3-person Team", b: "No admin, no consultant, no ops hire. Import your contacts, connect WhatsApp, and start selling the same day." },
   { t: "Agency & Reseller", b: "Run multiple client pipelines, shared inboxes, and branded WhatsApp templates from one workspace." },
@@ -12,7 +12,7 @@ const byRole = [
 const byIndustry = [
   { t: "Retail & D2C", b: "Turn WhatsApp enquiries into repeat buyers with catalogues, offers, and automated re-order nudges." },
   { t: "Real Estate", b: "Capture portal leads, schedule site visits, and keep every broker's follow-ups on the same board." },
-  { t: "Manufacturing & Exports", b: "IndiaMART enquiries to GST quotations to payment — one pipeline, no spreadsheet handoffs." },
+  { t: "Manufacturing & Exports", b: "IndiaMART enquiries to GST quotations to payment: one pipeline, no spreadsheet handoffs." },
   { t: "Ed-tech & Coaching", b: "Enquiry to counselling call to enrolment, with reminders going out on WhatsApp automatically." },
 ];
 

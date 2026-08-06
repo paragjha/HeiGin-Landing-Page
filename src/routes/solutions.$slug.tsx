@@ -5,7 +5,7 @@ import { solutionBySlug } from "@/content/solutions";
 export const Route = createFileRoute("/solutions/$slug")({
   head: ({ params }) => {
     const s = solutionBySlug[params.slug];
-    const title = s ? `${s.eyebrow} CRM — Heigin` : "Solutions — Heigin";
+    const title = s ? `${s.eyebrow} CRM: Heigin` : "Solutions: Heigin";
     const description = s ? s.sub.slice(0, 155) : "Heigin CRM solutions for Indian SMB teams.";
     return {
       meta: [

@@ -126,8 +126,6 @@ export function WorkspaceMock() {
             <article
               key={board.key}
               style={{
-                transformOrigin: "center top",
-                transform: front ? undefined : `scale(${1 - depth * 0.05})`,
                 top: front ? 0 : -depth * 32,
                 zIndex: boards.length - depth,
               }}

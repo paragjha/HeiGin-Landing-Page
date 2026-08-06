@@ -6,9 +6,9 @@ import { CtaFooter } from "@/components/site/CtaFooter";
 import { Frame, HatchDivider, Container } from "@/components/site/Rails";
 import { WaitlistButton } from "@/components/site/Waitlist";
 
-const title = "Integrations — Heigin CRM";
+const title = "Integrations: Heigin CRM";
 const description =
-  "Connect IndiaMART, WhatsApp Business API, Tally, Razorpay, Exotel and Google Sheets to Heigin — the India-first CRM for SMBs.";
+  "Connect IndiaMART, WhatsApp Business API, Tally, Razorpay, Exotel and Google Sheets to Heigin, the India-first CRM for SMBs.";
 
 export const Route = createFileRoute("/integrations")({
   head: () => ({
@@ -79,7 +79,7 @@ export function Integrations() {
                 <span className="font-display italic text-muted-foreground">India runs on</span>
               </h1>
               <p className="mx-auto mt-5 max-w-2xl text-[17px] leading-relaxed text-muted-foreground">
-                IndiaMART, WhatsApp, Tally, Razorpay and your telephony provider — wired into one
+                IndiaMART, WhatsApp, Tally, Razorpay and your telephony provider, wired into one
                 pipeline, so nothing has to be typed twice.
               </p>
               <div className="mt-8 flex flex-wrap justify-center gap-3">

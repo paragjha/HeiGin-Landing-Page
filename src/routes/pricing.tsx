@@ -7,7 +7,7 @@ import { CtaFooter } from "@/components/site/CtaFooter";
 import { Frame, HatchDivider, Container } from "@/components/site/Rails";
 import { Pricing } from "@/components/site/Pricing";
 
-const title = "Pricing — Heigin CRM for Indian SMBs";
+const title = "Pricing: Heigin CRM for Indian SMBs";
 const description =
   "Per user, per month, in rupees. Starter ₹499, Growth ₹999, Enterprise custom. No setup fee, no implementation partner, no annual contract.";
 

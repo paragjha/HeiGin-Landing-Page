@@ -2,7 +2,7 @@ const logos = ["NORTHWIND", "Bluetail", "PIXEL&CO", "ORBIT LABS", "verde", "Skyl
 
 export function Logos() {
   return (
-    <section className="py-16">
+    <section className="py-10 md:py-16">
       <div className="mx-auto max-w-6xl px-5">
         <div className="grid grid-cols-2 border-l border-t border-border sm:grid-cols-3 lg:grid-cols-5">
           {logos.map((l) => (

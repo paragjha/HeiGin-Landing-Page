@@ -2,11 +2,11 @@ import { Section, SectionHeader } from "./Section";
 
 const controls = [
   { t: "Data stays in India", b: "Customer records, chats, and invoices are stored on Indian infrastructure, aligned with DPDP expectations." },
-  { t: "Official WhatsApp API", b: "No unofficial hacks or shared numbers — your business number, your templates, your sender reputation." },
+  { t: "Official WhatsApp API", b: "No unofficial hacks or shared numbers: your business number, your templates, your sender reputation." },
   { t: "Lead ownership rules", b: "Assign territories and round-robin routing so two reps never call the same enquiry twice." },
   { t: "Export & contact locking", b: "Control who can export contact lists or view phone numbers, so your database leaves with you, not with a rep." },
   { t: "Role-based visibility", b: "Owners see everything; reps see their own pipeline. Configure it in a minute, not a workshop." },
-  { t: "Full activity trail", b: "Every call, message, stage change, and discount is logged against the contact — auditable at any time." },
+  { t: "Full activity trail", b: "Every call, message, stage change, and discount is logged against the contact, auditable at any time." },
 ];
 
 const stats = [
@@ -27,7 +27,7 @@ export function Security() {
             <span className="font-display italic text-muted-foreground">under your control</span>
           </>
         }
-        description="India-hosted data, the official WhatsApp Business API, and clear ownership rules — so your contact list stays yours."
+        description="India-hosted data, the official WhatsApp Business API, and clear ownership rules, so your contact list stays yours."
       />
 
       <div className="mt-12 grid gap-4 md:grid-cols-3">
@@ -51,7 +51,7 @@ export function Security() {
         <figure className="rounded-2xl border border-border bg-card p-6">
           <blockquote className="font-display text-[20px] leading-snug">
             "We ran sales out of three WhatsApp phones and one Excel file. Heigin gave four of us a
-            single inbox and pipeline — enquiries now get answered in minutes."
+            single inbox and pipeline, enquiries now get answered in minutes."
           </blockquote>
           <figcaption className="mt-5 flex items-center gap-3">
             <span className="grid size-9 place-items-center rounded-full bg-surface-2 text-[12px] font-medium text-muted-foreground">

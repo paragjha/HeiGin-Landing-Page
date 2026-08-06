@@ -3,7 +3,7 @@ import { FeaturePage } from "@/components/site/FeaturePage";
 import { featureBySlug } from "@/content/features";
 
 const feature = featureBySlug["telephony"]!;
-const title = `${feature.eyebrow} — Heigin CRM`;
+const title = `${feature.eyebrow}: Heigin CRM`;
 const description = feature.sub.slice(0, 155);
 
 export const Route = createFileRoute("/telephony")({

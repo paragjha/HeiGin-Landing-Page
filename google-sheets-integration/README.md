@@ -21,7 +21,7 @@ App and every submission lands as a new row in a Sheet.
    - **Execute as:** Me
    - **Who has access:** Anyone
 4. Click **Deploy**, then **Authorize access** and approve with your Google
-   account (you'll see an "unverified app" warning — click **Advanced →
+   account (you'll see an "unverified app" warning: click **Advanced,
    Go to (project name)** since it's your own script).
 5. Copy the **Web app URL** it gives you (ends in `/exec`).
 
@@ -40,5 +40,5 @@ timestamp, name, email, phone, company, and team size.
   Script and re-deploy (**Deploy → Manage deployments → Edit → New
   version**).
 - The frontend calls this with `mode: "no-cors"` since Apps Script doesn't
-  support CORS preflight — so submissions can't report a granular failure
+  support CORS preflight, so submissions can't report a granular failure
   reason back to the browser, but they do land in the sheet.

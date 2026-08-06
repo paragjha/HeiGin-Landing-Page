@@ -12,7 +12,7 @@ export type Post = {
 export const posts: Post[] = [
   {
     slug: "whatsapp-first-sales-india",
-    title: "Why Indian SMBs sell on WhatsApp — and what a CRM has to do about it",
+    title: "Why Indian SMBs sell on WhatsApp, and what a CRM has to do about it",
     excerpt:
       "The enquiry arrives on WhatsApp, the quote goes out on WhatsApp, and the payment reminder does too. A CRM that treats chat as an afterthought is a CRM nobody updates.",
     category: "Playbooks",
@@ -22,7 +22,7 @@ export const posts: Post[] = [
     body: [
       {
         paragraphs: [
-          "Ask a hundred small businesses in India where their last order came from, and the honest answer is a chat thread. Not a form, not an email sequence — a message from a number nobody saved.",
+          "Ask a hundred small businesses in India where their last order came from, and the honest answer is a chat thread. Not a form, not an email sequence: a message from a number nobody saved.",
           "Most CRMs were designed around email. Chat was bolted on later as a channel among many, which is why reps end up copying messages into notes by hand, and eventually stop.",
         ],
       },
@@ -60,7 +60,7 @@ export const posts: Post[] = [
       {
         heading: "Hour one: import",
         paragraphs: [
-          "Upload the sheet you already maintain, however messy. Map the four fields that matter — name, number, source, stage — and ignore the rest for now.",
+          "Upload the sheet you already maintain, however messy. Map the four fields that matter (name, number, source, stage) and ignore the rest for now.",
         ],
       },
       {
@@ -72,7 +72,7 @@ export const posts: Post[] = [
       {
         heading: "Hour three: one workflow",
         paragraphs: [
-          "Pick a single automation — a follow-up nudge 48 hours after a quote. One workflow that works beats twelve that nobody trusts.",
+          "Pick a single automation: a follow-up nudge 48 hours after a quote. One workflow that works beats twelve that nobody trusts.",
         ],
       },
     ],
@@ -81,7 +81,7 @@ export const posts: Post[] = [
     slug: "ai-lead-scoring-that-works",
     title: "Lead scoring that reps actually believe",
     excerpt:
-      "A score is only useful if the rep can see why. We built ours to show its reasoning in one line — and adoption went up sharply.",
+      "A score is only useful if the rep can see why. We built ours to show its reasoning in one line, and adoption went up sharply.",
     category: "AI",
     date: "9 April 2026",
     readTime: "7 min read",
@@ -95,7 +95,7 @@ export const posts: Post[] = [
       {
         heading: "Show the reason, not just the score",
         paragraphs: [
-          "Our model surfaces the two signals that moved the score most: reply speed, budget mentioned in chat, repeat enquiry, source quality. When a rep can read the reason, they can disagree with it — and that disagreement is the training signal.",
+          "Our model surfaces the two signals that moved the score most: reply speed, budget mentioned in chat, repeat enquiry, source quality. When a rep can read the reason, they can disagree with it, and that disagreement is the training signal.",
         ],
       },
       {
@@ -147,7 +147,7 @@ export const posts: Post[] = [
       {
         heading: "What the data showed",
         paragraphs: [
-          "Replies inside a minute converted roughly three times better than replies after an hour. After four hours, the curve is effectively flat — you are competing on price alone.",
+          "Replies inside a minute converted roughly three times better than replies after an hour. After four hours, the curve is effectively flat: you are competing on price alone.",
           "The fix is rarely more staff. It is an automatic acknowledgement with the catalogue attached, followed by a human call inside the hour.",
         ],
       },
