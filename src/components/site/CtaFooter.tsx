@@ -75,12 +75,14 @@ export function CtaFooter() {
               <p className="mt-4 max-w-xs text-[14px] leading-relaxed text-muted-foreground">
                 The India-first, AI-first CRM for SMBs, with WhatsApp automation built in.
               </p>
-              <a
-                href="mailto:heiginofficial@gmail.com"
-                className="mt-3 inline-block font-mono text-[12.5px] text-accent"
-              >
-                heiginofficial@gmail.com
-              </a>
+              <div className="mt-3 flex flex-col gap-1">
+                <a href="mailto:office@heigin.com" className="font-mono text-[12.5px] text-accent">
+                  office@heigin.com
+                </a>
+                <a href="mailto:sales@heigin.com" className="font-mono text-[12.5px] text-accent">
+                  sales@heigin.com
+                </a>
+              </div>
             </div>
             {columns.map((c) => (
               <div key={c.title}>

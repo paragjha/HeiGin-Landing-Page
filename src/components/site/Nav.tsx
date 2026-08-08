@@ -2,7 +2,6 @@ import { useState } from "react";
 import {
   ChevronDown,
   Menu,
-  Search,
   X,
   Sparkles,
   MessageCircle,
@@ -187,13 +186,6 @@ export function Nav() {
         </nav>
 
         <div className="hidden items-center gap-2 md:flex">
-          <button
-            type="button"
-            aria-label="Search"
-            className="grid size-8 place-items-center rounded-full text-muted-foreground transition-colors hover:bg-surface-2 hover:text-foreground"
-          >
-            <Search className="size-[17px]" />
-          </button>
           <ThemeToggle />
           <WaitlistButton size="sm" className="rounded-lg" />
         </div>

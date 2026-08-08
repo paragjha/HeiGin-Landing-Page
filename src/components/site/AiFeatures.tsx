@@ -52,8 +52,8 @@ export function AiFeatures() {
           </p>
           <div className="mt-7 flex flex-wrap gap-3">
             <Button className="rounded-lg">Explore AI workflows</Button>
-            <Button variant="outline" className="rounded-lg bg-card">
-              Talk to us
+            <Button variant="outline" className="rounded-lg bg-card" asChild>
+              <a href="mailto:sales@heigin.com">Talk to us</a>
             </Button>
           </div>
         </div>
