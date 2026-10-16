@@ -206,7 +206,8 @@ function Home() {
             />
             <ScrollRise className="relative mx-auto max-w-5xl">
               <AppFrame
-                src={dashboardShot.url}
+                priority
+                shot={dashboardShot}
                 alt="HeiGin dashboard showing open pipeline, win rate, lead sources and recently updated deals"
               />
             </ScrollRise>
@@ -341,7 +342,7 @@ function Home() {
           <div className="min-w-0 lg:col-span-7">
             <AppFrame
               className="lg:w-[150%] lg:max-w-none"
-              src={quotesShot.url}
+              shot={quotesShot}
               alt="HeiGin quotes and payments view showing a GST quote with acceptance status"
             />
           </div>
@@ -389,7 +390,7 @@ function Home() {
             <p className="mt-3 max-w-md text-sm leading-relaxed text-faint">{copilotExamples[question]!.a}</p>
           </Reveal>
           <Reveal delay={120}>
-            <AppFrame className="lg:w-[140%] lg:max-w-none" src={copilotShot.url} alt="HeiGin Copilot answering questions about won and lost deals by owner" />
+            <AppFrame className="lg:w-[140%] lg:max-w-none" shot={copilotShot} alt="HeiGin Copilot answering questions about won and lost deals by owner" />
           </Reveal>
         </div>
       </Section>

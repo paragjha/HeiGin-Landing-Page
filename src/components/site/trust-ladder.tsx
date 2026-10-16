@@ -44,7 +44,7 @@ export function TrustLadder() {
               <TrustRungBadge rung={r.rung as 1 | 2 | 3} />
               <p className="text-lg font-semibold text-foreground">{r.title}</p>
               {/* autonomy meter */}
-              <span className="ml-auto flex items-center gap-1" aria-label={`Autonomy level ${r.rung} of 3`}>
+              <span className="ml-auto flex items-center gap-1" role="img" aria-label={`Autonomy level ${r.rung} of 3`}>
                 {[1, 2, 3].map((i) => (
                   <span
                     key={i}

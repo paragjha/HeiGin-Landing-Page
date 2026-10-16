@@ -55,7 +55,7 @@ const tourViews = [
     value: "Customer quotes with versions and approval statuses — a real screen from the live product.",
     render: (
       <AppFrame
-        src={quotesShot.url}
+        shot={quotesShot}
         alt="HeiGin Quotes & Payments screen listing customer quotes with version, status, total and updated date"
       />
     ),

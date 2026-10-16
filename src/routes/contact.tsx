@@ -8,7 +8,11 @@ import { site } from "@/lib/site";
 import { submitLead } from "@/lib/submit-lead";
 
 export const Route = createFileRoute("/contact")({
-  head: pageHead("/contact", "Contact & early access", "Request early access to HeiGin or book a walkthrough with the team."),
+  head: pageHead(
+    "/contact",
+    "Contact & early access",
+    "Request early access to HeiGin or book a walkthrough with the team. Tell us how you sell today and we will reply with next steps."
+  ),
   component: Contact,
 });
 

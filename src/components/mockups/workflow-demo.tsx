@@ -216,10 +216,10 @@ export function WorkflowDemo() {
       </div>
 
       {/* Step selector — horizontally scrollable on small screens */}
-      <div className="border-b border-border px-5 py-4" role="tablist" aria-label="Workflow steps">
-        <ol className="flex flex-nowrap gap-1.5 overflow-x-auto pb-1">
+      <div className="border-b border-border px-5 py-4">
+        <ol role="tablist" aria-label="Workflow steps" className="flex flex-nowrap gap-1.5 overflow-x-auto pb-1">
           {steps.map((s, i) => (
-            <li key={s.id} className="shrink-0">
+            <li key={s.id} role="presentation" className="shrink-0">
               <button
                 type="button"
                 role="tab"

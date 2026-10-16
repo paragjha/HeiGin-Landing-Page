@@ -27,7 +27,7 @@ export function SiteFooter() {
           </Reveal>
           <Reveal delay={120}>
             <AppFrame
-              src={dashboardShot.url}
+              shot={dashboardShot}
               alt="HeiGin dashboard showing open pipeline, win rate, lead sources and recently updated deals"
               className="mx-auto mt-14 max-w-4xl translate-y-10 shadow-2xl md:translate-y-16"
             />

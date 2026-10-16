@@ -5,7 +5,28 @@ import { cn } from "@/lib/utils";
  * read as a placed object: refined chrome with an address pill, a cooler
  * border, and the strongest of the site's three shadow tiers.
  */
-export function AppFrame({ src, alt, className }: { src: string; alt: string; className?: string }) {
+export interface Shot {
+  url: string;
+  width: number;
+  height: number;
+}
+
+/**
+ * `shot` carries the intrinsic size so the browser reserves space before the image
+ * loads (no layout shift). Pass `priority` for the one screenshot that is in the first
+ * viewport; everything else loads lazily.
+ */
+export function AppFrame({
+  shot,
+  alt,
+  className,
+  priority = false,
+}: {
+  shot: Shot;
+  alt: string;
+  className?: string;
+  priority?: boolean;
+}) {
   return (
     <div className={cn("overflow-hidden rounded-xl border border-border-strong bg-surface shadow-mockup", className)}>
       <div className="flex items-center gap-3 border-b border-border bg-sidebar px-3.5 py-2.5" aria-hidden="true">
@@ -19,7 +40,16 @@ export function AppFrame({ src, alt, className }: { src: string; alt: string; cl
         </span>
         <span className="w-[42px]" />
       </div>
-      <img src={src} alt={alt} className="block w-full" />
+      <img
+        src={shot.url}
+        width={shot.width}
+        height={shot.height}
+        alt={alt}
+        loading={priority ? "eager" : "lazy"}
+        decoding="async"
+        fetchPriority={priority ? "high" : "auto"}
+        className="block h-auto w-full"
+      />
     </div>
   );
 }

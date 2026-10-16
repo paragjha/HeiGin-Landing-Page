@@ -16,6 +16,7 @@ import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { SiteHeader } from "../components/site/site-header";
 import { SiteFooter } from "../components/site/site-footer";
+import { site } from "../lib/site";
 
 function NotFoundComponent() {
   return (
@@ -110,6 +111,20 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       {
         rel: "stylesheet",
         href: "https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400..700&family=Newsreader:opsz,wght@6..72,400;6..72,500&display=swap",
+      },
+    ],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Organization",
+          name: site.name,
+          url: site.url,
+          logo: `${site.url}/favicon.png`,
+          description: site.description,
+          email: site.contactEmail,
+        }),
       },
     ],
   }),

@@ -57,6 +57,10 @@
 
 :root {
   --radius: 6px;
+  /* WCAG 2.1 AA: the @heigin/ui defaults (#737373 / #a3a3a3) measure 4.2-4.4:1 and 2.4:1 on this
+     site's light surfaces; AA needs 4.5:1. Marketing-site override only, the library is untouched. */
+  --hg-color-muted: #5c5c5c;
+  --hg-color-faint: #6b6b6b;
   /* Soft tinted surface for alternating section bands */
   --hg-tint: oklch(0.974 0.004 250);
   /* Elevation tiers — page stays flat, cards soft, mockups strongest */
