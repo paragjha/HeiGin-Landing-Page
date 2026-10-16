@@ -4,9 +4,9 @@ import { site } from "./site";
 export function pageHead(path: string, title: string, description: string) {
   return () => ({
     meta: [
-      { title: `${title} — HeiGin` },
+      { title: `${title} | HeiGin` },
       { name: "description", content: description },
-      { property: "og:title", content: `${title} — HeiGin` },
+      { property: "og:title", content: `${title} | HeiGin` },
       { property: "og:description", content: description },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },

@@ -13,14 +13,14 @@ export const Route = createFileRoute("/ai-agents")({
   head: pageHead(
     "/ai-agents",
     "AI Agents",
-    "Don't just track the work — move it forward. How HeiGin's AI agents observe, propose and act within the permissions your team sets."
+    "Don't just track the work. Move it forward. How HeiGin's AI agents observe, propose and act within the permissions your team sets."
   ),
   component: AiAgents,
 });
 
 const loopSteps = [
   { icon: Eye, label: "Observe", body: "Read the customer context: meetings, messages, records." },
-  { icon: FileSearch, label: "Identify", body: "Spot a signal — an open loop, a stalled deal, a quiet account." },
+  { icon: FileSearch, label: "Identify", body: "Spot a signal: an open loop, a stalled deal, a quiet account." },
   { icon: Sparkles, label: "Reason", body: "Work out the most useful next step from the context." },
   { icon: GitBranch, label: "Propose or act", body: "Draft the action, or execute it if its permissions allow." },
   { icon: UserCheck, label: "Record", body: "Log what happened, why, and who approved it." },
@@ -69,7 +69,7 @@ function AiAgents() {
       <PageHero
         eyebrow="AI agents"
         title="Don't just track the work. Move it forward."
-        description="HeiGin's agents read customer context, notice what needs attention, and help your team act — inside limits you control."
+        description="HeiGin's agents read customer context, notice what needs attention, and help your team act, inside limits you control."
       />
 
       <Section dark>
@@ -134,7 +134,7 @@ function AiAgents() {
           <div className="flex items-start gap-4">
             <ListChecks size={20} strokeWidth={1.7} aria-hidden="true" className="mt-1 shrink-0 text-foreground" />
             <div>
-              <h3 className="text-2xl font-semibold tracking-tight text-foreground">Workflow builder — in design</h3>
+              <h3 className="text-2xl font-semibold tracking-tight text-foreground">Workflow builder: in design</h3>
               <p className="mt-2 max-w-2xl text-lg leading-relaxed text-muted-foreground">
                 A visual builder for multi-step agent workflows is being designed with pilot teams: pick a trigger,
                 define the steps, and mark which ones pause for approval. We'll publish an interactive preview here

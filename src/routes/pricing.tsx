@@ -67,7 +67,7 @@ function Pricing() {
       <PageHero
         eyebrow="Pricing"
         title="Join the pilot now. Simple per-user pricing at launch."
-        description="HeiGin is in early access. Starter and Growth are our settled launch prices — they go on sale when public access opens. Right now, the way in is the pilot programme."
+        description="HeiGin is in early access. Starter and Growth are our settled launch prices. They go on sale when public access opens. Right now, the way in is the pilot programme."
         showCtas={false}
       />
       <Section>

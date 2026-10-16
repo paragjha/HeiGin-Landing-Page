@@ -52,7 +52,7 @@ function Solutions() {
       <Section>
         <SectionHeading
           title="Which sounds like your team?"
-          description="Proposed segments — we'll publish detailed pages once pilot evidence supports them."
+          description="Proposed segments: we'll publish detailed pages once pilot evidence supports them."
         />
         <div className="mt-12 grid gap-4 md:grid-cols-2">
           {segments.map((s) => (

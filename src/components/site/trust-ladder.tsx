@@ -9,8 +9,8 @@ const rungs = [
   {
     rung: 1,
     title: "Suggest",
-    body: "The agent reads context and recommends. Drafts, flags and lists appear — your team does every action.",
-    example: "“Sundaram Mills looks stalled — suggest a check-in this week.”",
+    body: "The agent reads context and recommends. Drafts, flags and lists appear. Your team does every action.",
+    example: "“Sundaram Mills looks stalled. Suggest a check-in this week.”",
   },
   {
     rung: 2,
@@ -21,7 +21,7 @@ const rungs = [
   {
     rung: 3,
     title: "Act automatically",
-    body: "Within the scope you grant, the agent acts on its own and logs everything. Reserved for low-risk, internal steps — and revocable at any time.",
+    body: "Within the scope you grant, the agent acts on its own and logs everything. Reserved for low-risk, internal steps, and revocable at any time.",
     example: "Filing a meeting summary on the right record after a call.",
   },
 ] as const;

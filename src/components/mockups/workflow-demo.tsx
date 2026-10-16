@@ -22,7 +22,7 @@ const steps = [
     id: "context",
     label: "Context syncs",
     title: "Notes and context attach to the record",
-    body: "Meeting notes and the conversation history come together on one timeline. No one copies anything between tools — the record already knows what was discussed.",
+    body: "Meeting notes and the conversation history come together on one timeline. No one copies anything between tools. The record already knows what was discussed.",
     icon: FileText,
   },
   {
@@ -36,7 +36,7 @@ const steps = [
     id: "proposal",
     label: "Agent proposes",
     title: "A follow-up is drafted for review",
-    body: "The agent drafts a reply using the rates discussed on the call. At this trust rung it cannot send anything itself — it prepares the action and explains its reasoning.",
+    body: "The agent drafts a reply using the rates discussed on the call. At this trust rung it cannot send anything itself. It prepares the action and explains its reasoning.",
     icon: Mail,
   },
   {
@@ -89,7 +89,7 @@ function StepVisual({ step }: { step: number }) {
               </div>
             ))}
           </div>
-          <p className="mt-3 text-sm text-muted-foreground">Illustrative — integration statuses are listed on the integrations page.</p>
+          <p className="mt-3 text-sm text-muted-foreground">Illustrative. Integration statuses are listed on the integrations page.</p>
         </Card>
       );
     case "signal":
@@ -102,7 +102,7 @@ function StepVisual({ step }: { step: number }) {
             <div>
               <p className="text-md font-semibold text-foreground">Open loop: pricing question</p>
               <p className="mt-1 text-md leading-relaxed text-muted-foreground">
-                “Could you send the updated spring-line pricing?” — unanswered for 22 hours on an account in active
+                “Could you send the updated spring-line pricing?” Unanswered for 22 hours on an account in active
                 renewal talks.
               </p>
               <div className="mt-2"><Badge tone="warning" dot size="sm">Needs attention</Badge></div>
@@ -121,7 +121,7 @@ function StepVisual({ step }: { step: number }) {
           onReject={() => {}}
         >
           <div className="rounded-md border border-border bg-sidebar p-3 text-md leading-relaxed text-muted-foreground">
-            Hi Asha — thanks for the time yesterday. Attaching the updated spring-line pricing we discussed…
+            Hi Asha, thanks for the time yesterday. Attaching the updated spring-line pricing we discussed…
           </div>
         </ApprovalCard>
       );
@@ -162,7 +162,6 @@ export function WorkflowDemo() {
   const [step, setStep] = useState(0);
   const rootRef = useRef<HTMLDivElement>(null);
   const interactedRef = useRef(false);
-  const Icon = steps[step]!.icon;
 
   // Auto-advance once the demo scrolls into view, until the visitor takes over.
   useEffect(() => {
@@ -201,7 +200,7 @@ export function WorkflowDemo() {
   return (
     <div ref={rootRef} className="overflow-hidden rounded-xl border border-border bg-surface shadow-[var(--hg-shadow-card)]">
       <div className="flex flex-wrap items-center justify-between gap-3 border-b border-border bg-sidebar px-5 py-3">
-        <p className="text-md font-semibold text-foreground">From signal to action — one workflow</p>
+        <p className="text-md font-semibold text-foreground">From signal to action: one workflow</p>
         <div className="flex items-center gap-2">
           <Button
             variant="ghost"
@@ -248,15 +247,30 @@ export function WorkflowDemo() {
         </div>
       </div>
 
+      {/*
+        All steps share one grid cell and only the active one is visible, so the panel is always as
+        tall as the tallest step. Swapping content in and out used to change the height (step 4's
+        approval card is taller than step 3's) and pushed the next section up and down.
+        `invisible` also removes hidden steps from the tab order and the accessibility tree.
+      */}
       <div className="grid gap-6 p-5 md:grid-cols-[1fr_1.2fr] md:p-6">
         <div>
-          <div className="flex items-center gap-2.5">
-            <span className="flex size-8 items-center justify-center rounded-md bg-accent text-accent-foreground">
-              <Icon size={16} strokeWidth={1.8} aria-hidden="true" />
-            </span>
-            <h3 className="text-xl font-semibold tracking-tight text-foreground">{steps[step]!.title}</h3>
+          <div className="grid">
+            {steps.map((s, i) => {
+              const StepIcon = s.icon;
+              return (
+                <div key={s.id} className={cn("col-start-1 row-start-1", i !== step && "invisible")}>
+                  <div className="flex items-center gap-2.5">
+                    <span className="flex size-8 shrink-0 items-center justify-center rounded-md bg-accent text-accent-foreground">
+                      <StepIcon size={16} strokeWidth={1.8} aria-hidden="true" />
+                    </span>
+                    <h3 className="text-xl font-semibold tracking-tight text-foreground">{s.title}</h3>
+                  </div>
+                  <p className="mt-3 text-lg leading-relaxed text-muted-foreground">{s.body}</p>
+                </div>
+              );
+            })}
           </div>
-          <p className="mt-3 text-lg leading-relaxed text-muted-foreground">{steps[step]!.body}</p>
           <div className="mt-5 flex gap-2">
             <Button
               variant="secondary"
@@ -280,8 +294,15 @@ export function WorkflowDemo() {
             </Button>
           </div>
         </div>
-        <div className="animate-rise" key={steps[step]!.id}>
-          <StepVisual step={step} />
+        <div className="grid">
+          {steps.map((s, i) => (
+            <div
+              key={s.id}
+              className={cn("col-start-1 row-start-1", i === step ? "animate-rise" : "invisible")}
+            >
+              <StepVisual step={i} />
+            </div>
+          ))}
         </div>
       </div>
     </div>

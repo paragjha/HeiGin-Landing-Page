@@ -9,7 +9,7 @@ export const Route = createFileRoute("/security")({
   head: pageHead(
     "/security",
     "Security",
-    "How HeiGin approaches data access, agent permissions, approvals and visibility — and what we are still confirming."
+    "How HeiGin approaches data access, agent permissions, approvals and visibility, and what we are still confirming."
   ),
   component: Security,
 });

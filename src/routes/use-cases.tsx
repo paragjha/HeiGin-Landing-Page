@@ -19,7 +19,7 @@ const useCases = [
   {
     id: "follow-ups",
     title: "Preventing missed follow-ups",
-    scenario: "A prospect asks a question on a call. The rep means to reply that afternoon — then three other calls happen.",
+    scenario: "A prospect asks a question on a call. The rep means to reply that afternoon. Then three other calls happen.",
     friction: "Follow-ups live in people's heads and scattered notes. Nothing reminds anyone until the prospect goes quiet.",
     helps: "The follow-up agent notices the open question and drafts the reply with the call context, ready for approval.",
     outcome: "Promised replies go out while the conversation is still warm.",
@@ -30,7 +30,7 @@ const useCases = [
     id: "deals",
     title: "Keeping deals moving",
     scenario: "An opportunity sits in Proposal for twelve days. No one has noticed because everyone assumes someone else is on it.",
-    friction: "Stalled deals usually surface in a weekly review — long after the right moment to act.",
+    friction: "Stalled deals usually surface in a weekly review, long after the right moment to act.",
     helps: "The deal assistant flags inactivity as it happens and suggests a next step that references the last conversation.",
     outcome: "Stalls are caught early, while there's still momentum to recover.",
     flow: ["Activity stops", "Stall flagged", "Next step suggested", "Owner acts"],
@@ -69,7 +69,7 @@ const useCases = [
   {
     id: "coordination",
     title: "Coordinating sales workflows",
-    scenario: "A deal closes. Onboarding tasks, notifications and a kickoff call all need to happen — in the right order.",
+    scenario: "A deal closes. Onboarding tasks, notifications and a kickoff call all need to happen, in the right order.",
     friction: "Hand-offs depend on checklists that someone has to remember to start.",
     helps: "The workflow agent runs the steps you define, pausing before anything customer-facing.",
     outcome: "Hand-offs happen consistently, every time.",
@@ -84,7 +84,7 @@ function UseCases() {
       <PageHero
         eyebrow="Use cases"
         title="Built around the moments relationships slip."
-        description="Each use case starts with a real customer-management problem — not a feature list."
+        description="Each use case starts with a real customer-management problem, not a feature list."
       />
 
       {useCases.map((uc, idx) => (

@@ -48,7 +48,7 @@ export function UniversalContext() {
             <h2 className="mt-3 text-headline text-night-foreground">Every tool you use feeds one customer story.</h2>
             <p className="mt-4 max-w-xl text-subhead text-night-muted">
               Email, WhatsApp, meetings and documents each hold a fragment of every relationship. HeiGin brings them
-              onto one timeline — what the agents read, what you approve against, and what the CRM learns from.
+              onto one timeline: what the agents read, what you approve against, and what the CRM learns from.
             </p>
             <ul className="mt-8 space-y-4">
               {steps.map((s, i) => (

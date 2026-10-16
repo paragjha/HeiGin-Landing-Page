@@ -25,7 +25,7 @@ function About() {
       <PageHero
         eyebrow="About HeiGin"
         title="CRMs remember. We want them to help."
-        description="For decades, CRMs have been systems of record — good at storing the past, dependent on people to work out what comes next. We're building HeiGin to close that gap."
+        description="For decades, CRMs have been systems of record, good at storing the past, dependent on people to work out what comes next. We're building HeiGin to close that gap."
         showCtas={false}
       />
       <Section>
@@ -38,7 +38,7 @@ function About() {
             </p>
             <p>
               We believe the next generation of CRM will be proactive: it will connect context across the tools teams
-              already use, notice what needs attention, and help people take the next step — with humans firmly in
+              already use, notice what needs attention, and help people take the next step, with humans firmly in
               control of what matters.
             </p>
           </div>

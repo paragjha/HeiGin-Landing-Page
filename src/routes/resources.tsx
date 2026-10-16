@@ -21,7 +21,7 @@ const categories = ["All", "Agentic CRM", "Sales workflows", "Product updates", 
 /** Planned articles. Titles are proposed topics — no article bodies are published yet. */
 const resources = [
   { title: "What is an agentic CRM?", category: "Agentic CRM", summary: "How CRMs shift from storing what happened to helping decide what happens next.", readTime: "6 min" },
-  { title: "Why follow-ups slip — and how to stop it", category: "Sales workflows", summary: "The most common reasons promised replies never get sent, and practical fixes.", readTime: "5 min" },
+  { title: "Why follow-ups slip, and how to stop it", category: "Sales workflows", summary: "The most common reasons promised replies never get sent, and practical fixes.", readTime: "5 min" },
   { title: "Designing trust levels for AI agents", category: "Agentic CRM", summary: "Why we let teams decide how much an agent can do on its own.", readTime: "7 min" },
   { title: "Spotting stalled deals early", category: "Sales workflows", summary: "Signals that a deal is stalling, long before it shows up in a report.", readTime: "4 min" },
   { title: "HeiGin pilot: what we're learning", category: "Product updates", summary: "Notes from building with our first pilot teams.", readTime: "5 min" },
@@ -40,7 +40,7 @@ function Resources() {
         showCtas={false}
       />
       <Section>
-        <PlaceholderNote>Upcoming articles — topics are planned, full articles are being written</PlaceholderNote>
+        <PlaceholderNote>Upcoming articles: topics are planned, full articles are being written</PlaceholderNote>
         <div className="mt-6 flex flex-wrap gap-1.5" role="group" aria-label="Filter resources">
           {categories.map((c) => (
             <button

@@ -43,7 +43,7 @@ export function SiteFooter() {
               <div>
                 <Logo />
                 <p className="mt-3 max-w-60 text-md leading-relaxed text-muted-foreground">
-                  The agentic CRM — customer relationships that never slip through the cracks.
+                  The agentic CRM: customer relationships that never slip through the cracks.
                 </p>
               </div>
               {footerNav.map((group) => (

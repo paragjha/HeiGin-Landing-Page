@@ -28,7 +28,7 @@ const tourViews = [
   {
     id: "record",
     label: "Customer record",
-    value: "The full story of a relationship — timeline, open loops and agent insight in one place.",
+    value: "The full story of a relationship: timeline, open loops and agent insight in one place.",
     render: <WorkspaceMockup />,
   },
   {
@@ -46,13 +46,13 @@ const tourViews = [
   {
     id: "activity",
     label: "Agent activity",
-    value: "An inspectable log of everything agents proposed and did — and who approved it.",
+    value: "An inspectable log of everything agents proposed and did, and who approved it.",
     render: <AgentActivityMockup />,
   },
   {
     id: "quotes",
     label: "Quotes & Payments",
-    value: "Customer quotes with versions and approval statuses — a real screen from the live product.",
+    value: "Customer quotes with versions and approval statuses: a real screen from the live product.",
     render: (
       <AppFrame
         shot={quotesShot}
@@ -71,7 +71,7 @@ function Product() {
       <PageHero
         eyebrow="Product"
         title="Your customer relationships, connected and actionable."
-        description="Contacts, companies, opportunities, conversations and tasks share one model — so agent insight turns straight into work your team can do."
+        description="Contacts, companies, opportunities, conversations and tasks share one model, so agent insight turns straight into work your team can do."
       />
 
       {/* Interactive tour */}
@@ -124,7 +124,7 @@ function Product() {
                 "Notice the pricing question while re-reading call notes",
                 "Look up the rates in a spreadsheet or chat thread",
                 "Draft the reply from scratch",
-                "Send it — hopefully before the customer follows up",
+                "Send it, hopefully before the customer follows up",
                 "Log the activity by hand, if there's time",
               ].map((s, i) => (
                 <li key={s} className="flex gap-3 text-lg text-muted-foreground">
@@ -159,7 +159,7 @@ function Product() {
         <SectionHeading
           eyebrow="End to end"
           title="Watch one relationship move forward."
-          description="The same interactive walkthrough as on the home page — meeting to closed loop."
+          description="The same interactive walkthrough as on the home page: meeting to closed loop."
         />
         <div className="mt-12"><WorkflowDemo /></div>
         <Link to="/ai-agents" className="mt-8 inline-flex items-center gap-1.5 text-lg font-medium text-foreground hover:underline">

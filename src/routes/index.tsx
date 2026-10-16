@@ -26,13 +26,13 @@ import { agents, agentStatusLabels } from "@/lib/agents";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "HeiGin — The CRM that never lets a customer slip through the cracks" },
+      { title: "HeiGin: The CRM that never lets a customer slip through the cracks" },
       {
         name: "description",
         content:
           "HeiGin is the agentic CRM that runs your sales process. Connected context, agents that act, your team in control.",
       },
-      { property: "og:title", content: "HeiGin — The agentic CRM" },
+      { property: "og:title", content: "HeiGin: The agentic CRM" },
       {
         property: "og:description",
         content: "The CRM that never lets a customer slip through the cracks. Request early access.",
@@ -62,17 +62,17 @@ const problems = [
 
 /** Small concrete visual shown on each agent card instead of more prose. */
 const agentVisuals: Record<string, { icon: typeof Flag; label: string }> = {
-  "follow-up": { icon: MessageSquare, label: "Draft ready — held for approval" },
-  "lead-qualification": { icon: Flag, label: "High intent — suggested owner" },
-  "deal-assistant": { icon: Flag, label: "Stalled 12 days — check-in suggested" },
-  relationship: { icon: ListChecks, label: "Quiet 2 months — added to this week" },
-  workflow: { icon: Sparkles, label: "3 steps run — 1 awaiting approval" },
+  "follow-up": { icon: MessageSquare, label: "Draft ready · held for approval" },
+  "lead-qualification": { icon: Flag, label: "High intent · suggested owner" },
+  "deal-assistant": { icon: Flag, label: "Stalled 12 days · check-in suggested" },
+  relationship: { icon: ListChecks, label: "Quiet 2 months · added to this week" },
+  workflow: { icon: Sparkles, label: "3 steps run · 1 awaiting approval" },
 };
 
 const copilotExamples = [
   {
     q: "Which quotes are still waiting on a decision?",
-    a: "Three quotes are open over 7 days — Kaveri Textiles (₹1.4L), Sundaram Mills (₹86k) and one more.",
+    a: "Three quotes are open over 7 days: Kaveri Textiles (₹1.4L), Sundaram Mills (₹86k) and one more.",
   },
   {
     q: "Who won the most this quarter?",
@@ -80,7 +80,7 @@ const copilotExamples = [
   },
   {
     q: "Draft a follow-up for Sundaram Mills.",
-    a: "Copilot drafts it against the last call notes and holds it for approval — nothing sends itself.",
+    a: "Copilot drafts it against the last call notes and holds it for approval. Nothing sends itself.",
   },
 ];
 
@@ -89,7 +89,7 @@ const capabilities = [
     icon: MessageSquare,
     title: "WhatsApp on the record",
     body: "Customer conversations on WhatsApp belong on the timeline, not in a rep's personal phone.",
-    example: "“Send the revised quote” — logged to Kaveri Textiles",
+    example: "“Send the revised quote”, logged to Kaveri Textiles",
   },
   {
     icon: FileText,
@@ -114,7 +114,7 @@ const capabilities = [
 const faqs = [
   {
     q: "What is an agentic CRM?",
-    a: "A CRM that does more than store records. It uses AI agents to read customer context, notice what needs attention, and propose or carry out the next step — within the permissions your team sets.",
+    a: "A CRM that does more than store records. It uses AI agents to read customer context, notice what needs attention, and propose or carry out the next step, within the permissions your team sets.",
   },
   {
     q: "How is HeiGin different from a traditional CRM?",
@@ -130,11 +130,11 @@ const faqs = [
   },
   {
     q: "Can our team review agent actions?",
-    a: "Yes — that is a core design principle. Agent proposals and actions are recorded in an activity log showing what happened, why, and who approved it.",
+    a: "Yes, that is a core design principle. Agent proposals and actions are recorded in an activity log showing what happened, why, and who approved it.",
   },
   {
     q: "Can we import existing CRM data?",
-    a: "Yes — imports from CSV, HubSpot and Salesforce are available, with guided field mapping. If you use something else, tell us when requesting access.",
+    a: "Yes, imports from CSV, HubSpot and Salesforce are available, with guided field mapping. If you use something else, tell us when requesting access.",
   },
   {
     q: "How do we get access?",
@@ -242,7 +242,7 @@ function Home() {
             title="Your CRM knows what happened. Does it know what should happen next?"
           />
           <p className="max-w-md text-lg leading-relaxed text-muted-foreground lg:justify-self-end">
-            Most CRMs are systems of record — good at storing the past, dependent on people to work out the future.
+            Most CRMs are systems of record, good at storing the past, dependent on people to work out the future.
             These are the three places that breaks down:
           </p>
         </div>
@@ -262,7 +262,7 @@ function Home() {
         <SectionHeading
           eyebrow="How it works"
           title="From customer signal to meaningful action."
-          description={<>Walk through one complete workflow — from a sales call to a closed<br />loop on&nbsp;the&nbsp;customer record.</>}
+          description={<>Walk through one complete workflow, from a sales call to a closed<br />loop on&nbsp;the&nbsp;customer record.</>}
           aside="One workflow, shown end to end."
         />
         <div className="mt-12">
@@ -320,14 +320,14 @@ function Home() {
           eyebrow="The workspace"
           title="Everything about the relationship. One place to act on it."
           description="Records, pipeline, quotes, tasks and agent activity share one model - so what the agents notice turns straight into work your team can do."
-          aside="Live product views. The task list below is interactive — try ticking an item."
+          aside="Live product views. The task list below is interactive. Try ticking an item."
         />
         <div className="mt-14 grid gap-6 lg:grid-cols-12">
           <div className="min-w-0 overflow-x-auto lg:col-span-7 lg:overflow-visible"><PipelineMockup /></div>
           <div className="space-y-4 lg:col-span-5">
             <h3 className="text-2xl font-semibold tracking-tight text-foreground">A pipeline that tells you where to look</h3>
             <p className="text-lg leading-relaxed text-muted-foreground">
-              Risk flags sit right on each opportunity, with the reason attached — not buried in a report you check on
+              Risk flags sit right on each opportunity, with the reason attached, not buried in a report you check on
               Fridays.
             </p>
           </div>
@@ -335,7 +335,7 @@ function Home() {
             <h3 className="text-2xl font-semibold tracking-tight text-foreground">Quotes and payments on the same record</h3>
             <p className="text-lg leading-relaxed text-muted-foreground">
               GST-correct quotes go out with a public acceptance link,
-              <br />and payment status lands back on the deal — no
+              <br />and payment status lands back on the deal, no
               <br />re-entry.
             </p>
           </div>
@@ -349,7 +349,7 @@ function Home() {
           <div className="space-y-4 lg:col-span-5 lg:pt-10">
             <h3 className="text-2xl font-semibold tracking-tight text-foreground">A to-do list built from open loops</h3>
             <p className="text-lg leading-relaxed text-muted-foreground">
-              Agents turn what they notice into tasks. Tick them off and the record updates — try it.
+              Agents turn what they notice into tasks. Tick them off and the record updates. Try it.
             </p>
           </div>
           <div className="min-w-0 overflow-x-auto lg:col-span-7 lg:overflow-visible"><TasksMockup /></div>
@@ -366,7 +366,7 @@ function Home() {
           <Reveal>
             <SectionHeading
               eyebrow="Ask HeiGin"
-              title="Any record, any answer — in plain language."
+              title="Any record, any answer, in plain language."
               description="Ask who won the most this quarter, which quotes are waiting, or draft a follow-up. Copilot answers from your CRM data and is honest about what it can't do."
             />
             <Badge tone="info" size="sm" className="mt-6">Copilot is in beta</Badge>
@@ -423,7 +423,7 @@ function Home() {
             <SectionHeading
               eyebrow="Human control"
               title="Autonomy is earned, rung by rung."
-              description="Every agent starts at the bottom of the ladder. Your team raises it — rung by rung, agent by agent — as confidence grows. Every action at every rung is logged with its reason."
+              description="Every agent starts at the bottom of the ladder. Your team raises it, rung by rung, agent by agent, as confidence grows. Every action at every rung is logged with its reason."
             />
             <p className="mt-6 text-sm text-faint">
               This is the intended operating model. Which controls are live during the pilot is confirmed with each

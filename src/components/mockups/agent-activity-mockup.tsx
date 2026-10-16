@@ -51,7 +51,7 @@ export function AgentActivityMockup() {
             <strong>Deal assistant</strong> flagged Sundaram Mills as stalled
           </ActivityItem>
           <ActivityItem icon={<Mail size={14} />} dateTime="2026-10-14T18:02" timeLabel="Yesterday"
-            detail="Held for approval — no message was sent automatically.">
+            detail="Held for approval. No message was sent automatically.">
             <strong>Follow-up agent</strong> drafted a reply for Kaveri Textiles
           </ActivityItem>
           <ActivityItem icon={<Eye size={14} />} dateTime="2026-10-14T15:41" timeLabel="Yesterday"

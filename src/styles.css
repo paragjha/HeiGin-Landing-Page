@@ -46,7 +46,7 @@
   --color-night-muted: var(--hg-night-muted);
   --color-night-border: var(--hg-night-border);
   --color-night-surface: var(--hg-night-surface);
-  /* Soft blue-gray tint so sections alternate white / tint instead of white / void */
+  /* Neutral grey tint so sections alternate white / tint instead of white / void */
   --color-tint: var(--hg-tint);
   /* Three consistent elevation tiers: cards (soft), mockups (strongest), floats (menus/popovers) */
   --shadow-card: var(--hg-shadow-tier-card);
@@ -61,8 +61,9 @@
      site's light surfaces; AA needs 4.5:1. Marketing-site override only, the library is untouched. */
   --hg-color-muted: #5c5c5c;
   --hg-color-faint: #6b6b6b;
-  /* Soft tinted surface for alternating section bands */
-  --hg-tint: oklch(0.974 0.004 250);
+  /* Neutral grey for alternating section bands (the design system's sidebar grey, #f7f7f7).
+     It used to be a blue-tinted grey; the site now keeps its light surfaces neutral. */
+  --hg-tint: var(--hg-color-sidebar);
   /* Elevation tiers — page stays flat, cards soft, mockups strongest */
   --hg-shadow-tier-card: 0 1px 2px oklch(0 0 0 / 4%), 0 4px 14px -6px oklch(0 0 0 / 7%);
   --hg-shadow-tier-mockup:

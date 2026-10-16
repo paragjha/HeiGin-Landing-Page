@@ -28,7 +28,7 @@ const messages = [
   { id: "whatsapp", name: "Priya Shah", text: "Can you send the revised quote with GST?" },
   { id: "gmail", name: "Rahul Mehta", text: "We'd like to move ahead with 20 seats." },
   { id: "google-meet", name: "Call with Anika", text: "Agreed on a pilot starting next Monday." },
-  { id: "slack", name: "#sales", text: "Heads up — Kapoor & Co went quiet." },
+  { id: "slack", name: "#sales", text: "Heads up: Kapoor & Co went quiet." },
 ];
 
 export function IntegrationOrbit({ className }: { className?: string }) {

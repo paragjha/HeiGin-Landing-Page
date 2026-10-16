@@ -83,13 +83,13 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "HeiGin — The agentic CRM" },
+      { title: "HeiGin: The agentic CRM" },
       {
         name: "description",
         content:
           "HeiGin connects your customer context, spots what needs attention, and helps your team take the next step. The CRM that never lets a customer slip through the cracks.",
       },
-      { property: "og:title", content: "HeiGin — The agentic CRM" },
+      { property: "og:title", content: "HeiGin: The agentic CRM" },
       {
         property: "og:description",
         content:

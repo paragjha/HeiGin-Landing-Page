@@ -35,7 +35,7 @@ export const agents: Agent[] = [
     approval: "Outbound messages always wait for approval by default.",
     result: "The follow-up is logged on the timeline with who approved it.",
     scenario:
-      "After a renewal call, a customer asks for pricing. A day later nothing has been sent — the agent raises it and drafts the reply.",
+      "After a renewal call, a customer asks for pricing. A day later nothing has been sent. The agent raises it and drafts the reply.",
   },
   {
     id: "lead-qualification",
@@ -47,7 +47,7 @@ export const agents: Agent[] = [
     approval: "Suggests ownership and priority; reps decide.",
     result: "Leads arrive with a summary and suggested next step.",
     scenario:
-      "A web enquiry mentions a 40-person team and a contract ending next quarter — the agent summarises it and suggests an owner.",
+      "A web enquiry mentions a 40-person team and a contract ending next quarter. The agent summarises it and suggests an owner.",
   },
   {
     id: "deal-assistant",
@@ -56,7 +56,7 @@ export const agents: Agent[] = [
     problem: "Deals stall quietly before anyone notices.",
     context: "Stage history, last activity and conversation sentiment.",
     action: "Flags stalled opportunities and recommends a next step.",
-    approval: "Recommendations only — no changes to deals without a person.",
+    approval: "Recommendations only. No changes to deals without a person.",
     result: "Risk flags appear on the pipeline with the reason attached.",
     scenario:
       "A deal has sat in Proposal for 12 days with no reply. The assistant flags it and suggests a check-in referencing the last call.",
@@ -83,6 +83,6 @@ export const agents: Agent[] = [
     approval: "Steps you mark as sensitive pause for approval.",
     result: "Each step and outcome is recorded in the activity log.",
     scenario:
-      "When a deal is won, the agent creates onboarding tasks, notifies the account team and schedules the kickoff — pausing before any customer email.",
+      "When a deal is won, the agent creates onboarding tasks, notifies the account team and schedules the kickoff, pausing before any customer email.",
   },
 ];

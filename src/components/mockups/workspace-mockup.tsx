@@ -48,7 +48,7 @@ export function WorkspaceMockup() {
           <div className="mt-5">
             <ActivityTimeline label={`Activity for ${demoCompany.name}`}>
               <ActivityItem icon={<PhoneCall size={14} />} dateTime="2026-10-14T15:40" timeLabel="Yesterday, 3:40 pm"
-                detail="Renewal discussed. Asha asked for updated pricing for the spring line — not yet answered.">
+                detail="Renewal discussed. Asha asked for updated pricing for the spring line. Not yet answered.">
                 <strong>Meera S</strong> called {demoCompany.contact}
               </ActivityItem>
               <ActivityItem icon={<Mail size={14} />} dateTime="2026-10-12T10:05" timeLabel="Mon, 10:05 am"
@@ -74,7 +74,7 @@ export function WorkspaceMockup() {
                 <p className="text-md font-semibold text-foreground">Unanswered question detected</p>
                 <p className="mt-1 text-md leading-relaxed text-muted-foreground">
                   {demoCompany.contact} asked for spring-line pricing on yesterday's call. No reply has been sent in
-                  22 hours — this account is in active renewal talks.
+                  22 hours. This account is in active renewal talks.
                 </p>
                 <div className="mt-2.5 flex items-center gap-2">
                   <TrustRungBadge rung={2} />
@@ -93,7 +93,7 @@ export function WorkspaceMockup() {
             onReject={() => {}}
           >
             <div className="rounded-md border border-border bg-sidebar p-3 text-md leading-relaxed text-muted-foreground">
-              Hi Asha — thanks for the time yesterday. Attaching the updated spring-line pricing we discussed, valid
+              Hi Asha, thanks for the time yesterday. Attaching the updated spring-line pricing we discussed, valid
               through November. Happy to walk through the volume tiers on a short call this week.
             </div>
           </ApprovalCard>

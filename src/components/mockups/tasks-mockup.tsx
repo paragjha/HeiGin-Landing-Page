@@ -21,7 +21,7 @@ const initialTasks = [
   },
   {
     id: "t3",
-    title: "Re-engage Sundaram Mills — stalled 12 days",
+    title: "Re-engage Sundaram Mills · stalled 12 days",
     context: "Sundaram Mills · flagged by Deal assistant",
     due: "Yesterday",
     overdue: true,
@@ -90,7 +90,7 @@ export function TasksMockup() {
         {flash && (
           <p className="update-flash flex items-center gap-2 border-t border-border bg-info-soft-bg px-5 py-2.5 text-sm font-medium text-info-ink">
             <CheckCircle2 size={14} aria-hidden="true" />
-            Record updated — follow-up logged on the Kaveri Textiles timeline
+            Record updated: follow-up logged on the Kaveri Textiles timeline
           </p>
         )}
       </div>
