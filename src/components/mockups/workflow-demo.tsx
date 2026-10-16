@@ -158,47 +158,86 @@ function StepVisual({ step }: { step: number }) {
   }
 }
 
+/** How long each step stays on screen before the demo moves on by itself. */
+const STEP_DELAY_MS = 2500;
+
 export function WorkflowDemo() {
   const [step, setStep] = useState(0);
+  const [inView, setInView] = useState(false);
+  const [hovered, setHovered] = useState(false);
+  const [focused, setFocused] = useState(false);
+  // Autoplay ends once the visitor picks a step themselves; Replay turns it back on.
+  const [autoplay, setAutoplay] = useState(true);
   const rootRef = useRef<HTMLDivElement>(null);
-  const interactedRef = useRef(false);
+  const tabsRef = useRef<HTMLOListElement>(null);
+  const paused = hovered || focused;
 
-  // Auto-advance once the demo scrolls into view, until the visitor takes over.
+  // Track whether the demo is on screen so it only plays while someone can see it.
   useEffect(() => {
     const el = rootRef.current;
     if (!el || typeof IntersectionObserver === "undefined") return;
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    let timer: number | undefined;
-    const io = new IntersectionObserver(
-      ([entry]) => {
-        if (entry?.isIntersecting && timer === undefined) {
-          timer = window.setInterval(() => {
-            if (interactedRef.current) {
-              window.clearInterval(timer);
-              timer = undefined;
-              return;
-            }
-            setStep((s) => (s >= steps.length - 1 ? 0 : s + 1));
-          }, 3500);
-        }
-      },
-      { threshold: 0.4 }
-    );
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      setAutoplay(false);
+      return;
+    }
+    // Entries can batch up during fast scrolling; the last one is the current state.
+    const io = new IntersectionObserver((entries) => setInView(Boolean(entries.at(-1)?.isIntersecting)), {
+      threshold: 0.4,
+    });
     io.observe(el);
-    return () => {
-      io.disconnect();
-      if (timer !== undefined) window.clearInterval(timer);
-    };
+    return () => io.disconnect();
   }, []);
 
+  // Advance after a fixed delay. Depending on `step` restarts the delay on every change, so each
+  // step gets its full time on screen.
+  useEffect(() => {
+    if (!autoplay || !inView || paused) return;
+    const timer = window.setTimeout(() => setStep((s) => (s + 1) % steps.length), STEP_DELAY_MS);
+    return () => window.clearTimeout(timer);
+  }, [step, autoplay, inView, paused]);
+
+  // On narrow screens the step pills scroll sideways; keep the active one in view.
+  useEffect(() => {
+    const list = tabsRef.current;
+    const tab = list?.querySelectorAll<HTMLElement>('[role="tab"]')[step];
+    if (!list || !tab || list.scrollWidth <= list.clientWidth) return;
+    const offset = tab.getBoundingClientRect().left - list.getBoundingClientRect().left + list.scrollLeft;
+    list.scrollTo({ left: offset - (list.clientWidth - tab.offsetWidth) / 2, behavior: "smooth" });
+  }, [step]);
+
   const choose = (i: number, source?: string) => {
-    interactedRef.current = true;
+    setAutoplay(false);
     setStep(i);
     if (source) track("product_tour_interacted", { tour: "workflow", step: source });
   };
 
+  const replay = () => {
+    setStep(0);
+    setAutoplay(true);
+    track("workflow_demo_replayed");
+  };
+
+  // Crossfade: the outgoing step leaves quickly, the incoming one arrives just after, so the two
+  // never overlap legibly.
+  const fade = (active: boolean) =>
+    cn(
+      "col-start-1 row-start-1 transition-[opacity,transform,visibility] ease-out motion-reduce:delay-0",
+      active ? "translate-y-0 opacity-100 delay-150 duration-300" : "invisible translate-y-1 opacity-0 duration-150"
+    );
+
   return (
-    <div ref={rootRef} className="overflow-hidden rounded-xl border border-border bg-surface shadow-[var(--hg-shadow-card)]">
+    <div
+      ref={rootRef}
+      // Pause for a mouse resting on the demo or for keyboard focus inside it, but not for touch or
+      // a click that leaves focus on a button, which would otherwise stall autoplay indefinitely.
+      onPointerEnter={(e) => e.pointerType === "mouse" && setHovered(true)}
+      onPointerLeave={() => setHovered(false)}
+      onFocus={(e) => setFocused(e.target.matches(":focus-visible"))}
+      onBlur={(e) => {
+        if (!e.currentTarget.contains(e.relatedTarget as Node | null)) setFocused(false);
+      }}
+      className="overflow-hidden rounded-xl border border-border bg-surface shadow-[var(--hg-shadow-card)]"
+    >
       <div className="flex flex-wrap items-center justify-between gap-3 border-b border-border bg-sidebar px-5 py-3">
         <p className="text-md font-semibold text-foreground">From signal to action: one workflow</p>
         <div className="flex items-center gap-2">
@@ -207,7 +246,7 @@ export function WorkflowDemo() {
             size="sm"
             touch={false}
             leadingIcon={<RotateCcw size={14} />}
-            onClick={() => { choose(0); track("workflow_demo_replayed"); }}
+            onClick={replay}
           >
             Replay
           </Button>
@@ -216,7 +255,7 @@ export function WorkflowDemo() {
 
       {/* Step selector — horizontally scrollable on small screens */}
       <div className="border-b border-border px-5 py-4">
-        <ol role="tablist" aria-label="Workflow steps" className="flex flex-nowrap gap-1.5 overflow-x-auto pb-1">
+        <ol ref={tabsRef} role="tablist" aria-label="Workflow steps" className="flex flex-nowrap gap-1.5 overflow-x-auto pb-1">
           {steps.map((s, i) => (
             <li key={s.id} role="presentation" className="shrink-0">
               <button
@@ -259,7 +298,7 @@ export function WorkflowDemo() {
             {steps.map((s, i) => {
               const StepIcon = s.icon;
               return (
-                <div key={s.id} className={cn("col-start-1 row-start-1", i !== step && "invisible")}>
+                <div key={s.id} className={fade(i === step)}>
                   <div className="flex items-center gap-2.5">
                     <span className="flex size-8 shrink-0 items-center justify-center rounded-md bg-accent text-accent-foreground">
                       <StepIcon size={16} strokeWidth={1.8} aria-hidden="true" />
@@ -296,10 +335,7 @@ export function WorkflowDemo() {
         </div>
         <div className="grid">
           {steps.map((s, i) => (
-            <div
-              key={s.id}
-              className={cn("col-start-1 row-start-1", i === step ? "animate-rise" : "invisible")}
-            >
+            <div key={s.id} className={fade(i === step)}>
               <StepVisual step={i} />
             </div>
           ))}

@@ -176,6 +176,17 @@
   transform: none;
 }
 
+/* ---- Page transitions (View Transitions API; ignored by browsers without it) ---- */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 0.22s;
+  animation-timing-function: var(--hg-motion-ease-emphasized);
+}
+/* The sticky header is the same on every page, so it must not fade with the page content. */
+::view-transition-group(site-header) {
+  animation-duration: 0s;
+}
+
 /* ---- Universal Context horizon ---- */
 :root {
   --hg-arc-warm: oklch(0.68 0.2 40);

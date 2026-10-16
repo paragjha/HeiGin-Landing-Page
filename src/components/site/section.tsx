@@ -1,10 +1,14 @@
 import type { ReactNode } from "react";
 import { cn } from "@/lib/utils";
+import { Reveal } from "./reveal";
 
 /**
  * Marketing section shell with consistent vertical rhythm.
  * Bands alternate white / tint / white, with dark used sparingly as
  * punctuation. Tint bands carry a hairline divider so bands read as one page.
+ *
+ * Content fades and rises in once as the section scrolls into view. Pass `reveal={false}` for a
+ * section that already staggers its own children with <Reveal>.
  */
 export function Section({
   children,
@@ -12,12 +16,14 @@ export function Section({
   id,
   dark = false,
   tone,
+  reveal = true,
 }: {
   children: ReactNode;
   className?: string;
   id?: string;
   dark?: boolean;
   tone?: "white" | "tint" | "dark";
+  reveal?: boolean;
 }) {
   const resolved = tone ?? (dark ? "dark" : "white");
   return (
@@ -30,7 +36,11 @@ export function Section({
         className
       )}
     >
-      <div className="container-site py-20 md:py-28">{children}</div>
+      {reveal ? (
+        <Reveal className="container-site py-20 md:py-28">{children}</Reveal>
+      ) : (
+        <div className="container-site py-20 md:py-28">{children}</div>
+      )}
     </section>
   );
 }

@@ -1,7 +1,14 @@
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import { cn } from "@/lib/utils";
 
-/** Fades/rises children into view once when scrolled into the viewport. */
+/**
+ * Fades and rises children into view once, as they scroll into the viewport.
+ *
+ * Progressive enhancement: the server and the first client render show the content as normal.
+ * Only after hydration are elements that sit below the fold armed (hidden), then revealed when
+ * they approach the viewport. Content already on screen is never hidden, so there is no flash,
+ * and visitors without JavaScript, crawlers and print all get the full page.
+ */
 export function Reveal({
   children,
   className,
@@ -12,23 +19,24 @@ export function Reveal({
   delay?: number;
 }) {
   const ref = useRef<HTMLDivElement>(null);
-  const [visible, setVisible] = useState(false);
+  const [armed, setArmed] = useState(false);
+  const [shown, setShown] = useState(false);
 
   useEffect(() => {
     const el = ref.current;
-    if (!el) return;
-    if (typeof IntersectionObserver === "undefined") {
-      setVisible(true);
-      return;
-    }
+    if (!el || typeof IntersectionObserver === "undefined") return;
+    // Already in (or above) the viewport on load: leave it visible, no animation.
+    if (el.getBoundingClientRect().top < window.innerHeight * 0.9) return;
+
+    setArmed(true);
     const io = new IntersectionObserver(
       ([entry]) => {
         if (entry?.isIntersecting) {
-          setVisible(true);
+          setShown(true);
           io.disconnect();
         }
       },
-      { rootMargin: "0px 0px -10% 0px" }
+      { rootMargin: "0px 0px -8% 0px" }
     );
     io.observe(el);
     return () => io.disconnect();
@@ -37,8 +45,8 @@ export function Reveal({
   return (
     <div
       ref={ref}
-      style={{ transitionDelay: `${delay}ms` }}
-      className={cn("reveal", visible && "is-visible", className)}
+      style={delay ? { transitionDelay: `${delay}ms` } : undefined}
+      className={cn(armed && "reveal", shown && "is-visible", className)}
     >
       {children}
     </div>

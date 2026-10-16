@@ -361,7 +361,7 @@ function Home() {
       </Section>
 
       {/* 8. Ask HeiGin — Copilot with example questions */}
-      <Section tone="tint" className="overflow-hidden">
+      <Section tone="tint" className="overflow-hidden" reveal={false}>
         <div className="grid items-center gap-12 lg:grid-cols-[1fr_1.5fr]">
           <Reveal>
             <SectionHeading
@@ -449,9 +449,9 @@ function Home() {
             See all integrations <ArrowRight size={15} aria-hidden="true" />
           </Link>
         </div>
-        <Reveal className="mt-6">
+        <div className="mt-6">
           <IntegrationHub className="max-w-[1040px]" />
-        </Reveal>
+        </div>
       </Section>
 
       {/* 12. Testimonials — pilot-team quotes, signed off */}

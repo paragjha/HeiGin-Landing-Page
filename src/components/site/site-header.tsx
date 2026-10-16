@@ -105,7 +105,7 @@ export function SiteHeader() {
   }, [mobileOpen]);
 
   return (
-    <header className="sticky top-0 z-[var(--hg-z-header)] border-b border-border bg-background/85 backdrop-blur-md">
+    <header className="sticky top-0 z-[var(--hg-z-header)] border-b border-border bg-background/85 backdrop-blur-md [view-transition-name:site-header]">
       <div className="container-site flex h-14 items-center justify-between gap-4">
         <Link to="/" aria-label="HeiGin home" className="shrink-0">
           <Logo />
