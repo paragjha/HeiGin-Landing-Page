@@ -5,6 +5,7 @@ import { pageHead } from "@/lib/page-head";
 import { PageHero } from "@/components/site/page-hero";
 import { Section } from "@/components/site/section";
 import { site } from "@/lib/site";
+import { submitLead } from "@/lib/submit-lead";
 
 export const Route = createFileRoute("/contact")({
   head: pageHead("/contact", "Contact & early access", "Request early access to HeiGin or book a walkthrough with the team."),
@@ -25,6 +26,7 @@ function Contact() {
     const data = new FormData(e.currentTarget);
     const name = String(data.get("name") ?? "").trim();
     const email = String(data.get("email") ?? "").trim();
+    const phone = String(data.get("phone") ?? "").trim();
     const company = String(data.get("company") ?? "").trim();
     const message = String(data.get("message") ?? "").trim();
     if (!name || !/^\S+@\S+\.\S+$/.test(email)) {
@@ -33,29 +35,26 @@ function Contact() {
     }
     setError("");
 
-    const webhookUrl = import.meta.env.VITE_LEADS_WEBHOOK_URL;
-    if (webhookUrl) {
-      setSending(true);
-      try {
-        // Apps Script Web Apps don't handle CORS preflight, so this goes out as a
-        // simple no-cors request. We can't read the response, but the write still lands.
-        await fetch(webhookUrl, {
-          method: "POST",
-          mode: "no-cors",
-          headers: { "Content-Type": "text/plain" },
-          body: JSON.stringify({ name, email, company, message }),
-        });
+    setSending(true);
+    try {
+      const result = await submitLead({ data: { name, email, phone, company, message } });
+      if (result.ok) {
         setSent(true);
-      } catch {
-        setError(`Couldn't send that just now. Please try again or write to ${site.contactEmail}.`);
-      } finally {
-        setSending(false);
+        return;
       }
+      if (result.reason === "failed") {
+        setError(`We couldn't send that just now. Please try again or write to ${site.contactEmail}.`);
+        return;
+      }
+    } catch {
+      setError(`We couldn't send that just now. Please try again or write to ${site.contactEmail}.`);
       return;
+    } finally {
+      setSending(false);
     }
 
-    // No lead webhook configured: fall back to the visitor's email app.
-    const body = `Name: ${name}\nEmail: ${email}\nCompany: ${company}\n\n${message}`;
+    // Lead capture isn't configured on this deployment: fall back to the visitor's email app.
+    const body = `Name: ${name}\nEmail: ${email}\nPhone: ${phone}\nCompany: ${company}\n\n${message}`;
     window.location.href = `mailto:${site.contactEmail}?subject=${encodeURIComponent("HeiGin early access")}&body=${encodeURIComponent(body)}`;
     setOpened(true);
   }
@@ -73,6 +72,7 @@ function Contact() {
           <form onSubmit={onSubmit} noValidate className="space-y-4">
             <label className="block text-md font-medium text-foreground">Name<input name="name" className={field} autoComplete="name" /></label>
             <label className="block text-md font-medium text-foreground">Work email<input name="email" type="email" className={field} autoComplete="email" /></label>
+            <label className="block text-md font-medium text-foreground">Phone (optional)<input name="phone" type="tel" className={field} autoComplete="tel" /></label>
             <label className="block text-md font-medium text-foreground">Company<input name="company" className={field} autoComplete="organization" /></label>
             <label className="block text-md font-medium text-foreground">What would you like help with?<textarea name="message" rows={4} className={field} /></label>
             {error && <p role="alert" className="text-md text-destructive">{error}</p>}
