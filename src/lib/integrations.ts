@@ -7,8 +7,8 @@
  * - "in-development": actively being built.
  * - "planned": on the roadmap, not started.
  *
- * Per the HeiGin team, all integrations below are developed and available.
- * Update a status if one is pulled back into development.
+ * Per the HeiGin team, every integration below is developed and available except
+ * WhatsApp, which is still in development. Update a status when that changes.
  */
 
 export type IntegrationStatus = "available" | "in-development" | "planned";
@@ -94,8 +94,8 @@ export const integrations: Integration[] = [
     name: "WhatsApp",
     category: "Communication",
     monogram: "Wa",
-    description: "Track WhatsApp conversations on the customer timeline for teams that sell through messaging.",
-    status: "available",
+    description: "Bring WhatsApp conversations onto the customer timeline for teams that sell through messaging.",
+    status: "in-development",
     capabilities: ["Conversation sync", "Timeline context"],
   },
   {

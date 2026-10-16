@@ -15,7 +15,7 @@ export const Route = createFileRoute("/integrations")({
   head: pageHead(
     "/integrations",
     "Integrations",
-    "Connect the tools your team already uses — every integration is live and ready to connect."
+    "Connect the tools your team already uses. Everything is live and ready to connect except WhatsApp, which is in development."
   ),
   component: Integrations,
 });
@@ -44,7 +44,7 @@ function Integrations() {
       <PageHero
         eyebrow="Integrations"
         title="Meet your customers where the work already happens."
-        description="HeiGin pulls context from the tools your team uses every day — every integration listed here is live and ready to connect."
+        description="HeiGin pulls context from the tools your team uses every day. Every integration listed here is live and ready to connect, except WhatsApp, which is in development."
       >
         <div className="grid items-center gap-10">
           <IntegrationOrbit />
@@ -64,8 +64,8 @@ function Integrations() {
       <Section>
         <SectionHeading
           eyebrow="Directory"
-          title="Every integration, ready to connect."
-          description="Search or filter by category — everything below is available today."
+          title="Connect the tools you already use."
+          description="Search or filter by category. Everything below is available today except WhatsApp, which is in development."
         />
 
         <div className="mt-10 flex flex-col gap-3 md:flex-row md:items-center">

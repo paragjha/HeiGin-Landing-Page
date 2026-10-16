@@ -122,7 +122,7 @@ const faqs = [
   },
   {
     q: "Which tools can HeiGin connect to?",
-    a: "Integrations with tools like Gmail, Google Calendar, Google Meet, Slack and WhatsApp are available — see the integrations page for the current status of each.",
+    a: "Integrations with tools like Gmail, Google Calendar, Google Meet and Slack are available. WhatsApp is in development. See the integrations page for the current status of each.",
   },
   {
     q: "Can agents take actions automatically?",
