@@ -153,7 +153,7 @@ const pilotTeams = [
   { name: "ADLantic", logo: adlanticLogo.url, tile: "bg-night ring-1 ring-border" },
 ];
 
-// Draft quotes — confirm wording with each pilot team before launch.
+// Pilot-team quotes. Wording signed off by each team (confirmed 2026-10-16).
 const testimonials = [
   {
     company: "HeimatVerse",
@@ -453,7 +453,7 @@ function Home() {
         </Reveal>
       </Section>
 
-      {/* 12. Testimonials — draft quotes from pilot teams, pending their sign-off */}
+      {/* 12. Testimonials — pilot-team quotes, signed off */}
       <Section tone="tint" className="overflow-hidden">
         <div className="flex flex-wrap items-end justify-between gap-6">
           <div>
