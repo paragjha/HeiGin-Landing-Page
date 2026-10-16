@@ -1,4 +1,5 @@
 import { Link } from "@tanstack/react-router";
+import { Button } from "@heigin/ui";
 import { footerNav, cta } from "@/lib/site";
 import { Logo } from "./logo";
 import { Reveal } from "./reveal";
@@ -17,11 +18,10 @@ export function SiteFooter() {
               Give every customer relationship a next step.
             </h2>
             <div className="mt-8 flex justify-center">
-              <Link
-                to={cta.earlyAccess.to}
-                className="rounded-lg bg-background px-5 py-2.5 text-lg font-medium text-foreground shadow-lg transition-transform hover:-translate-y-0.5"
-              >
-                {cta.earlyAccess.label}
+              <Link to={cta.earlyAccess.to}>
+                <Button variant="secondary" size="lg">
+                  {cta.earlyAccess.label}
+                </Button>
               </Link>
             </div>
           </Reveal>

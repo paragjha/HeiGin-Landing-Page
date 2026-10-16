@@ -91,7 +91,7 @@ function Product() {
                 aria-selected={i === view}
                 onClick={() => { setView(i); track("product_tour_interacted", { tour: "product", view: v.id }); }}
                 className={cn(
-                  "rounded-full border px-4 py-2 text-md font-medium transition-colors",
+                  "rounded-md border px-4 py-2 text-md font-medium transition-colors",
                   i === view
                     ? "border-primary bg-primary text-primary-foreground"
                     : "border-border bg-surface text-muted-foreground hover:bg-accent"

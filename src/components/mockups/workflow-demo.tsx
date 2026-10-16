@@ -264,7 +264,7 @@ export function WorkflowDemo() {
                 aria-selected={i === step}
                 onClick={() => choose(i, s.id)}
                 className={cn(
-                  "rounded-full border px-3 py-1.5 text-sm font-medium transition-colors",
+                  "rounded-md border px-3 py-1.5 text-sm font-medium transition-colors",
                   i === step
                     ? "border-primary bg-primary text-primary-foreground"
                     : i < step

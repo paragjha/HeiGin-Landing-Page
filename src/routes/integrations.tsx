@@ -85,7 +85,7 @@ function Integrations() {
                 aria-pressed={category === c}
                 onClick={() => setCategory(c)}
                 className={cn(
-                  "rounded-full border px-3 py-1.5 text-sm font-medium transition-colors",
+                  "rounded-md border px-3 py-1.5 text-sm font-medium transition-colors",
                   category === c
                     ? "border-primary bg-primary text-primary-foreground"
                     : "border-border bg-surface text-muted-foreground hover:bg-accent"

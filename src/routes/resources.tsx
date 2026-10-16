@@ -49,7 +49,7 @@ function Resources() {
               aria-pressed={cat === c}
               onClick={() => setCat(c)}
               className={cn(
-                "rounded-full border px-3 py-1.5 text-sm font-medium transition-colors",
+                "rounded-md border px-3 py-1.5 text-sm font-medium transition-colors",
                 cat === c ? "border-primary bg-primary text-primary-foreground" : "border-border bg-surface text-muted-foreground hover:bg-accent"
               )}
             >

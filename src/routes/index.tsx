@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, ChevronRight, FileText, Flag, Globe, ListChecks, MapPin, MessageSquare, Sparkles } from "lucide-react";
-import { Badge } from "@heigin/ui";
+import { Badge, Button } from "@heigin/ui";
 import { Section, SectionHeading, Eyebrow } from "@/components/site/section";
 import { CtaPair } from "@/components/site/cta";
 import { cta } from "@/lib/site";
@@ -183,7 +183,7 @@ function Home() {
           <div className="mx-auto max-w-3xl animate-rise text-center">
             <Link
               to={cta.earlyAccess.to}
-              className="inline-flex items-center gap-2 rounded-full border border-border bg-surface px-3.5 py-1.5 text-sm shadow-card transition-colors hover:bg-accent"
+              className="inline-flex items-center gap-2 rounded-md border border-border bg-surface px-3.5 py-1.5 text-sm shadow-card transition-colors hover:bg-accent"
             >
               <span className="size-1.5 rounded-full bg-info" aria-hidden="true" />
               <span className="font-medium text-foreground">Pilot</span>
@@ -377,7 +377,7 @@ function Home() {
                   type="button"
                   onClick={() => setQuestion(i)}
                   aria-pressed={i === question}
-                  className={`rounded-full border px-3.5 py-1.5 text-sm font-medium transition-colors ${
+                  className={`rounded-md border px-3.5 py-1.5 text-sm font-medium transition-colors ${
                     i === question
                       ? "border-foreground bg-surface text-foreground"
                       : "border-border bg-surface text-muted-foreground hover:bg-accent"
@@ -467,11 +467,8 @@ function Home() {
               <span className="text-faint">Here's what they say.</span>
             </h2>
           </div>
-          <Link
-            to="/contact"
-            className="rounded-full bg-primary px-5 py-2.5 text-sm font-medium text-primary-foreground shadow-card hover:opacity-90"
-          >
-            Talk to us
+          <Link to="/contact">
+            <Button variant="primary" size="md">Talk to us</Button>
           </Link>
         </div>
         <div className="relative mt-12">
