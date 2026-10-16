@@ -1,9 +1,12 @@
 function doPost(e) {
-  var sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName("Leads") ||
-              SpreadsheetApp.getActiveSpreadsheet().insertSheet("Leads");
+  var ss = SpreadsheetApp.getActiveSpreadsheet();
+  var sheet = ss.getSheetByName("Leads") || ss.insertSheet("Leads");
 
   if (sheet.getLastRow() === 0) {
-    sheet.appendRow(["Timestamp", "Name", "Email", "Phone", "Company", "Team size"]);
+    sheet.appendRow(["Timestamp", "Name", "Email", "Phone", "Company", "Team size", "Message"]);
+  } else if (sheet.getRange(1, 7).getValue() === "") {
+    // Existing sheet created before the Message column was added.
+    sheet.getRange(1, 7).setValue("Message");
   }
 
   var data = JSON.parse(e.postData.contents);
@@ -15,6 +18,7 @@ function doPost(e) {
     data.phone || "",
     data.company || "",
     data.team || "",
+    data.message || "",
   ]);
 
   return ContentService

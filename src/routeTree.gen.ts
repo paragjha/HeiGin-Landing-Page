@@ -10,43 +10,37 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as AiCopilotRouteImport } from './routes/ai-copilot'
-import { Route as CallsRouteImport } from './routes/calls'
-import { Route as ContactsRouteImport } from './routes/contacts'
-import { Route as GstInvoicingRouteImport } from './routes/gst-invoicing'
+import { Route as AboutRouteImport } from './routes/about'
+import { Route as AiAgentsRouteImport } from './routes/ai-agents'
+import { Route as ContactRouteImport } from './routes/contact'
 import { Route as IntegrationsRouteImport } from './routes/integrations'
-import { Route as PipelineRouteImport } from './routes/pipeline'
 import { Route as PricingRouteImport } from './routes/pricing'
-import { Route as TelephonyRouteImport } from './routes/telephony'
-import { Route as WhatsappInboxRouteImport } from './routes/whatsapp-inbox'
-import { Route as WorkflowsRouteImport } from './routes/workflows'
-import { Route as BlogIndexRouteImport } from './routes/blog.index'
-import { Route as BlogSlugRouteImport } from './routes/blog.$slug'
-import { Route as SolutionsSlugRouteImport } from './routes/solutions.$slug'
+import { Route as PrivacyRouteImport } from './routes/privacy'
+import { Route as ProductRouteImport } from './routes/product'
+import { Route as ResourcesRouteImport } from './routes/resources'
+import { Route as SecurityRouteImport } from './routes/security'
+import { Route as SolutionsRouteImport } from './routes/solutions'
+import { Route as TermsRouteImport } from './routes/terms'
+import { Route as UseCasesRouteImport } from './routes/use-cases'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const AiCopilotRoute = AiCopilotRouteImport.update({
-  id: '/ai-copilot',
-  path: '/ai-copilot',
+const AboutRoute = AboutRouteImport.update({
+  id: '/about',
+  path: '/about',
   getParentRoute: () => rootRouteImport,
 } as any)
-const CallsRoute = CallsRouteImport.update({
-  id: '/calls',
-  path: '/calls',
+const AiAgentsRoute = AiAgentsRouteImport.update({
+  id: '/ai-agents',
+  path: '/ai-agents',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ContactsRoute = ContactsRouteImport.update({
-  id: '/contacts',
-  path: '/contacts',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const GstInvoicingRoute = GstInvoicingRouteImport.update({
-  id: '/gst-invoicing',
-  path: '/gst-invoicing',
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IntegrationsRoute = IntegrationsRouteImport.update({
@@ -54,162 +48,155 @@ const IntegrationsRoute = IntegrationsRouteImport.update({
   path: '/integrations',
   getParentRoute: () => rootRouteImport,
 } as any)
-const PipelineRoute = PipelineRouteImport.update({
-  id: '/pipeline',
-  path: '/pipeline',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const PricingRoute = PricingRouteImport.update({
   id: '/pricing',
   path: '/pricing',
   getParentRoute: () => rootRouteImport,
 } as any)
-const TelephonyRoute = TelephonyRouteImport.update({
-  id: '/telephony',
-  path: '/telephony',
+const PrivacyRoute = PrivacyRouteImport.update({
+  id: '/privacy',
+  path: '/privacy',
   getParentRoute: () => rootRouteImport,
 } as any)
-const WhatsappInboxRoute = WhatsappInboxRouteImport.update({
-  id: '/whatsapp-inbox',
-  path: '/whatsapp-inbox',
+const ProductRoute = ProductRouteImport.update({
+  id: '/product',
+  path: '/product',
   getParentRoute: () => rootRouteImport,
 } as any)
-const WorkflowsRoute = WorkflowsRouteImport.update({
-  id: '/workflows',
-  path: '/workflows',
+const ResourcesRoute = ResourcesRouteImport.update({
+  id: '/resources',
+  path: '/resources',
   getParentRoute: () => rootRouteImport,
 } as any)
-const BlogIndexRoute = BlogIndexRouteImport.update({
-  id: '/blog/',
-  path: '/blog/',
+const SecurityRoute = SecurityRouteImport.update({
+  id: '/security',
+  path: '/security',
   getParentRoute: () => rootRouteImport,
 } as any)
-const BlogSlugRoute = BlogSlugRouteImport.update({
-  id: '/blog/$slug',
-  path: '/blog/$slug',
+const SolutionsRoute = SolutionsRouteImport.update({
+  id: '/solutions',
+  path: '/solutions',
   getParentRoute: () => rootRouteImport,
 } as any)
-const SolutionsSlugRoute = SolutionsSlugRouteImport.update({
-  id: '/solutions/$slug',
-  path: '/solutions/$slug',
+const TermsRoute = TermsRouteImport.update({
+  id: '/terms',
+  path: '/terms',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const UseCasesRoute = UseCasesRouteImport.update({
+  id: '/use-cases',
+  path: '/use-cases',
   getParentRoute: () => rootRouteImport,
 } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/ai-copilot': typeof AiCopilotRoute
-  '/calls': typeof CallsRoute
-  '/contacts': typeof ContactsRoute
-  '/gst-invoicing': typeof GstInvoicingRoute
+  '/about': typeof AboutRoute
+  '/ai-agents': typeof AiAgentsRoute
+  '/contact': typeof ContactRoute
   '/integrations': typeof IntegrationsRoute
-  '/pipeline': typeof PipelineRoute
   '/pricing': typeof PricingRoute
-  '/telephony': typeof TelephonyRoute
-  '/whatsapp-inbox': typeof WhatsappInboxRoute
-  '/workflows': typeof WorkflowsRoute
-  '/blog/$slug': typeof BlogSlugRoute
-  '/solutions/$slug': typeof SolutionsSlugRoute
-  '/blog/': typeof BlogIndexRoute
+  '/privacy': typeof PrivacyRoute
+  '/product': typeof ProductRoute
+  '/resources': typeof ResourcesRoute
+  '/security': typeof SecurityRoute
+  '/solutions': typeof SolutionsRoute
+  '/terms': typeof TermsRoute
+  '/use-cases': typeof UseCasesRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/ai-copilot': typeof AiCopilotRoute
-  '/calls': typeof CallsRoute
-  '/contacts': typeof ContactsRoute
-  '/gst-invoicing': typeof GstInvoicingRoute
+  '/about': typeof AboutRoute
+  '/ai-agents': typeof AiAgentsRoute
+  '/contact': typeof ContactRoute
   '/integrations': typeof IntegrationsRoute
-  '/pipeline': typeof PipelineRoute
   '/pricing': typeof PricingRoute
-  '/telephony': typeof TelephonyRoute
-  '/whatsapp-inbox': typeof WhatsappInboxRoute
-  '/workflows': typeof WorkflowsRoute
-  '/blog/$slug': typeof BlogSlugRoute
-  '/solutions/$slug': typeof SolutionsSlugRoute
-  '/blog': typeof BlogIndexRoute
+  '/privacy': typeof PrivacyRoute
+  '/product': typeof ProductRoute
+  '/resources': typeof ResourcesRoute
+  '/security': typeof SecurityRoute
+  '/solutions': typeof SolutionsRoute
+  '/terms': typeof TermsRoute
+  '/use-cases': typeof UseCasesRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/ai-copilot': typeof AiCopilotRoute
-  '/calls': typeof CallsRoute
-  '/contacts': typeof ContactsRoute
-  '/gst-invoicing': typeof GstInvoicingRoute
+  '/about': typeof AboutRoute
+  '/ai-agents': typeof AiAgentsRoute
+  '/contact': typeof ContactRoute
   '/integrations': typeof IntegrationsRoute
-  '/pipeline': typeof PipelineRoute
   '/pricing': typeof PricingRoute
-  '/telephony': typeof TelephonyRoute
-  '/whatsapp-inbox': typeof WhatsappInboxRoute
-  '/workflows': typeof WorkflowsRoute
-  '/blog/$slug': typeof BlogSlugRoute
-  '/solutions/$slug': typeof SolutionsSlugRoute
-  '/blog/': typeof BlogIndexRoute
+  '/privacy': typeof PrivacyRoute
+  '/product': typeof ProductRoute
+  '/resources': typeof ResourcesRoute
+  '/security': typeof SecurityRoute
+  '/solutions': typeof SolutionsRoute
+  '/terms': typeof TermsRoute
+  '/use-cases': typeof UseCasesRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
-    | '/ai-copilot'
-    | '/calls'
-    | '/contacts'
-    | '/gst-invoicing'
+    | '/about'
+    | '/ai-agents'
+    | '/contact'
     | '/integrations'
-    | '/pipeline'
     | '/pricing'
-    | '/telephony'
-    | '/whatsapp-inbox'
-    | '/workflows'
-    | '/blog/$slug'
-    | '/solutions/$slug'
-    | '/blog/'
+    | '/privacy'
+    | '/product'
+    | '/resources'
+    | '/security'
+    | '/solutions'
+    | '/terms'
+    | '/use-cases'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
-    | '/ai-copilot'
-    | '/calls'
-    | '/contacts'
-    | '/gst-invoicing'
+    | '/about'
+    | '/ai-agents'
+    | '/contact'
     | '/integrations'
-    | '/pipeline'
     | '/pricing'
-    | '/telephony'
-    | '/whatsapp-inbox'
-    | '/workflows'
-    | '/blog/$slug'
-    | '/solutions/$slug'
-    | '/blog'
+    | '/privacy'
+    | '/product'
+    | '/resources'
+    | '/security'
+    | '/solutions'
+    | '/terms'
+    | '/use-cases'
   id:
     | '__root__'
     | '/'
-    | '/ai-copilot'
-    | '/calls'
-    | '/contacts'
-    | '/gst-invoicing'
+    | '/about'
+    | '/ai-agents'
+    | '/contact'
     | '/integrations'
-    | '/pipeline'
     | '/pricing'
-    | '/telephony'
-    | '/whatsapp-inbox'
-    | '/workflows'
-    | '/blog/$slug'
-    | '/solutions/$slug'
-    | '/blog/'
+    | '/privacy'
+    | '/product'
+    | '/resources'
+    | '/security'
+    | '/solutions'
+    | '/terms'
+    | '/use-cases'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  AiCopilotRoute: typeof AiCopilotRoute
-  CallsRoute: typeof CallsRoute
-  ContactsRoute: typeof ContactsRoute
-  GstInvoicingRoute: typeof GstInvoicingRoute
+  AboutRoute: typeof AboutRoute
+  AiAgentsRoute: typeof AiAgentsRoute
+  ContactRoute: typeof ContactRoute
   IntegrationsRoute: typeof IntegrationsRoute
-  PipelineRoute: typeof PipelineRoute
   PricingRoute: typeof PricingRoute
-  TelephonyRoute: typeof TelephonyRoute
-  WhatsappInboxRoute: typeof WhatsappInboxRoute
-  WorkflowsRoute: typeof WorkflowsRoute
-  BlogSlugRoute: typeof BlogSlugRoute
-  SolutionsSlugRoute: typeof SolutionsSlugRoute
-  BlogIndexRoute: typeof BlogIndexRoute
+  PrivacyRoute: typeof PrivacyRoute
+  ProductRoute: typeof ProductRoute
+  ResourcesRoute: typeof ResourcesRoute
+  SecurityRoute: typeof SecurityRoute
+  SolutionsRoute: typeof SolutionsRoute
+  TermsRoute: typeof TermsRoute
+  UseCasesRoute: typeof UseCasesRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -221,32 +208,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/ai-copilot': {
-      id: '/ai-copilot'
-      path: '/ai-copilot'
-      fullPath: '/ai-copilot'
-      preLoaderRoute: typeof AiCopilotRouteImport
+    '/about': {
+      id: '/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof AboutRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/calls': {
-      id: '/calls'
-      path: '/calls'
-      fullPath: '/calls'
-      preLoaderRoute: typeof CallsRouteImport
+    '/ai-agents': {
+      id: '/ai-agents'
+      path: '/ai-agents'
+      fullPath: '/ai-agents'
+      preLoaderRoute: typeof AiAgentsRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/contacts': {
-      id: '/contacts'
-      path: '/contacts'
-      fullPath: '/contacts'
-      preLoaderRoute: typeof ContactsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/gst-invoicing': {
-      id: '/gst-invoicing'
-      path: '/gst-invoicing'
-      fullPath: '/gst-invoicing'
-      preLoaderRoute: typeof GstInvoicingRouteImport
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/integrations': {
@@ -256,13 +236,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IntegrationsRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/pipeline': {
-      id: '/pipeline'
-      path: '/pipeline'
-      fullPath: '/pipeline'
-      preLoaderRoute: typeof PipelineRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/pricing': {
       id: '/pricing'
       path: '/pricing'
@@ -270,46 +243,53 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PricingRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/telephony': {
-      id: '/telephony'
-      path: '/telephony'
-      fullPath: '/telephony'
-      preLoaderRoute: typeof TelephonyRouteImport
+    '/privacy': {
+      id: '/privacy'
+      path: '/privacy'
+      fullPath: '/privacy'
+      preLoaderRoute: typeof PrivacyRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/whatsapp-inbox': {
-      id: '/whatsapp-inbox'
-      path: '/whatsapp-inbox'
-      fullPath: '/whatsapp-inbox'
-      preLoaderRoute: typeof WhatsappInboxRouteImport
+    '/product': {
+      id: '/product'
+      path: '/product'
+      fullPath: '/product'
+      preLoaderRoute: typeof ProductRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/workflows': {
-      id: '/workflows'
-      path: '/workflows'
-      fullPath: '/workflows'
-      preLoaderRoute: typeof WorkflowsRouteImport
+    '/resources': {
+      id: '/resources'
+      path: '/resources'
+      fullPath: '/resources'
+      preLoaderRoute: typeof ResourcesRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/blog/': {
-      id: '/blog/'
-      path: '/blog'
-      fullPath: '/blog/'
-      preLoaderRoute: typeof BlogIndexRouteImport
+    '/security': {
+      id: '/security'
+      path: '/security'
+      fullPath: '/security'
+      preLoaderRoute: typeof SecurityRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/blog/$slug': {
-      id: '/blog/$slug'
-      path: '/blog/$slug'
-      fullPath: '/blog/$slug'
-      preLoaderRoute: typeof BlogSlugRouteImport
+    '/solutions': {
+      id: '/solutions'
+      path: '/solutions'
+      fullPath: '/solutions'
+      preLoaderRoute: typeof SolutionsRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/solutions/$slug': {
-      id: '/solutions/$slug'
-      path: '/solutions/$slug'
-      fullPath: '/solutions/$slug'
-      preLoaderRoute: typeof SolutionsSlugRouteImport
+    '/terms': {
+      id: '/terms'
+      path: '/terms'
+      fullPath: '/terms'
+      preLoaderRoute: typeof TermsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/use-cases': {
+      id: '/use-cases'
+      path: '/use-cases'
+      fullPath: '/use-cases'
+      preLoaderRoute: typeof UseCasesRouteImport
       parentRoute: typeof rootRouteImport
     }
   }
@@ -317,19 +297,18 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  AiCopilotRoute: AiCopilotRoute,
-  CallsRoute: CallsRoute,
-  ContactsRoute: ContactsRoute,
-  GstInvoicingRoute: GstInvoicingRoute,
+  AboutRoute: AboutRoute,
+  AiAgentsRoute: AiAgentsRoute,
+  ContactRoute: ContactRoute,
   IntegrationsRoute: IntegrationsRoute,
-  PipelineRoute: PipelineRoute,
   PricingRoute: PricingRoute,
-  TelephonyRoute: TelephonyRoute,
-  WhatsappInboxRoute: WhatsappInboxRoute,
-  WorkflowsRoute: WorkflowsRoute,
-  BlogSlugRoute: BlogSlugRoute,
-  SolutionsSlugRoute: SolutionsSlugRoute,
-  BlogIndexRoute: BlogIndexRoute,
+  PrivacyRoute: PrivacyRoute,
+  ProductRoute: ProductRoute,
+  ResourcesRoute: ResourcesRoute,
+  SecurityRoute: SecurityRoute,
+  SolutionsRoute: SolutionsRoute,
+  TermsRoute: TermsRoute,
+  UseCasesRoute: UseCasesRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
