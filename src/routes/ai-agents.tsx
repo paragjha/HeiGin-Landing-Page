@@ -1,12 +1,11 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import { ArrowRight, BookOpen, Database, Eye, FileSearch, GitBranch, ListChecks, Sparkles, UserCheck } from "lucide-react";
-import { Badge } from "@heigin/ui";
+import { ArrowRight, Eye, FileSearch, GitBranch, ListChecks, Sparkles, UserCheck } from "lucide-react";
 import { pageHead } from "@/lib/page-head";
 import { PageHero } from "@/components/site/page-hero";
 import { Section, SectionHeading } from "@/components/site/section";
-import { agents, agentStatusLabels } from "@/lib/agents";
-import { AgentFlow } from "@/components/mockups/agent-flow";
+import { agents } from "@/lib/agents";
+import { AgentGrid } from "@/components/site/agent-grid";
 import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/ai-agents")({
@@ -63,6 +62,13 @@ function OperatingLoop() {
   );
 }
 
+const numberWords = ["none", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten"];
+const liveCount = agents.filter((a) => a.status === "available").length;
+const pendingCount = agents.length - liveCount;
+const agentsSummary =
+  `Each agent has a defined scope. ${numberWords[liveCount]![0]!.toUpperCase()}${numberWords[liveCount]!.slice(1)} ${liveCount === 1 ? "is" : "are"} live today` +
+  (pendingCount > 0 ? ` and ${numberWords[pendingCount]} ${pendingCount === 1 ? "is" : "are"} in development.` : ".");
+
 function AiAgents() {
   return (
     <>
@@ -92,42 +98,17 @@ function AiAgents() {
         <SectionHeading
           eyebrow="The agents"
           title="Specific jobs, not vague AI."
-          description="Each agent has a defined scope and is available today. Approvals keep you in control of what it sends or changes."
+          description={agentsSummary}
         />
-        <div className="mt-12 space-y-6">
-          {agents.map((agent, idx) => (
-            <article
-              key={agent.id}
-              className={cn(
-                "grid gap-6 rounded-xl border border-border bg-surface p-6 md:p-8 lg:grid-cols-[1fr_1.3fr]",
-                idx % 2 === 1 && "bg-sidebar"
-              )}
-            >
-              <div>
-                <div className="flex flex-wrap items-center gap-3">
-                  <h3 className="text-3xl font-semibold tracking-tight text-foreground">{agent.name}</h3>
-                  <Badge tone={agent.status === "planned" ? "outline" : "info"} size="sm">
-                    {agentStatusLabels[agent.status]}
-                  </Badge>
-                </div>
-                <p className="mt-3 text-lg text-muted-foreground">{agent.problem}</p>
-                <div className="mt-5 rounded-lg border border-border bg-background p-4">
-                  <p className="text-sm font-semibold uppercase tracking-wide text-faint">Scenario</p>
-                  <p className="mt-1.5 text-md leading-relaxed text-foreground">{agent.scenario}</p>
-                </div>
-              </div>
-              <div className="content-start">
-                <AgentFlow
-                  steps={[
-                    { icon: BookOpen, label: "Context it uses", body: agent.context },
-                    { icon: Sparkles, label: "What it does", body: agent.action },
-                    { icon: UserCheck, label: "Human oversight", body: agent.approval },
-                    { icon: Database, label: "Result in the CRM", body: agent.result },
-                  ]}
-                />
-              </div>
-            </article>
-          ))}
+        <div className="mt-12">
+          <AgentGrid
+            tone="light"
+            tile={{
+              to: "/contact",
+              title: "Try the agents with your team",
+              body: "Request early access and we'll set up a walkthrough on your own use case.",
+            }}
+          />
         </div>
 
         <div className="mt-12 rounded-xl border border-border bg-sidebar p-6 md:p-8">

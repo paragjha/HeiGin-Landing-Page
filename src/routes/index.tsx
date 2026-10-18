@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, ChevronRight, FileText, Flag, Globe, ListChecks, MapPin, MessageSquare, Sparkles } from "lucide-react";
+import { ArrowRight, ChevronRight, FileText, Globe, MapPin, MessageSquare } from "lucide-react";
 import { Badge, Button } from "@heigin/ui";
 import { Section, SectionHeading, Eyebrow } from "@/components/site/section";
 import { CtaPair } from "@/components/site/cta";
@@ -21,7 +21,7 @@ import heimatverseLogo from "@/assets/heimatverse-logo.png.asset.json";
 import adlanticLogo from "@/assets/adlantic-logo.png.asset.json";
 
 import quotesShot from "@/assets/app-quotes.png.asset.json";
-import { agents, agentStatusLabels } from "@/lib/agents";
+import { AgentGrid } from "@/components/site/agent-grid";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -59,15 +59,6 @@ const problems = [
     body: "By the time a stalled deal shows up in a report, the moment has usually passed.",
   },
 ];
-
-/** Small concrete visual shown on each agent card instead of more prose. */
-const agentVisuals: Record<string, { icon: typeof Flag; label: string }> = {
-  "follow-up": { icon: MessageSquare, label: "Draft ready · held for approval" },
-  "lead-qualification": { icon: Flag, label: "High intent · suggested owner" },
-  "deal-assistant": { icon: Flag, label: "Stalled 12 days · check-in suggested" },
-  relationship: { icon: ListChecks, label: "Quiet 2 months · added to this week" },
-  workflow: { icon: Sparkles, label: "3 steps run · 1 awaiting approval" },
-};
 
 const copilotExamples = [
   {
@@ -273,45 +264,27 @@ function Home() {
       {/* 5. Universal context */}
       <UniversalContext />
 
-      {/* 6. AI agents (dark) — adjacent to universal context so the page has one dark punctuation moment */}
-      <Section dark className="relative overflow-hidden">
+      {/* 6. AI agents (dark): adjacent to universal context so the page has one dark punctuation moment.
+          A uniform card grid; each card leads with a small illustration of the agent at work. */}
+      <Section dark reveal={false} className="relative overflow-hidden">
         <SectionHeading
           dark
+          align="center"
           eyebrow="AI agents"
           title="An AI team that helps move every relationship forward."
           description="Each agent has a specific job, uses specific context, and works within limits you set."
         />
-        <div className="mt-12 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-          {agents.map((agent, idx) => {
-            const visual = agentVisuals[agent.id];
-            return (
-              <article
-                key={agent.id}
-                className={`rounded-xl border border-night-border bg-night-surface p-6 ${idx === 0 ? "lg:col-span-2" : ""}`}
-              >
-                <div className="flex items-center justify-between gap-3">
-                  <h3 className="text-2xl font-semibold tracking-tight text-night-foreground">{agent.name}</h3>
-                  <span className="rounded-full border border-night-border px-2.5 py-0.5 text-xs text-night-muted">
-                    {agentStatusLabels[agent.status]}
-                  </span>
-                </div>
-                <p className="mt-2 text-lg text-night-muted">{agent.problem}</p>
-                {visual && (
-                  <p className="mt-4 inline-flex rounded-full border border-night-border px-3 py-1.5 text-sm text-night-muted">
-                    {visual.label}
-                  </p>
-                )}
-                <dl className="mt-5 space-y-2 text-md">
-                  <div className="flex gap-3"><dt className="w-20 shrink-0 text-night-muted">Does</dt><dd className="text-night-foreground">{agent.action}</dd></div>
-                  <div className="flex gap-3"><dt className="w-20 shrink-0 text-night-muted">Approval</dt><dd className="text-night-foreground">{agent.approval}</dd></div>
-                </dl>
-              </article>
-            );
-          })}
+        <div className="mt-14">
+          <AgentGrid
+            tone="dark"
+            tile={{
+              to: "/ai-agents",
+              title: "How HeiGin agents work",
+              body: "Permissions, approvals and the activity log behind every action.",
+              chips: ["Permissions", "Approvals", "Activity log"],
+            }}
+          />
         </div>
-        <Link to="/ai-agents" className="mt-8 inline-flex items-center gap-1.5 text-lg font-medium text-night-foreground hover:underline">
-          How HeiGin agents work <ArrowRight size={15} aria-hidden="true" />
-        </Link>
       </Section>
 
       {/* 7. The workspace — proof the product is a full CRM */}
