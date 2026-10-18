@@ -118,19 +118,29 @@ function DealBrief() {
   );
 }
 
-function NoteTranslation() {
+function HinglishSupport() {
   return (
     <div className="w-[88%]">
       <div className={cn(tile, "p-3")}>
-        <Chip>Hinglish</Chip>
+        <Chip>Activity note, Hinglish</Chip>
         <p className="mt-1.5 text-[11px] leading-snug text-foreground">Customer ko pricing chahiye, kal call karna hai.</p>
       </div>
       <div className="grid place-items-center py-1 opacity-70" aria-hidden="true">
         <ArrowDown size={14} />
       </div>
       <div className={cn(tile, "p-3")}>
-        <Chip tone="info">English</Chip>
-        <p className="mt-1.5 text-[11px] leading-snug text-foreground">Customer wants pricing, call tomorrow.</p>
+        <Chip tone="success">
+          <Check size={11} strokeWidth={3} aria-hidden="true" />
+          CRM updated
+        </Chip>
+        <ul className="mt-2 space-y-1 text-[11px] leading-snug text-muted-foreground">
+          <li>
+            <span className="font-medium text-foreground">Task</span> Call tomorrow
+          </li>
+          <li>
+            <span className="font-medium text-foreground">Context</span> Customer asked for pricing
+          </li>
+        </ul>
       </div>
     </div>
   );
@@ -180,7 +190,7 @@ const vignettes: Record<string, () => ReactNode> = {
   "sales-agent": SalesAgent,
   "intent-scoring": IntentScoring,
   "deal-brief": DealBrief,
-  "note-translation": NoteTranslation,
+  "hinglish-support": HinglishSupport,
   "documents-qa": DocumentsQa,
   "call-agent": CallAgent,
 };

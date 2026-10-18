@@ -58,10 +58,10 @@ export const agents: Agent[] = [
     appearsIn: "Deal page",
   },
   {
-    id: "note-translation",
-    name: "Note translation",
+    id: "hinglish-support",
+    name: "Hinglish support",
     status: "available",
-    summary: "Translates Hinglish activity notes into English.",
+    summary: "Understands Hinglish, the way India actually talks, so it follows the context of the sale and updates the CRM.",
     appearsIn: "Activity notes",
   },
   {
