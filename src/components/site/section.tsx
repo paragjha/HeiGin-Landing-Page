@@ -79,9 +79,9 @@ export function SectionHeading({
   const heading = (
     <div className={cn("max-w-2xl", align === "center" && "mx-auto text-center")}>
       {eyebrow && <Eyebrow dark={dark}>{eyebrow}</Eyebrow>}
-      <h2 className={cn("mt-3 text-headline", dark ? "text-night-foreground" : "text-foreground")}>{title}</h2>
+      <h2 className={cn("mt-3 text-balance text-headline", dark ? "text-night-foreground" : "text-foreground")}>{title}</h2>
       {description && (
-        <p className={cn("mt-4 text-subhead", dark ? "text-night-muted" : "text-muted-foreground")}>{description}</p>
+        <p className={cn("mt-4 text-balance text-subhead", dark ? "text-night-muted" : "text-muted-foreground")}>{description}</p>
       )}
     </div>
   );
