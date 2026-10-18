@@ -2,8 +2,8 @@
  * Agent catalogue. Status must stay honest: only mark an agent "available" once it is merged
  * and live in the product.
  *
- * Source: the HeiGin team's agent list (2026-10-19). Six are live; the Call agent is built but
- * not merged yet, so it is shown as in development.
+ * Source: the HeiGin team's agent list (2026-10-19), corrected the same day: all seven agents
+ * are live, including the Call agent.
  */
 
 export type AgentStatus = "available" | "pilot" | "in-development" | "planned";
@@ -74,7 +74,7 @@ export const agents: Agent[] = [
   {
     id: "call-agent",
     name: "Call agent",
-    status: "in-development",
+    status: "available",
     summary: "Turns Hinglish calls into a transcript, summary, intent and suggested tasks.",
     appearsIn: "Lead, contact and deal pages",
   },
