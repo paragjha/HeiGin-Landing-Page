@@ -6,6 +6,27 @@ import { PageHero } from "@/components/site/page-hero";
 import { Section } from "@/components/site/section";
 import { site } from "@/lib/site";
 import { submitLead } from "@/lib/submit-lead";
+import { track } from "@/lib/analytics";
+
+/** Mailboxes people can write to directly. Each opens the visitor's own mail app, addressed and with a subject. */
+const mailboxes = [
+  {
+    id: "sales",
+    title: "Sales",
+    body: "Pricing, a walkthrough on your own use case, or early access for your team.",
+    action: "Email sales",
+    address: site.salesEmail,
+    subject: "HeiGin sales enquiry",
+  },
+  {
+    id: "general",
+    title: "General and support",
+    body: "Questions about the product, security, privacy, or anything else.",
+    action: "Email the team",
+    address: site.contactEmail,
+    subject: "HeiGin enquiry",
+  },
+] as const;
 
 export const Route = createFileRoute("/contact")({
   head: pageHead(
@@ -94,6 +115,37 @@ function Contact() {
             <p className="text-sm text-faint">Prefer email? Write to {site.contactEmail}, or {site.salesEmail} for sales.</p>
           </form>
         </Card>
+      </Section>
+      <Section tone="tint">
+        <div className="mx-auto max-w-3xl">
+          <h2 className="text-headline text-foreground">Or email us directly.</h2>
+          <p className="mt-3 text-subhead text-muted-foreground">
+            Pick the inbox that fits. The button opens your email app with the address and subject already filled in.
+          </p>
+          <div className="mt-8 grid gap-4 sm:grid-cols-2">
+            {mailboxes.map((box) => (
+              <Card key={box.id} padding="lg" className="flex flex-col">
+                <h3 className="text-xl font-semibold tracking-tight text-foreground">{box.title}</h3>
+                <p className="mt-1.5 text-md leading-relaxed text-muted-foreground">{box.body}</p>
+                <div className="mt-auto pt-6">
+                  <a
+                    href={`mailto:${box.address}?subject=${encodeURIComponent(box.subject)}`}
+                    onClick={() => track("contact_mailbox_clicked", { mailbox: box.id })}
+                  >
+                    <Button variant="secondary" size="md">
+                      {box.action}
+                    </Button>
+                  </a>
+                  <p className="mt-3 text-sm text-faint">
+                    <a href={`mailto:${box.address}`} className="font-medium text-foreground underline underline-offset-2">
+                      {box.address}
+                    </a>
+                  </p>
+                </div>
+              </Card>
+            ))}
+          </div>
+        </div>
       </Section>
     </>
   );
