@@ -267,6 +267,14 @@ function Pricing() {
                 <p className="mt-5 flex h-10 items-baseline gap-1.5 text-4xl font-semibold tracking-tight text-foreground">
                   {"from" in p && <span className="text-lg font-medium text-muted-foreground">from</span>}
                   {inr(price)}
+                  {billing === "annual" && (
+                    <>
+                      <s aria-hidden="true" className="text-lg font-normal text-faint">
+                        {inr(monthlyPrice(annual))}
+                      </s>
+                      <span className="sr-only">, instead of {inr(monthlyPrice(annual))} billed monthly</span>
+                    </>
+                  )}
                 </p>
                 <p className="mt-1 text-sm text-faint">
                   per user / month, billed {billing === "annual" ? "annually" : "monthly"}
