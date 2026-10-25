@@ -20,6 +20,8 @@ export const site = {
   /** Sales enquiries. */
   salesEmail: "sales@heigin.com",
   securityEmail: "office@heigin.com",
+  /** Google Analytics 4 measurement ID. Leave empty to turn analytics off. */
+  gaMeasurementId: "G-CQYE7SD7M7",
 } as const;
 
 export const cta = {
