@@ -1,7 +1,7 @@
-# Strapi setup for the Resources section
+# Strapi setup for the Blog
 
-The website reads articles from a Strapi project and shows them on `/resources` and `/resources/<slug>`.
-Until Strapi is connected, `/resources` shows the planned-topics list, so nothing breaks.
+The website reads articles from a Strapi project and shows them on `/blog` and `/blog/<slug>`.
+Until Strapi is connected, `/blog` shows the planned-topics list, so nothing breaks.
 
 Reference: <https://docs.strapi.io/cms/quick-start> (project creation, Content-Type Builder, permissions).
 
@@ -49,7 +49,7 @@ Redeploy once so the new variables apply. Both are server-only; never prefix the
 
 ## How it behaves
 
-- A published article appears on `/resources` and in `/sitemap.xml` within about a minute (in-memory cache).
-- If Strapi is unreachable, `/resources` falls back to the planned-topics list and article pages return a server error rather than a 404.
+- A published article appears on `/blog` and in `/sitemap.xml` within about a minute (in-memory cache).
+- If Strapi is unreachable, `/blog` falls back to the planned-topics list and article pages return a server error rather than a 404.
 - Images inside an article use the URL Strapi returns. Strapi Cloud returns absolute URLs; a self-hosted
   Strapi using local uploads would need a public base URL added.

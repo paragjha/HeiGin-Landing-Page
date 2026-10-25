@@ -1,7 +1,7 @@
 import { z } from "zod";
 
 /**
- * Reads published articles for the Resources section from Strapi's REST API.
+ * Reads published articles for the Blog from Strapi's REST API.
  * Imported only from server code (`resources.ts`), so the API token never reaches the browser.
  *
  * Expected Strapi content type: "Article" (plural API ID `articles`) with fields

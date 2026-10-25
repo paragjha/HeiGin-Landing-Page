@@ -9,11 +9,11 @@ import { Section } from "@/components/site/section";
 import { PlaceholderNote } from "@/components/site/placeholder-note";
 import { cn } from "@/lib/utils";
 
-export const Route = createFileRoute("/resources/")({
+export const Route = createFileRoute("/blog/")({
   head: pageHead(
-    "/resources",
-    "Resources",
-    "Guides on agentic CRM, sales workflows and customer relationship management from the HeiGin team."
+    "/blog",
+    "Blog",
+    "Writing on agentic CRM, sales workflows and customer relationships from the HeiGin team."
   ),
   loader: () => getResources(),
   component: Resources,
@@ -47,14 +47,14 @@ function Resources() {
   return (
     <>
       <PageHero
-        eyebrow="Resources"
+        eyebrow="Blog"
         title="Guides for teams that sell on relationships."
         description="Practical writing on agentic CRM, sales workflows and how we're building HeiGin."
         showCtas={false}
       />
       <Section>
         {!isLive && <PlaceholderNote>Upcoming articles: topics are planned, full articles are being written</PlaceholderNote>}
-        <div className={cn("flex flex-wrap gap-1.5", !isLive && "mt-6")} role="group" aria-label="Filter resources">
+        <div className={cn("flex flex-wrap gap-1.5", !isLive && "mt-6")} role="group" aria-label="Filter posts">
           {categories.map((c) => (
             <button
               key={c}
@@ -96,7 +96,7 @@ function Resources() {
                 <li key={r.slug || r.title}>
                   {isLive ? (
                     <Link
-                      to="/resources/$slug"
+                      to="/blog/$slug"
                       params={{ slug: r.slug }}
                       className="group block h-full rounded-xl focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
                     >

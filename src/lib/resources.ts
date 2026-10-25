@@ -10,7 +10,7 @@ import {
 } from "@/lib/strapi";
 
 /**
- * Server functions behind the Resources pages. Results are kept in memory for a minute so a busy
+ * Server functions behind the Blog pages. Results are kept in memory for a minute so a busy
  * page doesn't hit Strapi on every request; a new article shows up within that time. Failures
  * are never cached.
  */

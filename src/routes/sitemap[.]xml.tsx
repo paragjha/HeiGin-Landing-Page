@@ -16,7 +16,7 @@ const staticPaths = [
   "/pricing",
   "/security",
   "/about",
-  "/resources",
+  "/blog",
   "/contact",
   "/privacy",
   "/terms",
@@ -35,7 +35,7 @@ export const Route = createFileRoute("/sitemap.xml")({
           ...articles.map((a) => {
             const modified = a.updatedAt ?? a.publishedAt;
             const lastmod = modified ? `<lastmod>${modified.slice(0, 10)}</lastmod>` : "";
-            return `  <url><loc>${escapeXml(`${site.url}/resources/${a.slug}`)}</loc>${lastmod}</url>`;
+            return `  <url><loc>${escapeXml(`${site.url}/blog/${a.slug}`)}</loc>${lastmod}</url>`;
           }),
         ];
         const xml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls.join("\n")}\n</urlset>\n`;

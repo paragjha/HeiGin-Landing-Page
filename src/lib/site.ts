@@ -63,7 +63,7 @@ export const mainNav: (NavGroup | NavItem)[] = [
   {
     label: "Resources",
     items: [
-      { label: "Guides & Resources", to: "/resources", description: "Learn about agentic CRM" },
+      { label: "Blog", to: "/blog", description: "Writing on agentic CRM and sales" },
       { label: "About HeiGin", to: "/about", description: "Why we are building HeiGin" },
     ],
   },
@@ -92,7 +92,7 @@ export const footerNav: { label: string; items: NavItem[] }[] = [
     label: "Company",
     items: [
       { label: "About", to: "/about" },
-      { label: "Resources", to: "/resources" },
+      { label: "Blog", to: "/blog" },
       { label: "Contact", to: "/contact" },
     ],
   },

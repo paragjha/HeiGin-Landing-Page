@@ -6,7 +6,7 @@ import { getResource } from "@/lib/resources";
 import { site } from "@/lib/site";
 import { Section } from "@/components/site/section";
 
-export const Route = createFileRoute("/resources/$slug")({
+export const Route = createFileRoute("/blog/$slug")({
   loader: async ({ params }) => {
     const result = await getResource({ data: params.slug });
     // A Strapi outage is a server error, not a missing page, so search engines don't drop the article.
@@ -26,7 +26,7 @@ export const Route = createFileRoute("/resources/$slug")({
         { property: "og:type", content: "article" },
         { name: "twitter:card", content: "summary_large_image" },
       ],
-      links: [{ rel: "canonical", href: `${site.url}/resources/${params.slug}` }],
+      links: [{ rel: "canonical", href: `${site.url}/blog/${params.slug}` }],
     };
   },
   component: Article,
@@ -91,9 +91,9 @@ function Article() {
   return (
     <Section reveal={false}>
       <article className="mx-auto max-w-2xl">
-        <Link to="/resources" className="inline-flex items-center gap-1.5 text-sm font-medium text-muted-foreground hover:text-foreground">
+        <Link to="/blog" className="inline-flex items-center gap-1.5 text-sm font-medium text-muted-foreground hover:text-foreground">
           <ArrowLeft size={14} aria-hidden="true" />
-          All resources
+          All posts
         </Link>
         <div className="mt-8 flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-faint">
           {article.category && <Badge tone="outline" size="sm">{article.category}</Badge>}
