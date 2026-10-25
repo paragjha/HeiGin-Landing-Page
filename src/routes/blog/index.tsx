@@ -2,8 +2,8 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { Badge, Card } from "@heigin/ui";
 import { pageHead } from "@/lib/page-head";
-import { getResources } from "@/lib/resources";
-import { RESOURCE_CATEGORIES, type ResourceSummary } from "@/lib/strapi";
+import { getPosts } from "@/lib/blog";
+import { BLOG_CATEGORIES } from "@/lib/posts";
 import { PageHero } from "@/components/site/page-hero";
 import { Section } from "@/components/site/section";
 import { PlaceholderNote } from "@/components/site/placeholder-note";
@@ -15,14 +15,14 @@ export const Route = createFileRoute("/blog/")({
     "Blog",
     "Writing on agentic CRM, sales workflows and customer relationships from the HeiGin team."
   ),
-  loader: () => getResources(),
+  loader: () => getPosts(),
   component: Resources,
 });
 
-const categories = ["All", ...RESOURCE_CATEGORIES] as const;
+const categories = ["All", ...BLOG_CATEGORIES] as const;
 
 /**
- * Shown until the first article is published in Strapi (or whenever Strapi can't be reached).
+ * Shown until the first post is published in `content/blog/`.
  * Titles are proposed topics: no article bodies are published for these.
  */
 const plannedResources = [
@@ -36,10 +36,9 @@ const plannedResources = [
 const dateFormat = new Intl.DateTimeFormat("en-IN", { day: "numeric", month: "short", year: "numeric", timeZone: "UTC" });
 
 function Resources() {
-  const result = Route.useLoaderData();
-  const live: ResourceSummary[] = result.ok ? result.resources : [];
+  const live = Route.useLoaderData();
   const isLive = live.length > 0;
-  const resources = isLive ? live : plannedResources.map((r) => ({ ...r, slug: "", publishedAt: null, updatedAt: null }));
+  const resources = isLive ? live : plannedResources.map((r) => ({ ...r, slug: "", date: "" }));
 
   const [cat, setCat] = useState<(typeof categories)[number]>("All");
   const shown = cat === "All" ? resources : resources.filter((r) => r.category === cat);
@@ -84,7 +83,7 @@ function Resources() {
                   <div className="flex items-center justify-between gap-2">
                     <Badge tone="outline" size="sm">{r.category}</Badge>
                     <span className="text-sm text-faint">
-                      {isLive ? (r.publishedAt ? dateFormat.format(new Date(r.publishedAt)) : "") : "Coming soon"}
+                      {isLive ? dateFormat.format(new Date(r.date)) : "Coming soon"}
                     </span>
                   </div>
                   <h2 className="mt-4 text-2xl font-semibold tracking-tight text-foreground">{r.title}</h2>
