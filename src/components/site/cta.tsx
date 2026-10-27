@@ -1,13 +1,31 @@
+import type { ReactNode } from "react";
 import { Link } from "@tanstack/react-router";
 import { Button } from "@heigin/ui";
 import { cta } from "@/lib/site";
 import { track } from "@/lib/analytics";
 import { cn } from "@/lib/utils";
 
+const isExternal = (to: string) => /^https?:\/\//.test(to);
+
+function CtaLink({ to, onClick, children }: { to: string; onClick?: () => void; children: ReactNode }) {
+  if (isExternal(to)) {
+    return (
+      <a href={to} onClick={onClick} target="_blank" rel="noopener noreferrer">
+        {children}
+      </a>
+    );
+  }
+  return (
+    <Link to={to} onClick={onClick}>
+      {children}
+    </Link>
+  );
+}
+
 /** Primary conversion pair used across the site. Destinations are centralised in @/lib/site. */
 export function CtaPair({
   primary = cta.earlyAccess,
-  secondary = cta.seeHowItWorks,
+  secondary = cta.startFree,
   dark = false,
   className,
 }: {
@@ -18,17 +36,17 @@ export function CtaPair({
 }) {
   return (
     <div className={cn("flex flex-wrap items-center gap-3", className)}>
-      <Link to={primary.to} onClick={() => track("cta_early_access_clicked", { label: primary.label })}>
+      <CtaLink to={primary.to} onClick={() => track("cta_early_access_clicked", { label: primary.label })}>
         <Button variant={dark ? "secondary" : "primary"} size="lg">
           {primary.label}
         </Button>
-      </Link>
+      </CtaLink>
       {secondary && (
-        <Link to={secondary.to}>
+        <CtaLink to={secondary.to}>
           <Button variant={dark ? "ghost" : "secondary"} size="lg" className={dark ? "text-night-foreground hover:bg-night-surface" : undefined}>
             {secondary.label}
           </Button>
-        </Link>
+        </CtaLink>
       )}
     </div>
   );

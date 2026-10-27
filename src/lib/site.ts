@@ -28,7 +28,7 @@ export const cta = {
   earlyAccess: { label: "Join waitlist", to: "/contact" },
   bookDemo: { label: "Book a demo", to: "/contact?intent=demo" },
   talkToTeam: { label: "Talk to our team", to: "/contact" },
-  seeHowItWorks: { label: "See how it works", to: "/product" },
+  startFree: { label: "Start free", to: "https://app.heigin.com/signup" },
   exploreProduct: { label: "Explore the product", to: "/product" },
   exploreIntegrations: { label: "Explore integrations", to: "/integrations" },
 } as const;
