@@ -7,16 +7,16 @@ import { cn } from "@/lib/utils";
 
 const isExternal = (to: string) => /^https?:\/\//.test(to);
 
-function CtaLink({ to, onClick, children }: { to: string; onClick?: () => void; children: ReactNode }) {
+export function CtaLink({ to, onClick, children, className }: { to: string; onClick?: () => void; children: ReactNode; className?: string }) {
   if (isExternal(to)) {
     return (
-      <a href={to} onClick={onClick} target="_blank" rel="noopener noreferrer">
+      <a href={to} onClick={onClick} target="_blank" rel="noopener noreferrer" className={className}>
         {children}
       </a>
     );
   }
   return (
-    <Link to={to} onClick={onClick}>
+    <Link to={to} onClick={onClick} className={className}>
       {children}
     </Link>
   );

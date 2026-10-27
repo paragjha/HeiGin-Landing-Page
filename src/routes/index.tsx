@@ -3,7 +3,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, ChevronRight, FileText, Globe, MapPin, MessageSquare } from "lucide-react";
 import { Badge, Button } from "@heigin/ui";
 import { Section, SectionHeading, Eyebrow } from "@/components/site/section";
-import { CtaPair } from "@/components/site/cta";
+import { CtaLink, CtaPair } from "@/components/site/cta";
 import { cta } from "@/lib/site";
 import { WorkflowDemo } from "@/components/mockups/workflow-demo";
 import { PipelineMockup } from "@/components/mockups/pipeline-mockup";
@@ -172,7 +172,7 @@ function Home() {
         <div aria-hidden="true" className="hero-grid pointer-events-none absolute inset-0" />
         <div className="container-site relative pb-16 pt-16 md:pb-24 md:pt-24">
           <div className="mx-auto max-w-3xl animate-rise text-center">
-            <Link
+            <CtaLink
               to={cta.earlyAccess.to}
               className="inline-flex items-center gap-2 rounded-md border border-border bg-surface px-3.5 py-1.5 text-sm shadow-card transition-colors hover:bg-accent"
             >
@@ -180,7 +180,7 @@ function Home() {
               <span className="font-medium text-foreground">Pilot</span>
               <span className="text-muted-foreground">Sign up for the pilot program</span>
               <ChevronRight size={14} className="text-muted-foreground" aria-hidden="true" />
-            </Link>
+            </CtaLink>
             <h1 className="mt-4 text-display text-foreground">
               The agentic CRM that keeps sales moving.
             </h1>

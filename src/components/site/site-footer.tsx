@@ -1,6 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { Button } from "@heigin/ui";
 import { footerNav, cta } from "@/lib/site";
+import { CtaLink } from "./cta";
 import { Logo } from "./logo";
 import { Reveal } from "./reveal";
 import { AppFrame } from "./app-frame";
@@ -18,11 +19,11 @@ export function SiteFooter() {
               Give every customer relationship a next step.
             </h2>
             <div className="mt-8 flex justify-center">
-              <Link to={cta.earlyAccess.to}>
+              <CtaLink to={cta.earlyAccess.to}>
                 <Button variant="secondary" size="lg">
                   {cta.earlyAccess.label}
                 </Button>
-              </Link>
+              </CtaLink>
             </div>
           </Reveal>
           <Reveal delay={120}>

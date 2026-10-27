@@ -4,6 +4,7 @@ import { ChevronDown, Menu, X } from "lucide-react";
 import { Button } from "@heigin/ui";
 import { cta, mainNav, site, type NavGroup, type NavItem } from "@/lib/site";
 import { track } from "@/lib/analytics";
+import { CtaLink } from "./cta";
 import { Logo } from "./logo";
 import { cn } from "@/lib/utils";
 
@@ -123,11 +124,11 @@ export function SiteHeader() {
               Sign in
             </Button>
           )}
-          <Link to={cta.earlyAccess.to} onClick={() => track("cta_early_access_clicked", { location: "header" })}>
+          <CtaLink to={cta.earlyAccess.to} onClick={() => track("cta_early_access_clicked", { location: "header" })}>
             <Button variant="primary" size="sm" touch={false}>
               {cta.earlyAccess.label}
             </Button>
-          </Link>
+          </CtaLink>
         </div>
 
         <button
@@ -169,11 +170,11 @@ export function SiteHeader() {
               )
             )}
             <div className="mt-3 border-t border-border pt-4">
-              <Link to={cta.earlyAccess.to}>
+              <CtaLink to={cta.earlyAccess.to}>
                 <Button variant="primary" fullWidth>
                   {cta.earlyAccess.label}
                 </Button>
-              </Link>
+              </CtaLink>
             </div>
           </nav>
         </div>
