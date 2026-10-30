@@ -1,6 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { Button } from "@heigin/ui";
-import { footerNav, cta } from "@/lib/site";
+import { footerNav, cta, site } from "@/lib/site";
 import { CtaLink } from "./cta";
 import { Logo } from "./logo";
 import { Reveal } from "./reveal";
@@ -46,6 +46,9 @@ export function SiteFooter() {
                 <p className="mt-3 max-w-60 text-md leading-relaxed text-muted-foreground">
                   The agentic CRM: customer relationships that never slip through the cracks.
                 </p>
+                <a href={site.productHunt.url} target="_blank" rel="noopener noreferrer" className="mt-5 inline-block">
+                  <img src={site.productHunt.badge} alt={site.productHunt.alt} width={250} height={54} loading="lazy" />
+                </a>
               </div>
               {footerNav.map((group) => (
                 <nav key={group.label} aria-label={`Footer: ${group.label}`}>

@@ -22,6 +22,12 @@ export const site = {
   securityEmail: "office@heigin.com",
   /** Google Analytics 4 measurement ID. Leave empty to turn analytics off. */
   gaMeasurementId: "G-CQYE7SD7M7",
+  /** Product Hunt "featured" badge shown in the footer. Both URLs come from Product Hunt's embed code. */
+  productHunt: {
+    url: "https://www.producthunt.com/products/heigin?embed=true&utm_source=badge-featured&utm_medium=badge&utm_campaign=badge-heigin",
+    badge: "https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=1287018&theme=dark&t=1793356775730",
+    alt: "HeiGin - Your CRM, on autopilot. | Product Hunt",
+  },
 } as const;
 
 export const cta = {
