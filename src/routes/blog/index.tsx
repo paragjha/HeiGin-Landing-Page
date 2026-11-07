@@ -25,12 +25,18 @@ const categories = ["All", ...BLOG_CATEGORIES] as const;
  * Shown until the first post is published in `content/blog/`.
  * Titles are proposed topics: no article bodies are published for these.
  */
+/**
+ * Launch targets (approved 2026-11-07): the first three posts are the ones
+ * Parag has agreed to publish. The remaining two are on the planning list but
+ * won't block launch. "Trust levels" renamed to match the honest vocabulary —
+ * permissions + approvals + audit log, not R1/R2/R3.
+ */
 const plannedResources = [
   { title: "What is an agentic CRM?", category: "Agentic CRM", summary: "How CRMs shift from storing what happened to helping decide what happens next.", readTime: 6 },
-  { title: "Why follow-ups slip, and how to stop it", category: "Sales workflows", summary: "The most common reasons promised replies never get sent, and practical fixes.", readTime: 5 },
-  { title: "Designing trust levels for AI agents", category: "Agentic CRM", summary: "Why we let teams decide how much an agent can do on its own.", readTime: 7 },
-  { title: "Spotting stalled deals early", category: "Sales workflows", summary: "Signals that a deal is stalling, long before it shows up in a report.", readTime: 4 },
+  { title: "How we think about agent trust.", category: "Agentic CRM", summary: "Permissions, approvals and an admin-only audit log — the real guardrails.", readTime: 7 },
   { title: "HeiGin pilot: what we're learning", category: "Product updates", summary: "Notes from building with our first pilot teams.", readTime: 5 },
+  { title: "Why follow-ups slip, and how to stop it", category: "Sales workflows", summary: "The most common reasons promised replies never get sent, and practical fixes.", readTime: 5 },
+  { title: "Spotting stalled deals early", category: "Sales workflows", summary: "Signals that a deal is stalling, long before it shows up in a report.", readTime: 4 },
 ];
 
 const dateFormat = new Intl.DateTimeFormat("en-IN", { day: "numeric", month: "short", year: "numeric", timeZone: "UTC" });

@@ -8,6 +8,7 @@ const lead: Lead = {
   phone: "+910000000000",
   company: "Example Co",
   message: "Interested in a walkthrough",
+  intent: "general",
 };
 
 const SHEET = "https://script.google.com/macros/s/test/exec";

@@ -150,7 +150,7 @@ export function IntegrationOrbit({ className }: { className?: string }) {
 
         <p className="absolute inset-x-0 bottom-0 text-center text-xs text-faint">
           <span className="mr-1.5 inline-block size-2 rounded-full bg-info align-middle" />
-          All integrations live except WhatsApp (in development)
+          Status labels show what's live and what's in development
         </p>
       </div>
 

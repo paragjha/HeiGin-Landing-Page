@@ -1,172 +1,131 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
-import { useState } from "react";
-import { ArrowRight } from "lucide-react";
-import { Badge } from "@heigin/ui";
+import { createFileRoute } from "@tanstack/react-router";
+import { Button } from "@heigin/ui";
 import { pageHead } from "@/lib/page-head";
-import { PageHero } from "@/components/site/page-hero";
-import { Section, SectionHeading } from "@/components/site/section";
-import { WorkspaceMockup } from "@/components/mockups/workspace-mockup";
+import { Section } from "@/components/site/section";
+import { InlineEyebrow } from "@/components/site/inline-eyebrow";
+import { PilotTeamRow } from "@/components/site/pilot-team-row";
+import { FeatureDeepDive } from "@/components/site/feature-deep-dive";
+import { FinalCtaBanner } from "@/components/site/final-cta-banner";
+import { AppFrame } from "@/components/site/app-frame";
 import { PipelineMockup } from "@/components/mockups/pipeline-mockup";
 import { TasksMockup } from "@/components/mockups/tasks-mockup";
 import { AgentActivityMockup } from "@/components/mockups/agent-activity-mockup";
-import { WorkflowDemo } from "@/components/mockups/workflow-demo";
-import { AppFrame } from "@/components/site/app-frame";
+import dashboardShot from "@/assets/app-dashboard.png.asset.json";
 import quotesShot from "@/assets/app-quotes.png.asset.json";
-import { track } from "@/lib/analytics";
-import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/product")({
   head: pageHead(
     "/product",
     "Product",
-    "Your customer relationships, connected and actionable. Records, conversations, pipeline, tasks and agent actions in one workspace."
+    "One workspace for every customer relationship. Pipeline, inbox, quotes and tasks share the same record — so what one agent notices becomes work the team can finish."
   ),
   component: Product,
 });
 
-const tourViews = [
-  {
-    id: "record",
-    label: "Customer record",
-    value: "The full story of a relationship: timeline, open loops and agent insight in one place.",
-    render: <WorkspaceMockup />,
-  },
-  {
-    id: "pipeline",
-    label: "Pipeline",
-    value: "Opportunities with risk flags raised as they happen, each with the reason attached.",
-    render: <PipelineMockup />,
-  },
-  {
-    id: "tasks",
-    label: "Tasks",
-    value: "A to-do list the agents build from open loops across your accounts.",
-    render: <TasksMockup />,
-  },
-  {
-    id: "activity",
-    label: "Agent activity",
-    value: "An inspectable log of everything agents proposed and did, and who approved it.",
-    render: <AgentActivityMockup />,
-  },
-  {
-    id: "quotes",
-    label: "Quotes & Payments",
-    value: "Customer quotes with versions and approval statuses: a real screen from the live product.",
-    render: (
-      <AppFrame
-        shot={quotesShot}
-        alt="HeiGin Quotes & Payments screen listing customer quotes with version, status, total and updated date"
-      />
-    ),
-  },
-];
-
 function Product() {
-  const [view, setView] = useState(0);
-  const current = tourViews[view]!;
-
   return (
     <>
-      <PageHero
-        eyebrow="Product"
-        title="Your customer relationships, connected and actionable."
-        description="Contacts, companies, opportunities, conversations and tasks share one model, so agent insight turns straight into work your team can do."
-      />
-
-      {/* Interactive tour */}
-      <Section>
-        <SectionHeading
-          eyebrow="Product tour"
-          title="Four views, one connected workspace."
-         
-        />
-        <div className="mt-10">
-          <div role="tablist" aria-label="Product views" className="flex flex-wrap gap-1.5">
-            {tourViews.map((v, i) => (
-              <button
-                key={v.id}
-                type="button"
-                role="tab"
-                aria-selected={i === view}
-                onClick={() => { setView(i); track("product_tour_interacted", { tour: "product", view: v.id }); }}
-                className={cn(
-                  "rounded-md border px-4 py-2 text-md font-medium transition-colors",
-                  i === view
-                    ? "border-primary bg-primary text-primary-foreground"
-                    : "border-border bg-surface text-muted-foreground hover:bg-accent"
-                )}
-              >
-                {v.label}
-              </button>
-            ))}
-          </div>
-          <p className="mt-4 max-w-2xl text-lg text-muted-foreground" aria-live="polite">
-            {current.value}
-          </p>
-          <div className="mt-6 animate-rise" key={current.id} role="tabpanel" aria-label={current.label}>
-            {current.render}
+      {/* 1. Hero — two-column, matches the home + /ai-agents pattern. */}
+      <section className="border-b border-border">
+        <div className="container-site py-16 md:py-24">
+          <InlineEyebrow>Product</InlineEyebrow>
+          <div className="mt-4 grid gap-8 lg:grid-cols-[1.3fr_1fr] lg:items-end lg:gap-16">
+            <h1 className="text-balance text-display text-foreground">
+              One workspace for every customer relationship.
+            </h1>
+            <div className="flex flex-col gap-6">
+              <p className="max-w-xl text-subhead text-muted-foreground">
+                Pipeline, inbox, quotes and tasks share the same record — so what one agent notices becomes work
+                the team can finish.
+              </p>
+              <div className="flex flex-wrap items-center gap-3">
+                <a href="/contact?intent=demo">
+                  <Button variant="primary" size="lg">Book a call</Button>
+                </a>
+                <a href="/pricing">
+                  <Button variant="secondary" size="lg">See pricing</Button>
+                </a>
+              </div>
+            </div>
           </div>
         </div>
+      </section>
+
+      {/* 2. Pilot teams — same quiet row. */}
+      <PilotTeamRow />
+
+      {/* 3. Connected record — real app screenshot. */}
+      <Section id="connected-record" className="scroll-mt-28">
+        <FeatureDeepDive
+          number="01"
+          title="Every email, call, quote and task on one customer timeline."
+          description="Contacts, companies, deals and conversations share one model, so your team sees the full relationship at a glance — not scattered across six tabs."
+        >
+          <AppFrame
+            shot={dashboardShot}
+            alt="HeiGin customer dashboard showing a connected record with activity timeline, open deal and contacts"
+            priority
+          />
+        </FeatureDeepDive>
       </Section>
 
-      {/* Traditional vs agent-assisted */}
-      <Section tone="tint">
-        <SectionHeading
-          eyebrow="The shift"
-          title="Same CRM job. A very different week."
+      {/* 4. Pipeline that flags itself — coded mockup. */}
+      <Section tone="tint" id="pipeline" className="scroll-mt-28">
+        <FeatureDeepDive
+          number="02"
+          title="Risk flags sit on the deal, not in a Friday report."
+          description="Stalled deals and buying signals surface on the pipeline as they happen, each with the reason attached. Deal brief tells the owner what the deal needs next."
+        >
+          <PipelineMockup />
+        </FeatureDeepDive>
+      </Section>
+
+      {/* 5. Quotes & payments — real app screenshot. */}
+      <Section id="quotes" className="scroll-mt-28">
+        <FeatureDeepDive
+          number="03"
+          title="GST-correct quotes go out with a public link."
+          description="Create, version and approve quotes on the same record as the deal. Payment status lands back on the timeline, so no one has to chase finance for an answer."
+        >
+          <AppFrame
+            shot={quotesShot}
+            alt="HeiGin Quotes & Payments screen listing customer quotes with version, status, total and updated date"
+          />
+        </FeatureDeepDive>
+      </Section>
+
+      {/* 6. Tasks built from open loops — coded mockup. */}
+      <Section tone="tint" id="tasks" className="scroll-mt-28">
+        <FeatureDeepDive
+          number="04"
+          title="Tick a task, the record updates."
+          description="Copilot builds your Today list from open loops across your accounts. Each task carries the account, the reason it's here, and the context an agent already gathered."
+        >
+          <TasksMockup />
+        </FeatureDeepDive>
+      </Section>
+
+      {/* 7. Agent activity, recorded — coded mockup. */}
+      <Section id="activity" className="scroll-mt-28">
+        <FeatureDeepDive
+          number="05"
+          title="Every proposal and action is logged — with who approved it, and why."
+          description="An admin-only audit log that your team can inspect at any time. No agent action is a black box."
+        >
+          <AgentActivityMockup />
+        </FeatureDeepDive>
+      </Section>
+
+      {/* 8. Final CTA banner. */}
+      <Section className="border-t border-border">
+        <FinalCtaBanner
+          title="See how HeiGin runs your week."
+          description="A 30-minute walkthrough on your own workflow — we'll show the workspace against your real pipeline."
+          primary={{ label: "Book a call", to: "/contact?intent=demo" }}
+          secondary={{ label: "See pricing", to: "/pricing" }}
+          trackLocation="product-final"
         />
-        <div className="mt-12 grid gap-px overflow-hidden rounded-xl border border-border bg-border md:grid-cols-2">
-          <div className="bg-surface p-6 md:p-8">
-            <Badge tone="neutral" size="sm">Traditional CRM workflow</Badge>
-            <ol className="mt-5 space-y-3">
-              {[
-                "Notice the pricing question while re-reading call notes",
-                "Look up the rates in a spreadsheet or chat thread",
-                "Draft the reply from scratch",
-                "Send it, hopefully before the customer follows up",
-                "Log the activity by hand, if there's time",
-              ].map((s, i) => (
-                <li key={s} className="flex gap-3 text-lg text-muted-foreground">
-                  <span className="flex size-6 shrink-0 items-center justify-center rounded-full bg-muted text-xs font-semibold text-muted-foreground">{i + 1}</span>
-                  {s}
-                </li>
-              ))}
-            </ol>
-          </div>
-          <div className="bg-surface p-6 md:p-8">
-            <Badge tone="info" size="sm">Agent-assisted workflow</Badge>
-            <ol className="mt-5 space-y-3">
-              {[
-                "The agent flags the open question within the hour",
-                "The draft arrives with the discussed rates attached",
-                "You review and approve in one click",
-                "The reply sends and logs itself on the timeline",
-                "The open loop closes and the deal stays on track",
-              ].map((s, i) => (
-                <li key={s} className="flex gap-3 text-lg text-foreground">
-                  <span className="flex size-6 shrink-0 items-center justify-center rounded-full bg-accent text-xs font-semibold text-foreground">{i + 1}</span>
-                  {s}
-                </li>
-              ))}
-            </ol>
-          </div>
-        </div>
       </Section>
-
-      {/* Full workflow */}
-      <Section>
-        <SectionHeading
-          eyebrow="End to end"
-          title="Watch one relationship move forward."
-          description="The same interactive walkthrough as on the home page: meeting to closed loop."
-        />
-        <div className="mt-12"><WorkflowDemo /></div>
-        <Link to="/ai-agents" className="mt-8 inline-flex items-center gap-1.5 text-lg font-medium text-foreground hover:underline">
-          Next: how the agents work <ArrowRight size={15} aria-hidden="true" />
-        </Link>
-      </Section>
-
     </>
   );
 }

@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
-import { ArrowLeft, ArrowRight, CalendarCheck, CheckCircle2, FileText, Mail, PhoneCall, RotateCcw, Sparkles } from "lucide-react";
-import { ApprovalCard, Badge, Button, Card, DealStage, TrustRungBadge } from "@heigin/ui";
+import { ArrowLeft, ArrowRight, CalendarCheck, CheckCircle2, FileText, Mail, Pause, PhoneCall, Play, RotateCcw, Sparkles } from "lucide-react";
+import { ApprovalCard, Badge, Button, Card, DealStage } from "@heigin/ui";
 import { track } from "@/lib/analytics";
 import { cn } from "@/lib/utils";
 
@@ -29,14 +29,14 @@ const steps = [
     id: "signal",
     label: "Signal detected",
     title: "HeiGin spots an unanswered question",
-    body: "Asha asked for spring-line pricing, and no reply has gone out. The follow-up agent matches the open question against the renewal context and raises it.",
+    body: "Asha asked for spring-line pricing, and no reply has gone out. The Sales Agent matches the open question against the renewal context and raises it.",
     icon: Sparkles,
   },
   {
     id: "proposal",
     label: "Agent proposes",
     title: "A follow-up is drafted for review",
-    body: "The agent drafts a reply using the rates discussed on the call. At this trust rung it cannot send anything itself. It prepares the action and explains its reasoning.",
+    body: "The Sales Agent drafts a reply using the rates discussed on the call. It does not send anything itself: it prepares the action, explains its reasoning, and waits for approval.",
     icon: Mail,
   },
   {
@@ -115,8 +115,7 @@ function StepVisual({ step }: { step: number }) {
         <ApprovalCard
           title="Send pricing follow-up to Asha Rao"
           reason="Answers the open pricing question with the rates discussed on the call."
-          requestedBy="Follow-up agent"
-          rung={2}
+          requestedBy="Sales Agent"
           onApprove={() => {}}
           onReject={() => {}}
         >
@@ -136,7 +135,7 @@ function StepVisual({ step }: { step: number }) {
               <p className="text-md font-semibold text-foreground">Approved by Meera S</p>
               <p className="text-sm text-muted-foreground">Draft reviewed against the call notes · 9:12 am</p>
             </div>
-            <TrustRungBadge rung={2} className="ml-auto" />
+            <Badge tone="success" size="sm" className="ml-auto">Sent</Badge>
           </div>
         </Card>
       );
@@ -159,7 +158,7 @@ function StepVisual({ step }: { step: number }) {
 }
 
 /** How long each step stays on screen before the demo moves on by itself. */
-const STEP_DELAY_MS = 2500;
+const STEP_DELAY_MS = 1600;
 
 export function WorkflowDemo() {
   const [step, setStep] = useState(0);
@@ -240,7 +239,17 @@ export function WorkflowDemo() {
     >
       <div className="flex flex-wrap items-center justify-between gap-3 border-b border-border bg-sidebar px-5 py-3">
         <p className="text-md font-semibold text-foreground">From signal to action: one workflow</p>
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-1">
+          <Button
+            variant="ghost"
+            size="sm"
+            touch={false}
+            leadingIcon={autoplay ? <Pause size={14} /> : <Play size={14} />}
+            onClick={() => setAutoplay((on) => !on)}
+            aria-label={autoplay ? "Pause the workflow demo" : "Play the workflow demo"}
+          >
+            {autoplay ? "Pause" : "Play"}
+          </Button>
           <Button
             variant="ghost"
             size="sm"

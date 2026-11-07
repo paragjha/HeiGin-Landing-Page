@@ -31,7 +31,7 @@ export function PipelineMockup() {
       <div className="border-b border-border px-5 py-4">
         <CardHeader
           title="Sales pipeline"
-          description="3 open opportunities · flags raised by the deal assistant"
+          description="3 open opportunities · flags raised by Deal brief"
         />
       </div>
       <ul className="divide-y divide-border">

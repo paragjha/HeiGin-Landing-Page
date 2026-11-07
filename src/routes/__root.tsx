@@ -16,6 +16,7 @@ import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { SiteHeader } from "../components/site/site-header";
 import { SiteFooter } from "../components/site/site-footer";
+import { EyebrowBar } from "../components/site/eyebrow-bar";
 import { site } from "../lib/site";
 
 function NotFoundComponent() {
@@ -163,7 +164,12 @@ function RootComponent() {
     <QueryClientProvider client={queryClient}>
       <ToastProvider>
         <div className="flex min-h-screen flex-col">
-          <SiteHeader />
+          {/* Eyebrow + header share one sticky stack so when the eyebrow collapses on scroll,
+              the nav stays at the viewport top without a layout jump. */}
+          <div className="sticky top-0 z-[var(--hg-z-header)]">
+            <EyebrowBar />
+            <SiteHeader />
+          </div>
           <main className="flex-1">
             {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
             <Outlet />

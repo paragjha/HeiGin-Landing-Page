@@ -5,6 +5,9 @@ import { Badge, Button, Card } from "@heigin/ui";
 import { pageHead } from "@/lib/page-head";
 import { PageHero } from "@/components/site/page-hero";
 import { Section, SectionHeading } from "@/components/site/section";
+import { FaqList, type FaqItem } from "@/components/site/faq-list";
+import { InlineEyebrow } from "@/components/site/inline-eyebrow";
+import { FinalCtaBanner } from "@/components/site/final-cta-banner";
 import { track } from "@/lib/analytics";
 import { cn } from "@/lib/utils";
 
@@ -27,7 +30,8 @@ export const Route = createFileRoute("/pricing")({
  *   listed for any plan until that is fixed.
  * - GST place of supply (HNCRM-131): unknown place of supply defaults to CGST and SGST, which is
  *   wrong for interstate deals. GST quotes are listed because the feature is live.
- * - Outlook sync (HNCRM-101) is not ready, so email is Gmail or SMTP only.
+ * - Outlook sync (HNCRM-101) is not ready, so email is Gmail or SMTP only — matches the
+ *   Outlook `in-development` status in src/lib/integrations.ts.
  */
 
 /** Per-seat prices when billed annually. Monthly billing is about 20% more, as in the proposal. */
@@ -37,6 +41,13 @@ const inr = (n: number) => `₹${n.toLocaleString("en-IN")}`;
 
 type Billing = "annual" | "monthly";
 
+/**
+ * Plan-card CTAs per the 2026-11-07 cascade:
+ *  - Starter / Growth / Pro → "Book a call" → /contact?intent=demo
+ *  - Enterprise → "Talk to sales" → /contact?intent=enterprise
+ * Plan name intentionally not threaded through the URL; the contact form carries intent,
+ * not plan, until the sales inbox wants that distinction.
+ */
 const plans = [
   {
     id: "starter",
@@ -51,7 +62,7 @@ const plans = [
       "AI Copilot, 300 asks per seat",
       "Lead intent score and AI deal brief",
     ],
-    cta: "Request access",
+    cta: { label: "Book a call", to: "/contact?intent=demo" },
   },
   {
     id: "growth",
@@ -67,7 +78,7 @@ const plans = [
       "Full reports",
       "1,000 Copilot asks per seat",
     ],
-    cta: "Request access",
+    cta: { label: "Book a call", to: "/contact?intent=demo" },
     featured: true,
   },
   {
@@ -83,7 +94,7 @@ const plans = [
       "Unlimited pipelines and Copilot",
       "Priority support and onboarding",
     ],
-    cta: "Request access",
+    cta: { label: "Book a call", to: "/contact?intent=demo" },
   },
   {
     id: "enterprise",
@@ -97,7 +108,7 @@ const plans = [
       "Custom onboarding and data migration",
       "Volume and multi-year pricing",
     ],
-    cta: "Talk to sales",
+    cta: { label: "Talk to sales", to: "/contact?intent=enterprise" },
     from: true,
   },
 ] as const;
@@ -180,6 +191,37 @@ const offers = [
   {
     title: "14-day Pro trial",
     body: "Full Pro, including 60 AI calling minutes. No card required.",
+  },
+];
+
+const faqs: FaqItem[] = [
+  {
+    q: "Are prices inclusive of GST?",
+    a: "No. All prices on this page are in INR and exclude 18% GST. GST is added at invoice time based on the place of supply.",
+  },
+  {
+    q: "What counts as a seat?",
+    a: "A seat is one user who can log in. Deactivate a user and the seat becomes free; admins can reassign it immediately.",
+  },
+  {
+    q: "Can we cancel anytime?",
+    a: "Monthly plans cancel at the end of the current billing cycle. Annual prepay is non-refundable for the paid year, but you can downgrade or stop using it anytime.",
+  },
+  {
+    q: "What happens to our data if we cancel?",
+    a: "You can export everything (leads, contacts, deals, activities, documents) as CSV and attachments before cancellation. We retain data per the account's retention setting, then delete it.",
+  },
+  {
+    q: "Is \"Start free\" a free forever plan?",
+    a: "No — HeiGin doesn't ship a free plan today. The 14-day Pro trial is the way to try it without paying, with 60 AI calling minutes included. Afterwards you pick a plan.",
+  },
+  {
+    q: "Is pricing only for India?",
+    a: "Yes, today. HeiGin is built for Indian B2B sales teams, so pricing is in INR and tax rules follow Indian GST. International pricing lands when we open to teams outside India.",
+  },
+  {
+    q: "How does the 14-day Pro trial work?",
+    a: "Apply via Book a call and we set up a Pro workspace with 60 AI calling minutes for 14 days. No card is captured upfront.",
   },
 ];
 
@@ -289,11 +331,15 @@ function Pricing() {
                     </li>
                   ))}
                 </ul>
-                <Link to="/contact" className="mt-6" onClick={() => track("cta_early_access_clicked", { label: `${p.name} plan` })}>
+                <a
+                  href={p.cta.to}
+                  className="mt-6"
+                  onClick={() => track("cta_early_access_clicked", { label: `${p.name} plan` })}
+                >
                   <Button variant={featured ? "primary" : "secondary"} fullWidth>
-                    {p.cta}
+                    {p.cta.label}
                   </Button>
-                </Link>
+                </a>
               </Card>
             );
           })}
@@ -396,13 +442,37 @@ function Pricing() {
           ))}
         </ul>
         <div className="mt-10 flex flex-wrap items-center gap-4">
-          <Link to="/contact">
+          <Link to="/contact" search={{ intent: "demo" }}>
             <Button variant="primary" size="lg">
-              Request access
+              Book a call
             </Button>
           </Link>
           <p className="text-md text-muted-foreground">Not sure which plan fits? Tell us how your team sells and we will recommend one.</p>
         </div>
+      </Section>
+
+      {/* FAQ. */}
+      <Section>
+        <div className="grid gap-12 lg:grid-cols-[1fr_1.6fr]">
+          <div>
+            <InlineEyebrow>Pricing FAQ</InlineEyebrow>
+            <h2 className="mt-3 text-balance text-headline text-foreground">
+              Answers to the quick questions.
+            </h2>
+          </div>
+          <FaqList items={faqs} />
+        </div>
+      </Section>
+
+      {/* Final CTA banner. */}
+      <Section className="border-t border-border">
+        <FinalCtaBanner
+          title="Ready to pick a plan?"
+          description="A 30-minute call walks you through the plan that fits your team."
+          primary={{ label: "Book a call", to: "/contact?intent=demo" }}
+          secondary={{ label: "Talk to sales", to: "/contact?intent=enterprise" }}
+          trackLocation="pricing-final"
+        />
       </Section>
     </>
   );

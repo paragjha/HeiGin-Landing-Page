@@ -11,12 +11,17 @@
 export const LEADS_API_URL = "https://api.heigin.com/integrations/inbound/leads";
 const TIMEOUT_MS = 8000;
 
+export type LeadIntent = "demo" | "pilot" | "enterprise" | "join" | "general";
+
 export interface Lead {
   name: string;
   email: string;
   phone: string;
   company: string;
   message: string;
+  /** Which CTA the visitor used. Sent to the Sheet webhook only — the CRM API
+   *  rejects unknown fields. */
+  intent: LeadIntent;
 }
 
 export interface LeadEnv {

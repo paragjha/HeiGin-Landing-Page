@@ -25,7 +25,7 @@ export function CtaLink({ to, onClick, children, className }: { to: string; onCl
 /** Primary conversion pair used across the site. Destinations are centralised in @/lib/site. */
 export function CtaPair({
   primary = cta.earlyAccess,
-  secondary = cta.startFree,
+  secondary = cta.seePricing,
   dark = false,
   className,
 }: {

@@ -16,7 +16,8 @@ export type AnalyticsEvent =
   | "integration_card_selected"
   | "pricing_page_visited"
   | "workflow_demo_replayed"
-  | "contact_mailbox_clicked";
+  | "contact_mailbox_clicked"
+  | "contact_form_submitted";
 
 export function track(event: AnalyticsEvent, properties?: Record<string, string | number | boolean>): void {
   // Intentionally a no-op until a provider is configured.

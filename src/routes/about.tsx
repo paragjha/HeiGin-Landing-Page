@@ -1,8 +1,11 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { Button } from "@heigin/ui";
 import { pageHead } from "@/lib/page-head";
-import { PageHero } from "@/components/site/page-hero";
 import { Section, SectionHeading } from "@/components/site/section";
+import { InlineEyebrow } from "@/components/site/inline-eyebrow";
+import { PilotTeamRow } from "@/components/site/pilot-team-row";
 import { PlaceholderNote } from "@/components/site/placeholder-note";
+import { FinalCtaBanner } from "@/components/site/final-cta-banner";
 
 export const Route = createFileRoute("/about")({
   head: pageHead(
@@ -14,20 +17,53 @@ export const Route = createFileRoute("/about")({
 });
 
 const values = [
-  { title: "Help people act", body: "Software should move work forward, not just record it." },
-  { title: "Earn trust gradually", body: "Agents get more autonomy only as teams choose to give it." },
-  { title: "Be honest about where we are", body: "We label what's built, what's in progress, and what's planned." },
+  {
+    title: "Help people act",
+    body: "Software should move work forward, not just record it.",
+  },
+  {
+    title: "Human approval by default",
+    body: "Agents propose; people confirm. Permissions, approvals and an admin-only audit log back every action.",
+  },
+  {
+    title: "Honest about where we are",
+    body: "Status labels on this site stay honest. If something isn't shipped, we don't call it shipped.",
+  },
 ];
 
 function About() {
   return (
     <>
-      <PageHero
-        eyebrow="About HeiGin"
-        title="CRMs remember. We want them to help."
-        description="For decades, CRMs have been systems of record, good at storing the past, dependent on people to work out what comes next. We're building HeiGin to close that gap."
-        showCtas={false}
-      />
+      {/* 1. Hero — two-column. */}
+      <section className="border-b border-border">
+        <div className="container-site py-16 md:py-24">
+          <InlineEyebrow>About HeiGin</InlineEyebrow>
+          <div className="mt-4 grid gap-8 lg:grid-cols-[1.3fr_1fr] lg:items-end lg:gap-16">
+            <h1 className="text-balance text-display text-foreground">
+              CRMs remember. We want them to help.
+            </h1>
+            <div className="flex flex-col gap-6">
+              <p className="max-w-xl text-subhead text-muted-foreground">
+                For decades, CRMs have been systems of record — good at storing the past, dependent on people to
+                work out what comes next. HeiGin is built to close that gap.
+              </p>
+              <div className="flex flex-wrap items-center gap-3">
+                <a href="/contact?intent=demo">
+                  <Button variant="primary" size="lg">Book a call</Button>
+                </a>
+                <a href="/contact?intent=pilot">
+                  <Button variant="secondary" size="lg">Apply for the pilot</Button>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 2. Pilot teams. */}
+      <PilotTeamRow />
+
+      {/* 3. Why we exist. */}
       <Section>
         <div className="grid gap-12 lg:grid-cols-[1fr_1.4fr]">
           <SectionHeading eyebrow="Why we exist" title="Relationships slip in the gaps between tools and busy weeks." />
@@ -37,13 +73,15 @@ function About() {
               question nobody answered, a quiet account nobody noticed.
             </p>
             <p>
-              We believe the next generation of CRM will be proactive: it will connect context across the tools teams
-              already use, notice what needs attention, and help people take the next step, with humans firmly in
-              control of what matters.
+              The next generation of CRM is proactive: it connects context across the tools teams already use,
+              notices what needs attention, and helps people take the next step — with humans firmly in control of
+              what matters.
             </p>
           </div>
         </div>
       </Section>
+
+      {/* 4. What we value. */}
       <Section tone="tint">
         <SectionHeading eyebrow="What we value" title="How we build." />
         <div className="mt-10 grid gap-4 md:grid-cols-3">
@@ -55,9 +93,27 @@ function About() {
           ))}
         </div>
       </Section>
+
+      {/* 5. The team — BLOCKED on bios + founder note. */}
       <Section>
         <SectionHeading eyebrow="The team" title="The people building HeiGin." />
-        <div className="mt-6"><PlaceholderNote>Founding team story and bios go here once provided</PlaceholderNote></div>
+        <div className="mt-6">
+          <PlaceholderNote>
+            Founder note and team bios go here once Parag shares them. Keeping this section out until then — see the
+            website redesign plan.
+          </PlaceholderNote>
+        </div>
+      </Section>
+
+      {/* 6. Final CTA. */}
+      <Section className="border-t border-border">
+        <FinalCtaBanner
+          title="Want to see what we're building?"
+          description="A 30-minute walkthrough on your own workflow — we'll show what ships today and what's next."
+          primary={{ label: "Book a call", to: "/contact?intent=demo" }}
+          secondary={{ label: "Apply for the pilot", to: "/contact?intent=pilot" }}
+          trackLocation="about-final"
+        />
       </Section>
     </>
   );

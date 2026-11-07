@@ -6,7 +6,7 @@ const initialTasks = [
   {
     id: "t1",
     title: "Send spring-line pricing to Asha Rao",
-    context: "Kaveri Textiles · proposed by Follow-up agent",
+    context: "Kaveri Textiles · proposed by Sales Agent",
     due: "Today, 4:00 pm",
     overdue: false,
     done: false,
@@ -22,7 +22,7 @@ const initialTasks = [
   {
     id: "t3",
     title: "Re-engage Sundaram Mills · stalled 12 days",
-    context: "Sundaram Mills · flagged by Deal assistant",
+    context: "Sundaram Mills · flagged by Deal brief",
     due: "Yesterday",
     overdue: true,
     done: false,
@@ -67,7 +67,7 @@ export function TasksMockup() {
       <div className="border-b border-border px-5 py-4">
         <CardHeader
           title="Up next for Meera"
-          description="Ordered by the follow-up agent from open loops across your accounts"
+          description="Ordered by Copilot from open loops across your accounts"
         />
       </div>
       <div ref={ref}>

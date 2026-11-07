@@ -1,5 +1,6 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, useSearch } from "@tanstack/react-router";
 import { useState, type FormEvent } from "react";
+import { z } from "zod";
 import { Button, Card } from "@heigin/ui";
 import { pageHead } from "@/lib/page-head";
 import { PageHero } from "@/components/site/page-hero";
@@ -7,6 +8,58 @@ import { Section } from "@/components/site/section";
 import { site } from "@/lib/site";
 import { submitLead } from "@/lib/submit-lead";
 import { track } from "@/lib/analytics";
+
+/**
+ * Intent cascade (approved 2026-11-07). The search param drives the hero copy,
+ * the submit label, and the `intent` field forwarded to the Sheet webhook (the
+ * CRM API rejects unknown fields, so it is NOT sent there).
+ */
+const intentSchema = z.enum(["demo", "pilot", "enterprise", "join", "general"]).catch("general");
+type Intent = z.infer<typeof intentSchema>;
+
+const intentCopy: Record<Intent, {
+  eyebrow: string;
+  title: string;
+  description: string;
+  submit: string;
+  pending: string;
+}> = {
+  demo: {
+    eyebrow: "Book a call",
+    title: "Let's talk about your team.",
+    description: "A 30-minute walkthrough on your own workflow. We'll come ready with questions about how you sell today.",
+    submit: "Book a call",
+    pending: "Sending…",
+  },
+  pilot: {
+    eyebrow: "Pilot program",
+    title: "Apply for the pilot.",
+    description: "Share how your team sells and what you'd want HeiGin to help with. We'll reply within one business day.",
+    submit: "Apply for the pilot",
+    pending: "Sending…",
+  },
+  enterprise: {
+    eyebrow: "Enterprise",
+    title: "Talk to sales.",
+    description: "Tell us about your team size, security requirements and the plan you're interested in. Sales will be in touch.",
+    submit: "Talk to sales",
+    pending: "Sending…",
+  },
+  join: {
+    eyebrow: "Careers",
+    title: "Hi, we're hiring.",
+    description: "Tell us about yourself and the kind of work you'd like to do at HeiGin. Include a link to your work if you have one.",
+    submit: "Send introduction",
+    pending: "Sending…",
+  },
+  general: {
+    eyebrow: "Contact",
+    title: "Let's talk about your team.",
+    description: "Tell us how you sell today and we'll set up a walkthrough on your own use case.",
+    submit: "Request early access",
+    pending: "Sending…",
+  },
+};
 
 /** Mailboxes people can write to directly. Each opens the visitor's own mail app, addressed and with a subject. */
 const mailboxes = [
@@ -29,6 +82,13 @@ const mailboxes = [
 ] as const;
 
 export const Route = createFileRoute("/contact")({
+  // `intent` is optional so `<Link to="/contact">` can be written anywhere
+  // without boilerplate; `intentSchema.catch` falls back to "general".
+  validateSearch: (raw): { intent?: Intent } => {
+    const candidate = (raw as { intent?: unknown })?.intent;
+    if (candidate === undefined) return {};
+    return { intent: intentSchema.parse(candidate) };
+  },
   head: pageHead(
     "/contact",
     "Contact & early access",
@@ -41,6 +101,8 @@ const field =
   "mt-1.5 w-full rounded-md border border-input bg-surface px-3 py-2 text-lg text-foreground outline-none focus:border-ring focus:ring-2 focus:ring-ring/20";
 
 function Contact() {
+  const { intent = "general" } = useSearch({ from: "/contact" });
+  const copy = intentCopy[intent];
   const [error, setError] = useState("");
   const [opened, setOpened] = useState(false);
   const [sent, setSent] = useState(false);
@@ -62,8 +124,9 @@ function Contact() {
 
     setSending(true);
     try {
-      const result = await submitLead({ data: { name, email, phone, company, message } });
+      const result = await submitLead({ data: { name, email, phone, company, message, intent } });
       if (result.ok) {
+        track("contact_form_submitted", { intent });
         setSent(true);
         return;
       }
@@ -79,17 +142,24 @@ function Contact() {
     }
 
     // Lead capture isn't configured on this deployment: fall back to the visitor's email app.
-    const body = `Name: ${name}\nEmail: ${email}\nPhone: ${phone}\nCompany: ${company}\n\n${message}`;
-    window.location.href = `mailto:${site.contactEmail}?subject=${encodeURIComponent("HeiGin early access")}&body=${encodeURIComponent(body)}`;
+    const subjectByIntent: Record<Intent, string> = {
+      demo: "HeiGin walkthrough",
+      pilot: "HeiGin pilot application",
+      enterprise: "HeiGin enterprise enquiry",
+      join: "Hi, I'd like to work at HeiGin",
+      general: "HeiGin early access",
+    };
+    const body = `Intent: ${intent}\nName: ${name}\nEmail: ${email}\nPhone: ${phone}\nCompany: ${company}\n\n${message}`;
+    window.location.href = `mailto:${site.contactEmail}?subject=${encodeURIComponent(subjectByIntent[intent])}&body=${encodeURIComponent(body)}`;
     setOpened(true);
   }
 
   return (
     <>
       <PageHero
-        eyebrow="Contact"
-        title="Let's talk about your team."
-        description="Tell us how you sell today and we'll set up a walkthrough on your own use case."
+        eyebrow={copy.eyebrow}
+        title={copy.title}
+        description={copy.description}
         showCtas={false}
       />
       <Section>
@@ -111,7 +181,7 @@ function Contact() {
                 Your email app should open with the message ready to send. If it didn't, write to {site.contactEmail}.
               </p>
             )}
-            <Button type="submit" variant="primary" size="lg" disabled={sending}>{sending ? "Sending…" : "Request early access"}</Button>
+            <Button type="submit" variant="primary" size="lg" disabled={sending}>{sending ? copy.pending : copy.submit}</Button>
             <p className="text-sm text-faint">Prefer email? Write to {site.contactEmail}, or {site.salesEmail} for sales.</p>
           </form>
         </Card>

@@ -9,7 +9,6 @@ import {
   CardHeader,
   RecordHeader,
   StatusBadge,
-  TrustRungBadge,
 } from "@heigin/ui";
 import { demoCompany } from "@/lib/demo-data";
 
@@ -77,8 +76,7 @@ export function WorkspaceMockup() {
                   22 hours. This account is in active renewal talks.
                 </p>
                 <div className="mt-2.5 flex items-center gap-2">
-                  <TrustRungBadge rung={2} />
-                  <span className="text-sm text-faint">Follow-up agent</span>
+                  <span className="text-sm text-faint">Sales Agent · asks you to confirm</span>
                 </div>
               </div>
             </div>
@@ -87,8 +85,7 @@ export function WorkspaceMockup() {
           <ApprovalCard
             title={`Send pricing follow-up to ${demoCompany.contact}`}
             reason="Answers the open pricing question with the rates discussed on the call."
-            requestedBy="Follow-up agent"
-            rung={2}
+            requestedBy="Sales Agent"
             onApprove={() => {}}
             onReject={() => {}}
           >

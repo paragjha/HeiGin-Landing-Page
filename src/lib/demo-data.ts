@@ -12,7 +12,13 @@ export const demoCompany = {
   stage: "Negotiation",
 };
 
+/**
+ * Follow-up work in the product is proposed by Copilot, which always asks for
+ * confirmation before acting. Earlier mockups referenced a "Follow-up agent"
+ * and a trust ladder; both have been replaced with the real seven-agent
+ * vocabulary (2026-11-07).
+ */
 export const demoAgent = {
-  name: "Follow-up agent",
-  rungLabel: "Rung 2 · Proposes, you approve",
+  name: "Copilot",
+  oversight: "Asks you to confirm every change",
 };

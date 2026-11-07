@@ -10,11 +10,8 @@ export const site = {
     "HeiGin is the agentic CRM that connects your customer context, spots what needs attention, and helps your team take the next step.",
   /** Public marketing site, used for canonical URLs and structured data. */
   url: "https://heigin.com",
-  /**
-   * Where "Sign in" points. The product app URL is not publicly confirmed,
-   * so this stays empty and the sign-in link is hidden until it is set.
-   */
-  appUrl: "",
+  /** Where "Sign in" points. Opens the product app in a new tab. */
+  appUrl: "https://app.heigin.com",
   /** General contact inbox (also used for security and privacy questions). */
   contactEmail: "office@heigin.com",
   /** Sales enquiries. */
@@ -30,11 +27,23 @@ export const site = {
   },
 } as const;
 
+/**
+ * Primary CTAs. Labels follow the agreed intent cascade (2026-11-07):
+ *  - demo       → "Book a call"
+ *  - pilot      → "Apply for the pilot"
+ *  - enterprise → "Talk to sales"
+ *  - join       → "Hi, we're hiring"
+ *  - default    → "Request early access"
+ * Routes to /contact?intent=... so the form (validateSearch) picks the right submit label.
+ * `startFree` is intentionally omitted — `/signup` does not exist yet in the product app.
+ */
 export const cta = {
   earlyAccess: { label: "Book a call", to: "/contact?intent=demo" },
-  bookDemo: { label: "Book a demo", to: "/contact?intent=demo" },
-  talkToTeam: { label: "Talk to our team", to: "/contact" },
-  startFree: { label: "Start free", to: "https://app.heigin.com/signup" },
+  bookDemo: { label: "Book a call", to: "/contact?intent=demo" },
+  talkToTeam: { label: "Talk to us", to: "/contact" },
+  applyForPilot: { label: "Apply for the pilot", to: "/contact?intent=pilot" },
+  talkToSales: { label: "Talk to sales", to: "/contact?intent=enterprise" },
+  seePricing: { label: "See pricing", to: "/pricing" },
   exploreProduct: { label: "Explore the product", to: "/product" },
   exploreIntegrations: { label: "Explore integrations", to: "/integrations" },
 } as const;

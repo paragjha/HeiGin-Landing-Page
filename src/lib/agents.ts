@@ -23,6 +23,14 @@ export interface Agent {
   summary: string;
   /** Where in the product it shows up. */
   appearsIn: string;
+  /** What context the agent reads. One short line — the sources it pulls from
+   *  and the scope of what it sees. Omit when the team has not confirmed it;
+   *  the /ai-agents card will show a "To confirm with the product team" chip. */
+  context?: string;
+  /** What the agent is actually allowed to do. One short line — specific
+   *  actions, e.g. "drafts replies, does not send". Omit when the team has
+   *  not confirmed it. */
+  actions?: string;
   /** How a person stays in control. Only set where the team has stated it. */
   oversight?: string;
 }
@@ -34,6 +42,8 @@ export const agents: Agent[] = [
     status: "available",
     summary: "Answers questions, runs bulk actions and builds multi-step plans.",
     appearsIn: "Everywhere, via Ask HeiGin",
+    context: "The record you're on and anything your permissions let you see.",
+    actions: "Proposes changes and bulk actions; never commits one without you clicking Confirm.",
     oversight: "Asks you to confirm every change.",
   },
   {
