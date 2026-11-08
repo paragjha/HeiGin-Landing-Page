@@ -44,7 +44,7 @@ export function ThumbFollowUps({ tone = "light" }: { tone?: "light" | "dark" } =
   }, []);
 
   return (
-    <div ref={ref} className={cn("flex h-full w-full items-center justify-center overflow-hidden p-4", tone === "dark" ? "bg-night" : "bg-sidebar")}>
+    <div ref={ref} className="flex h-full w-full items-center justify-center overflow-hidden p-4" data-tone={tone}>
       <div className="w-full max-w-[300px] rounded-xl border border-border bg-surface p-3 shadow-[0_8px_24px_-8px_rgba(0,0,0,0.3)]">
         <div className="flex items-center justify-between pb-2">
           <p className="text-[10.5px] font-semibold uppercase tracking-[0.06em] text-faint">Needs reply · today</p>

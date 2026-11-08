@@ -264,7 +264,7 @@ function Home() {
           </div>
           <Link
             to="/blog"
-            className="inline-flex items-center gap-1.5 rounded-md border border-border bg-surface px-3.5 py-1.5 text-sm font-medium text-foreground transition-colors hover:bg-accent"
+            className="inline-flex items-center gap-1.5 rounded-md px-3.5 py-1.5 text-sm font-medium text-foreground transition-colors hover:bg-accent"
           >
             View all <ArrowRight size={14} aria-hidden="true" />
           </Link>

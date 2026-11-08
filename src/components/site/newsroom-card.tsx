@@ -36,18 +36,22 @@ export function NewsroomCard({
       className="group block overflow-hidden rounded-[1.5rem] border border-border transition-transform hover:-translate-y-0.5"
     >
       <div className="relative aspect-[4/3] overflow-hidden">
+        {/* Painterly backdrop stays underneath on every card — behind the
+            coded thumbnail when there is one, in place of it otherwise. */}
+        <img
+          src="/images/hero-landscape.webp"
+          alt=""
+          aria-hidden="true"
+          loading="lazy"
+          className="absolute inset-0 h-full w-full object-cover"
+        />
         {thumb ? (
-          <div aria-hidden="true" className="absolute inset-0 h-full w-full">{thumb}</div>
+          <div aria-hidden="true" className="absolute inset-0 flex h-full w-full items-center justify-center">
+            {thumb}
+          </div>
         ) : (
-          <img
-            src="/images/hero-landscape.webp"
-            alt=""
-            aria-hidden="true"
-            loading="lazy"
-            className="absolute inset-0 h-full w-full object-cover"
-          />
+          <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-b from-foreground/10 via-foreground/40 to-foreground/70" />
         )}
-        {!thumb && <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-b from-foreground/10 via-foreground/40 to-foreground/70" />}
         <div className="pointer-events-none absolute inset-x-0 top-0 flex justify-start p-5">
           <span className="inline-flex w-fit items-center rounded-full bg-background/90 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wider text-foreground">
             {post.tag}

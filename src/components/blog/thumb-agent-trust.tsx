@@ -40,7 +40,7 @@ export function ThumbAgentTrust({ tone = "light" }: { tone?: "light" | "dark" } 
   }, []);
 
   return (
-    <div ref={ref} className={cn("flex h-full w-full items-center justify-center overflow-hidden p-4", tone === "dark" ? "bg-night" : "bg-sidebar")}>
+    <div ref={ref} className="flex h-full w-full items-center justify-center overflow-hidden p-4" data-tone={tone}>
       <div className="w-full max-w-[290px] space-y-2">
         {/* Role badge */}
         <div className="flex items-center gap-1.5">

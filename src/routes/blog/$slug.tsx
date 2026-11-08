@@ -154,8 +154,15 @@ function Article() {
         <p className="mt-5 text-subhead text-muted-foreground">{post.summary}</p>
 
         {Thumb && (
-          <div className="mt-10 overflow-hidden rounded-2xl border border-border">
-            <div className="aspect-[16/9]">
+          <div className="relative mt-10 overflow-hidden rounded-2xl border border-border">
+            <img
+              src="/images/hero-landscape.webp"
+              alt=""
+              aria-hidden="true"
+              loading="lazy"
+              className="absolute inset-0 h-full w-full object-cover"
+            />
+            <div className="relative aspect-[16/9]">
               <Thumb tone="light" />
             </div>
           </div>
