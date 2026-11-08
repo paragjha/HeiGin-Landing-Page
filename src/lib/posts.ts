@@ -19,6 +19,10 @@ export interface PostSummary {
   date: string;
   /** Minutes. */
   readTime: number;
+  /** Optional key into `src/components/blog/thumbs.ts` for a coded thumbnail. */
+  thumb?: string;
+  /** Primary search keyword, used in meta descriptions and the article H1 hero. */
+  keyword?: string;
 }
 
 export interface Post extends PostSummary {
@@ -35,6 +39,8 @@ const frontmatter = z.object({
   readTime: z.number().int().positive().optional(),
   draft: z.boolean().optional(),
   customerApproved: z.boolean().optional(),
+  thumb: z.string().optional(),
+  keyword: z.string().optional(),
 });
 
 function scalar(value: string): string | number | boolean {
@@ -79,6 +85,8 @@ export function parsePost(filePath: string, raw: string): (Post & { draft: boole
     body: parts.body,
     draft: fm.data.draft ?? false,
     customerApproved: fm.data.customerApproved ?? false,
+    ...(fm.data.thumb ? { thumb: fm.data.thumb } : {}),
+    ...(fm.data.keyword ? { keyword: fm.data.keyword } : {}),
   };
 }
 

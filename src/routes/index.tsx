@@ -1,3 +1,4 @@
+import type { ReactNode } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@heigin/ui";
@@ -7,6 +8,9 @@ import { FaqList, type FaqItem } from "@/components/site/faq-list";
 import { FeatureDeepDive } from "@/components/site/feature-deep-dive";
 import { PilotTeamRow } from "@/components/site/pilot-team-row";
 import { NewsroomCard, type NewsroomPost } from "@/components/site/newsroom-card";
+import { ThumbAgenticCrm } from "@/components/blog/thumb-agentic-crm";
+import { ThumbFollowUps } from "@/components/blog/thumb-follow-ups";
+import { ThumbAgentTrust } from "@/components/blog/thumb-agent-trust";
 import { TestimonialFigure } from "@/components/site/testimonial-figure";
 import { FinalCtaBanner } from "@/components/site/final-cta-banner";
 import { testimonials } from "@/lib/testimonials";
@@ -46,29 +50,36 @@ export const Route = createFileRoute("/")({
   component: Home,
 });
 
-// Blog cards on the home page. Posts live on /blog with "coming soon" markers;
-// slugs link to the blog index rather than non-existent article routes.
-const blogPosts: NewsroomPost[] = [
+// Home-page newsroom row: links to the three published launch posts. Each
+// card renders its coded video thumbnail (not a static image) matching the
+// article's hero scene.
+const blogPosts: Array<NewsroomPost & { to: string; thumb: ReactNode }> = [
   {
-    slug: "agentic-crm",
+    slug: "what-is-an-agentic-crm",
     tag: "Primer",
     title: "What is an agentic CRM?",
     summary: "Why systems of record need a second job: moving work forward.",
-    date: "Upcoming",
+    date: "7 min read",
+    to: "/blog/what-is-an-agentic-crm",
+    thumb: <ThumbAgenticCrm tone="dark" />,
   },
   {
-    slug: "follow-ups-slip",
-    tag: "Field notes",
+    slug: "why-follow-ups-slip",
+    tag: "Sales workflows",
     title: "Why follow-ups slip, and how to stop it.",
     summary: "Open loops hide in the week. HeiGin surfaces them before they cool.",
-    date: "Upcoming",
+    date: "7 min read",
+    to: "/blog/why-follow-ups-slip",
+    thumb: <ThumbFollowUps tone="dark" />,
   },
   {
-    slug: "trust-levels",
+    slug: "how-we-think-about-agent-trust",
     tag: "Design",
     title: "How we think about agent trust.",
     summary: "Permissions, approvals and an admin-only audit log — the real guardrails.",
-    date: "Upcoming",
+    date: "8 min read",
+    to: "/blog/how-we-think-about-agent-trust",
+    thumb: <ThumbAgentTrust tone="dark" />,
   },
 ];
 
@@ -259,9 +270,9 @@ function Home() {
           </Link>
         </div>
         <ul className="mt-10 grid gap-5 md:grid-cols-3">
-          {blogPosts.map((post) => (
+          {blogPosts.map(({ to, thumb, ...post }) => (
             <li key={post.slug}>
-              <NewsroomCard post={post} />
+              <NewsroomCard post={post} to={to} thumb={thumb} />
             </li>
           ))}
         </ul>
