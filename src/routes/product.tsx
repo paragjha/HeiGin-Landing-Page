@@ -6,12 +6,11 @@ import { InlineEyebrow } from "@/components/site/inline-eyebrow";
 import { PilotTeamRow } from "@/components/site/pilot-team-row";
 import { FeatureDeepDive } from "@/components/site/feature-deep-dive";
 import { FinalCtaBanner } from "@/components/site/final-cta-banner";
-import { AppFrame } from "@/components/site/app-frame";
+import { WorkspaceMockup } from "@/components/mockups/workspace-mockup";
 import { PipelineMockup } from "@/components/mockups/pipeline-mockup";
+import { QuotesMockup } from "@/components/mockups/quotes-mockup";
 import { TasksMockup } from "@/components/mockups/tasks-mockup";
 import { AgentActivityMockup } from "@/components/mockups/agent-activity-mockup";
-import dashboardShot from "@/assets/app-dashboard.png.asset.json";
-import quotesShot from "@/assets/app-quotes.png.asset.json";
 
 export const Route = createFileRoute("/product")({
   head: pageHead(
@@ -54,18 +53,14 @@ function Product() {
       {/* 2. Pilot teams — same quiet row. */}
       <PilotTeamRow />
 
-      {/* 3. Connected record — real app screenshot. */}
+      {/* 3. Connected record — coded record mockup. */}
       <Section id="connected-record" className="scroll-mt-28">
         <FeatureDeepDive
           number="01"
           title="Every email, call, quote and task on one customer timeline."
           description="Contacts, companies, deals and conversations share one model, so your team sees the full relationship at a glance — not scattered across six tabs."
         >
-          <AppFrame
-            shot={dashboardShot}
-            alt="HeiGin customer dashboard showing a connected record with activity timeline, open deal and contacts"
-            priority
-          />
+          <WorkspaceMockup />
         </FeatureDeepDive>
       </Section>
 
@@ -80,17 +75,14 @@ function Product() {
         </FeatureDeepDive>
       </Section>
 
-      {/* 5. Quotes & payments — real app screenshot. */}
+      {/* 5. Quotes & payments — coded quotes mockup. */}
       <Section id="quotes" className="scroll-mt-28">
         <FeatureDeepDive
           number="03"
           title="GST-correct quotes go out with a public link."
           description="Create, version and approve quotes on the same record as the deal. Payment status lands back on the timeline, so no one has to chase finance for an answer."
         >
-          <AppFrame
-            shot={quotesShot}
-            alt="HeiGin Quotes & Payments screen listing customer quotes with version, status, total and updated date"
-          />
+          <QuotesMockup />
         </FeatureDeepDive>
       </Section>
 

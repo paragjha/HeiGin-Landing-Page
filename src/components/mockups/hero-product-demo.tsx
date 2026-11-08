@@ -850,39 +850,13 @@ export function HeroProductDemo() {
           fetchPriority="high"
         />
 
-        {/*
-         * Phone + tablet fallback. The animated multi-scene demo below is
-         * designed at 1291px wide — scaling it to a narrow viewport gives
-         * microscopic text. Below the `lg` breakpoint (1024px) we show a real
-         * app screenshot inside the same glass frame treatment: honest,
-         * legible, and it keeps the painterly backdrop pattern intact.
-         */}
-        <div className="relative mx-auto w-full max-w-[1291px] lg:hidden">
-          <div className="overflow-hidden rounded-2xl bg-white/15 p-1.5 ring-1 ring-white/30 shadow-[0_24px_64px_-16px_rgba(0,0,0,0.35)] backdrop-blur-md">
-            <img
-              src="/images/app-dashboard.webp"
-              width={1330}
-              height={911}
-              alt="HeiGin dashboard with the Today view, deals and recent activity on one timeline"
-              loading="eager"
-              fetchPriority="high"
-              decoding="async"
-              className="block h-auto w-full rounded-xl"
-            />
-          </div>
-          <p className="mt-3 text-center text-xs font-medium tracking-[0.02em] text-background/80">
-            See the full animated demo on a larger screen.
-          </p>
-        </div>
-
         {/* Circular play/pause button — outside the app UI, in the outer frame.
-            White icon + stronger backdrop for contrast against the painterly artwork.
-            Hidden below lg (there's no animated demo to control there). */}
+            White icon + stronger backdrop for contrast against the painterly artwork. */}
         <button
           type="button"
           onClick={() => setAutoplay((on) => !on)}
           aria-label={autoplay ? "Pause the workflow demo" : "Play the workflow demo"}
-          className="absolute right-6 top-6 z-20 hidden size-10 items-center justify-center rounded-full border border-white/30 bg-black/45 text-white shadow-[0_6px_18px_-4px_rgba(0,0,0,0.5)] backdrop-blur-sm transition-colors hover:bg-black/60 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/70 focus-visible:ring-offset-2 focus-visible:ring-offset-black/30 lg:inline-flex lg:right-12 lg:top-12"
+          className="absolute right-6 top-6 z-20 inline-flex size-10 items-center justify-center rounded-full border border-white/30 bg-black/45 text-white shadow-[0_6px_18px_-4px_rgba(0,0,0,0.5)] backdrop-blur-sm transition-colors hover:bg-black/60 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/70 focus-visible:ring-offset-2 focus-visible:ring-offset-black/30 md:right-12 md:top-12"
         >
           {autoplay ? (
             <Pause size={16} strokeWidth={2} aria-hidden="true" fill="currentColor" />
@@ -891,13 +865,19 @@ export function HeroProductDemo() {
           )}
         </button>
 
-        {/* Glass app frame — fixed 1.61:1 aspect; the whole app zooms as one unit.
-            Shown from lg and up; phones + tablets get the static screenshot above. */}
-        <div className="relative mx-auto hidden w-full max-w-[1291px] lg:block">
-          <div
-            className="overflow-hidden rounded-2xl bg-white/15 p-1.5 ring-1 ring-white/30 shadow-[0_24px_64px_-16px_rgba(0,0,0,0.35)] backdrop-blur-md md:p-2"
-            style={{ aspectRatio: "1.61 / 1" }}
-          >
+        {/*
+         * Glass app frame. Responsive aspect ratio:
+         *   - mobile: 9/14, phone-screen-like portrait so the Topbar +
+         *     scene content have room to breathe at narrow widths.
+         *   - md: 4/5 — a bit taller than the desktop ratio so the shell
+         *     and content read cleanly at tablet widths.
+         *   - lg and up: 1.61/1 — the reference desktop aspect with
+         *     Sidebar + Topbar + content area side by side.
+         * The sidebar is `hidden md:flex` so on mobile the scene content
+         * takes the full width inside the frame; the stage adapts.
+         */}
+        <div className="relative mx-auto w-full max-w-[1291px]">
+          <div className="aspect-[9/14] overflow-hidden rounded-2xl bg-white/15 p-1.5 ring-1 ring-white/30 shadow-[0_24px_64px_-16px_rgba(0,0,0,0.35)] backdrop-blur-md md:aspect-[4/5] md:p-2 lg:aspect-[1.61/1]">
             {/* The stage — sidebar + topbar + content area. Scenes crossfade
                 in place; nothing transforms. */}
             <div className="relative h-full w-full overflow-hidden rounded-xl bg-background">
