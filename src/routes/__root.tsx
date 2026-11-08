@@ -164,10 +164,14 @@ function RootComponent() {
     <QueryClientProvider client={queryClient}>
       <ToastProvider>
         <div className="flex min-h-screen flex-col">
-          {/* Eyebrow + header share one sticky stack so when the eyebrow collapses on scroll,
-              the nav stays at the viewport top without a layout jump. */}
+          {/* Eyebrow is a normal top-of-page block: it sits above the sticky
+              header, scrolls away naturally, and does not animate. Only the
+              nav is sticky, so its height never changes and the header never
+              shakes when scroll direction flips (trackpad bounces, iOS
+              rubber-banding and short mouse-wheel oscillations all used to
+              toggle the eyebrow's max-height). */}
+          <EyebrowBar />
           <div className="sticky top-0 z-[var(--hg-z-header)]">
-            <EyebrowBar />
             <SiteHeader />
           </div>
           <main className="flex-1">
