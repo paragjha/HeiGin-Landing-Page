@@ -54,25 +54,47 @@ export interface NavItem {
   description?: string;
 }
 
+/**
+ * Optional featured tile shown on the left of a dropdown panel. When set, the
+ * panel renders a two-column layout: the feature on the left spans the whole
+ * height, and `items` render as a grid on the right. Without it, the panel is
+ * a plain grid of items.
+ */
+export interface NavFeature {
+  eyebrow: string;
+  title: string;
+  body: string;
+  to: string;
+  cta: string;
+}
+
 export interface NavGroup {
   label: string;
   items: NavItem[];
+  feature?: NavFeature;
 }
 
 export const mainNav: (NavGroup | NavItem)[] = [
   {
     label: "Product",
+    feature: {
+      eyebrow: "HeiGin",
+      title: "The connected customer workspace.",
+      body: "Pipeline, inbox, quotes and tasks on one record — so every agent proposal becomes work your team can finish.",
+      to: "/product",
+      cta: "Explore the product",
+    },
     items: [
       { label: "Overview", to: "/product", description: "The connected customer workspace" },
-      { label: "AI Agents", to: "/ai-agents", description: "Agents that move work forward" },
+      { label: "AI Agents", to: "/ai-agents", description: "Seven specialised agents, each with one job" },
       { label: "Integrations", to: "/integrations", description: "Connect the tools you already use" },
     ],
   },
   {
     label: "Solutions",
     items: [
-      { label: "Use Cases", to: "/use-cases", description: "Problems HeiGin is built to solve" },
-      { label: "Solutions", to: "/solutions", description: "Who HeiGin is for" },
+      { label: "Use Cases", to: "/use-cases", description: "Five sales problems HeiGin is built around" },
+      { label: "Solutions", to: "/solutions", description: "Team shapes we serve today" },
     ],
   },
   {

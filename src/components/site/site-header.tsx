@@ -1,11 +1,11 @@
 import { useEffect, useRef, useState } from "react";
 import { Link, useRouterState } from "@tanstack/react-router";
-import { ChevronDown, Menu, X } from "lucide-react";
+import { ArrowRight, ChevronDown, Menu, X } from "lucide-react";
 import { Button } from "@heigin/ui";
 import { cta, mainNav, site, type NavGroup, type NavItem } from "@/lib/site";
 import { track } from "@/lib/analytics";
 import { CtaLink } from "./cta";
-import { Logo } from "./logo";
+import { Logo, LogoMark } from "./logo";
 import { cn } from "@/lib/utils";
 
 function isGroup(item: NavGroup | NavItem): item is NavGroup {
@@ -55,6 +55,8 @@ function NavDropdown({ group }: { group: NavGroup }) {
     if (timeout.current) clearTimeout(timeout.current);
   };
 
+  const hasFeature = Boolean(group.feature);
+
   return (
     <div ref={ref} className="relative" onMouseEnter={() => { cancelClose(); setOpen(true); }} onMouseLeave={scheduleClose}>
       <button
@@ -68,25 +70,81 @@ function NavDropdown({ group }: { group: NavGroup }) {
         <ChevronDown size={14} strokeWidth={1.8} aria-hidden="true" className={cn("transition-transform", open && "rotate-180")} />
       </button>
       {open && (
-        <div className="absolute left-0 top-full pt-1.5">
-          <div className="w-64 rounded-lg border border-border bg-popover p-1.5 shadow-[var(--hg-shadow-popover)]">
-            {group.items.map((item) => (
-              <Link
-                key={item.to}
-                to={item.to}
-                onClick={() => setOpen(false)}
-                className="block rounded-md px-3 py-2 transition-colors hover:bg-accent"
-              >
-                <span className="block text-md font-medium text-foreground">{item.label}</span>
-                {item.description && (
-                  <span className="mt-0.5 block text-sm text-muted-foreground">{item.description}</span>
-                )}
-              </Link>
-            ))}
+        <div className="absolute left-0 top-full pt-2">
+          <div
+            className={cn(
+              "overflow-hidden rounded-xl border border-border bg-popover p-2 shadow-[var(--hg-shadow-popover)]",
+              hasFeature ? "w-[560px]" : group.items.length > 1 ? "w-[420px]" : "w-[260px]"
+            )}
+          >
+            <div
+              className={cn(
+                "grid gap-2",
+                hasFeature ? "grid-cols-[0.95fr_1fr]" : group.items.length > 1 ? "grid-cols-2" : "grid-cols-1"
+              )}
+            >
+              {group.feature && <NavFeatureTile feature={group.feature} onClose={() => setOpen(false)} />}
+              <ul className={cn("flex flex-col gap-1", hasFeature && "self-stretch")}>
+                {group.items.map((item) => (
+                  <li key={item.to} className="flex">
+                    <Link
+                      to={item.to}
+                      onClick={() => setOpen(false)}
+                      className="group/nav-item flex w-full flex-col justify-center rounded-md px-3 py-2.5 transition-colors hover:bg-accent"
+                    >
+                      <span className="flex items-center gap-1.5 text-md font-medium text-foreground">
+                        {item.label}
+                        <ArrowRight
+                          size={12}
+                          strokeWidth={1.8}
+                          aria-hidden="true"
+                          className="translate-x-0 opacity-0 transition-all group-hover/nav-item:translate-x-0.5 group-hover/nav-item:opacity-70"
+                        />
+                      </span>
+                      {item.description && (
+                        <span className="mt-0.5 block text-sm leading-snug text-muted-foreground">{item.description}</span>
+                      )}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
         </div>
       )}
     </div>
+  );
+}
+
+function NavFeatureTile({ feature, onClose }: { feature: NonNullable<NavGroup["feature"]>; onClose: () => void }) {
+  return (
+    <Link
+      to={feature.to}
+      onClick={onClose}
+      className="group/feature relative flex h-full flex-col justify-between overflow-hidden rounded-md p-5 text-background no-underline transition-transform"
+    >
+      {/* Painterly backdrop keeps the site's visual language inside the nav panel. */}
+      <img
+        src="/images/hero-landscape.webp"
+        alt=""
+        aria-hidden="true"
+        loading="lazy"
+        className="absolute inset-0 h-full w-full object-cover"
+      />
+      <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-br from-foreground/70 via-foreground/55 to-foreground/75" />
+      <div className="relative flex items-center gap-2">
+        <LogoMark className="size-6 text-background" />
+        <span className="text-xs font-semibold uppercase tracking-[0.1em] text-background/80">{feature.eyebrow}</span>
+      </div>
+      <div className="relative">
+        <p className="text-lg font-semibold leading-snug text-background">{feature.title}</p>
+        <p className="mt-2 text-sm leading-relaxed text-background/80">{feature.body}</p>
+        <p className="mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-background">
+          {feature.cta}
+          <ArrowRight size={13} strokeWidth={1.8} aria-hidden="true" className="transition-transform group-hover/feature:translate-x-0.5" />
+        </p>
+      </div>
+    </Link>
   );
 }
 
