@@ -14,7 +14,7 @@ import { track } from "@/lib/analytics";
  * the submit label, and the `intent` field forwarded to the Sheet webhook (the
  * CRM API rejects unknown fields, so it is NOT sent there).
  */
-const intentSchema = z.enum(["demo", "pilot", "enterprise", "join", "general"]).catch("general");
+const intentSchema = z.enum(["demo", "pilot", "trial", "enterprise", "join", "general"]).catch("general");
 type Intent = z.infer<typeof intentSchema>;
 
 const intentCopy: Record<Intent, {
@@ -29,6 +29,13 @@ const intentCopy: Record<Intent, {
     title: "Let's talk about your team.",
     description: "A 30-minute walkthrough on your own workflow. We'll come ready with questions about how you sell today.",
     submit: "Book a call",
+    pending: "Sending…",
+  },
+  trial: {
+    eyebrow: "Start free",
+    title: "Start your 14-day Pro trial.",
+    description: "Full Pro plan for 14 days, including 60 AI calling minutes. No card required. Tell us about your team and we'll set the workspace up today.",
+    submit: "Start free trial",
     pending: "Sending…",
   },
   pilot: {
@@ -144,6 +151,7 @@ function Contact() {
     // Lead capture isn't configured on this deployment: fall back to the visitor's email app.
     const subjectByIntent: Record<Intent, string> = {
       demo: "HeiGin walkthrough",
+      trial: "HeiGin 14-day Pro trial",
       pilot: "HeiGin pilot application",
       enterprise: "HeiGin enterprise enquiry",
       join: "Hi, I'd like to work at HeiGin",

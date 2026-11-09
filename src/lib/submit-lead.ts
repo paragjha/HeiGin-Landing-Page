@@ -8,7 +8,7 @@ const leadSchema = z.object({
   phone: z.string().trim().max(30).default(""),
   company: z.string().trim().max(160).default(""),
   message: z.string().trim().max(4000).default(""),
-  intent: z.enum(["demo", "pilot", "enterprise", "join", "general"]).default("general"),
+  intent: z.enum(["demo", "pilot", "trial", "enterprise", "join", "general"]).default("general"),
 });
 
 /** Called from the contact form. Runs on the server so the API key stays private. */

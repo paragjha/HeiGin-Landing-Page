@@ -136,10 +136,10 @@ function Home() {
               </p>
               <div className="flex flex-wrap items-center gap-3">
                 <a
-                  href="/contact?intent=demo"
+                  href="/contact?intent=trial"
                   onClick={() => track("cta_early_access_clicked", { location: "hero-primary" })}
                 >
-                  <Button variant="primary" size="lg">Book a call</Button>
+                  <Button variant="primary" size="lg">Start free</Button>
                 </a>
                 <a href="/pricing">
                   <Button variant="secondary" size="lg">See pricing</Button>
