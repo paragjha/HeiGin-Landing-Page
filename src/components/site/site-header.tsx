@@ -1,4 +1,5 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { AnimatePresence, motion } from "motion/react";
 import { Link, useRouterState } from "@tanstack/react-router";
 import { ArrowRight, ChevronDown, Menu, X } from "lucide-react";
 import { Button } from "@heigin/ui";
@@ -12,106 +13,181 @@ function isGroup(item: NavGroup | NavItem): item is NavGroup {
   return "items" in item;
 }
 
-function NavLink({ item, onNavigate }: { item: NavItem; onNavigate?: () => void }) {
+function panelWidth(group: NavGroup): number {
+  if (group.feature) return 560;
+  if (group.items.length > 1) return 420;
+  return 260;
+}
+
+/**
+ * Desktop primary nav. Owns a single animated dropdown container that morphs
+ * between groups instead of unmounting + remounting. When the pointer slides
+ * from Product to Solutions, the container's width, position and content
+ * change in place with a spring transition — no close/open flicker.
+ *
+ * A short grace timeout on mouseleave lets the pointer travel from a trigger
+ * into the panel (or vice versa) without snapping shut.
+ */
+function DesktopPrimaryNav() {
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
+  const triggerRefs = useRef<Array<HTMLButtonElement | null>>([]);
+  const rowRef = useRef<HTMLDivElement>(null);
+  const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const [panelLeft, setPanelLeft] = useState(0);
+
+  // Position the panel under the hovered trigger whenever it changes. Reads
+  // layout synchronously so the first frame of the transition doesn't flash
+  // at the old position.
+  useLayoutEffect(() => {
+    if (openIndex === null) return;
+    const trigger = triggerRefs.current[openIndex];
+    const row = rowRef.current;
+    if (!trigger || !row) return;
+    const tr = trigger.getBoundingClientRect();
+    const rr = row.getBoundingClientRect();
+    setPanelLeft(tr.left - rr.left);
+  }, [openIndex]);
+
+  // Escape key closes any open panel.
+  useEffect(() => {
+    if (openIndex === null) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setOpenIndex(null);
+        triggerRefs.current[openIndex]?.focus();
+      }
+    };
+    document.addEventListener("keydown", onKey);
+    return () => document.removeEventListener("keydown", onKey);
+  }, [openIndex]);
+
+  const scheduleClose = () => {
+    if (closeTimer.current) clearTimeout(closeTimer.current);
+    closeTimer.current = setTimeout(() => setOpenIndex(null), 140);
+  };
+  const cancelClose = () => {
+    if (closeTimer.current) {
+      clearTimeout(closeTimer.current);
+      closeTimer.current = null;
+    }
+  };
+
+  const openGroup = openIndex !== null && isGroup(mainNav[openIndex]!) ? (mainNav[openIndex] as NavGroup) : null;
+
   return (
-    <Link
-      to={item.to}
-      onClick={onNavigate}
-      className="rounded-md px-3 py-1.5 text-nav font-medium text-muted-foreground transition-colors hover:bg-accent hover:text-foreground [&.active]:text-foreground"
+    <div
+      ref={rowRef}
+      className="relative hidden lg:block"
+      onMouseLeave={scheduleClose}
+      onMouseEnter={cancelClose}
     >
-      {item.label}
-    </Link>
+      <nav aria-label="Primary" className="flex items-center gap-0.5">
+        {mainNav.map((item, i) =>
+          isGroup(item) ? (
+            <button
+              key={item.label}
+              ref={(el) => {
+                triggerRefs.current[i] = el;
+              }}
+              type="button"
+              aria-expanded={openIndex === i}
+              aria-haspopup="true"
+              onMouseEnter={() => { cancelClose(); setOpenIndex(i); }}
+              onFocus={() => { cancelClose(); setOpenIndex(i); }}
+              onClick={() => setOpenIndex((v) => (v === i ? null : i))}
+              className="inline-flex items-center gap-1 rounded-md px-3 py-1.5 text-nav font-medium text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
+            >
+              {item.label}
+              <ChevronDown
+                size={14}
+                strokeWidth={1.8}
+                aria-hidden="true"
+                className={cn("transition-transform", openIndex === i && "rotate-180")}
+              />
+            </button>
+          ) : (
+            <Link
+              key={item.label}
+              to={item.to}
+              onMouseEnter={() => setOpenIndex(null)}
+              className="rounded-md px-3 py-1.5 text-nav font-medium text-muted-foreground transition-colors hover:bg-accent hover:text-foreground [&.active]:text-foreground"
+            >
+              {item.label}
+            </Link>
+          )
+        )}
+      </nav>
+
+      <AnimatePresence>
+        {openGroup && (
+          <motion.div
+            key="nav-panel"
+            initial={{ opacity: 0, y: -6 }}
+            animate={{ opacity: 1, y: 0, x: panelLeft, width: panelWidth(openGroup) }}
+            exit={{ opacity: 0, y: -6, transition: { duration: 0.14 } }}
+            transition={{ type: "spring", stiffness: 420, damping: 36, mass: 0.6 }}
+            className="absolute top-full left-0 z-40 pt-2 motion-reduce:transition-none"
+            onMouseEnter={cancelClose}
+            onMouseLeave={scheduleClose}
+          >
+            <motion.div
+              layout="size"
+              transition={{ type: "spring", stiffness: 420, damping: 36, mass: 0.6 }}
+              className="overflow-hidden rounded-xl border border-border bg-popover p-2 shadow-[var(--hg-shadow-popover)]"
+            >
+              <AnimatePresence mode="popLayout" initial={false}>
+                <motion.div
+                  key={openIndex}
+                  initial={{ opacity: 0, y: 4 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -4, position: "absolute" }}
+                  transition={{ duration: 0.18, ease: "easeOut" }}
+                >
+                  <NavPanelContent group={openGroup} onClose={() => setOpenIndex(null)} />
+                </motion.div>
+              </AnimatePresence>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
   );
 }
 
-function NavDropdown({ group }: { group: NavGroup }) {
-  const [open, setOpen] = useState(false);
-  const ref = useRef<HTMLDivElement>(null);
-  const timeout = useRef<ReturnType<typeof setTimeout> | null>(null);
-
-  useEffect(() => {
-    if (!open) return;
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") {
-        setOpen(false);
-        ref.current?.querySelector("button")?.focus();
-      }
-    };
-    const onClick = (e: MouseEvent) => {
-      if (ref.current && !ref.current.contains(e.target as Node)) setOpen(false);
-    };
-    document.addEventListener("keydown", onKey);
-    document.addEventListener("mousedown", onClick);
-    return () => {
-      document.removeEventListener("keydown", onKey);
-      document.removeEventListener("mousedown", onClick);
-    };
-  }, [open]);
-
-  const scheduleClose = () => {
-    timeout.current = setTimeout(() => setOpen(false), 120);
-  };
-  const cancelClose = () => {
-    if (timeout.current) clearTimeout(timeout.current);
-  };
-
+function NavPanelContent({ group, onClose }: { group: NavGroup; onClose: () => void }) {
   const hasFeature = Boolean(group.feature);
-
   return (
-    <div ref={ref} className="relative" onMouseEnter={() => { cancelClose(); setOpen(true); }} onMouseLeave={scheduleClose}>
-      <button
-        type="button"
-        aria-expanded={open}
-        aria-haspopup="true"
-        onClick={() => setOpen((v) => !v)}
-        className="inline-flex items-center gap-1 rounded-md px-3 py-1.5 text-nav font-medium text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
-      >
-        {group.label}
-        <ChevronDown size={14} strokeWidth={1.8} aria-hidden="true" className={cn("transition-transform", open && "rotate-180")} />
-      </button>
-      {open && (
-        <div className="absolute left-0 top-full pt-2">
-          <div
-            className={cn(
-              "overflow-hidden rounded-xl border border-border bg-popover p-2 shadow-[var(--hg-shadow-popover)]",
-              hasFeature ? "w-[560px]" : group.items.length > 1 ? "w-[420px]" : "w-[260px]"
-            )}
-          >
-            <div
-              className={cn(
-                "grid gap-2",
-                hasFeature ? "grid-cols-[0.95fr_1fr]" : group.items.length > 1 ? "grid-cols-2" : "grid-cols-1"
-              )}
-            >
-              {group.feature && <NavFeatureTile feature={group.feature} onClose={() => setOpen(false)} />}
-              <ul className={cn("flex flex-col gap-1", hasFeature && "self-stretch")}>
-                {group.items.map((item) => (
-                  <li key={item.to} className="flex">
-                    <Link
-                      to={item.to}
-                      onClick={() => setOpen(false)}
-                      className="group/nav-item flex w-full flex-col justify-center rounded-md px-3 py-2.5 transition-colors hover:bg-accent"
-                    >
-                      <span className="flex items-center gap-1.5 text-md font-medium text-foreground">
-                        {item.label}
-                        <ArrowRight
-                          size={12}
-                          strokeWidth={1.8}
-                          aria-hidden="true"
-                          className="translate-x-0 opacity-0 transition-all group-hover/nav-item:translate-x-0.5 group-hover/nav-item:opacity-70"
-                        />
-                      </span>
-                      {item.description && (
-                        <span className="mt-0.5 block text-sm leading-snug text-muted-foreground">{item.description}</span>
-                      )}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-        </div>
+    <div
+      className={cn(
+        "grid gap-2",
+        hasFeature ? "grid-cols-[0.95fr_1fr]" : group.items.length > 1 ? "grid-cols-2" : "grid-cols-1"
       )}
+    >
+      {group.feature && <NavFeatureTile feature={group.feature} onClose={onClose} />}
+      <ul className={cn("flex flex-col gap-1", hasFeature && "self-stretch")}>
+        {group.items.map((item) => (
+          <li key={item.to} className="flex">
+            <Link
+              to={item.to}
+              onClick={onClose}
+              className="group/nav-item flex w-full flex-col justify-center rounded-md px-3 py-2.5 transition-colors hover:bg-accent"
+            >
+              <span className="flex items-center gap-1.5 text-md font-medium text-foreground">
+                {item.label}
+                <ArrowRight
+                  size={12}
+                  strokeWidth={1.8}
+                  aria-hidden="true"
+                  className="translate-x-0 opacity-0 transition-all group-hover/nav-item:translate-x-0.5 group-hover/nav-item:opacity-70"
+                />
+              </span>
+              {item.description && (
+                <span className="mt-0.5 block text-sm leading-snug text-muted-foreground">{item.description}</span>
+              )}
+            </Link>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }
@@ -170,11 +246,7 @@ export function SiteHeader() {
           <Logo />
         </Link>
 
-        <nav aria-label="Primary" className="hidden items-center gap-0.5 lg:flex">
-          {mainNav.map((item) =>
-            isGroup(item) ? <NavDropdown key={item.label} group={item} /> : <NavLink key={item.label} item={item} />
-          )}
-        </nav>
+        <DesktopPrimaryNav />
 
         <div className="hidden items-center gap-2 lg:flex">
           {site.appUrl && (
