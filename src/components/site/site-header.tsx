@@ -157,14 +157,14 @@ function DesktopPrimaryNav() {
 function NavPanelContent({ group, onClose }: { group: NavGroup; onClose: () => void }) {
   const hasFeature = Boolean(group.feature);
   return (
-    <div
-      className={cn(
-        "grid gap-2",
-        hasFeature ? "grid-cols-[0.95fr_1fr]" : group.items.length > 1 ? "grid-cols-2" : "grid-cols-1"
-      )}
-    >
+    <div className={cn("grid gap-2", hasFeature ? "grid-cols-[0.95fr_1fr]" : "grid-cols-1")}>
       {group.feature && <NavFeatureTile feature={group.feature} onClose={onClose} />}
-      <ul className={cn("flex flex-col gap-1", hasFeature && "self-stretch")}>
+      <ul
+        className={cn(
+          hasFeature ? "flex flex-col gap-1 self-stretch" : "grid gap-1",
+          !hasFeature && group.items.length > 1 && "grid-cols-2"
+        )}
+      >
         {group.items.map((item) => (
           <li key={item.to} className="flex">
             <Link
