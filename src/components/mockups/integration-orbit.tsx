@@ -95,7 +95,7 @@ export function IntegrationOrbit({ className }: { className?: string }) {
           style={{ left: `${HUB.x}%`, top: `${(HUB.y / 70) * 100}%` }}
         >
           <span aria-hidden="true" className="hub-pulse absolute inset-0 rounded-2xl bg-info/30" />
-          <LogoMark className="relative size-16 rounded-2xl shadow-lg md:size-20" />
+          <LogoMark tile className="relative size-16 rounded-2xl shadow-lg md:size-20" />
         </div>
 
         {/* nodes on the arc */}
@@ -138,7 +138,7 @@ export function IntegrationOrbit({ className }: { className?: string }) {
 
         {/* outputs */}
         <div className="absolute left-[22%] top-[84%] flex -translate-x-1/2 -translate-y-1/2 flex-col items-center gap-1.5">
-          <LogoMark className="size-11 rounded-xl shadow-md" />
+          <LogoMark tile className="size-11 rounded-xl shadow-md" />
           <span className="whitespace-nowrap text-xs font-medium text-muted-foreground">Added to timeline</span>
         </div>
         <div className="absolute left-[78%] top-[84%] flex -translate-x-1/2 -translate-y-1/2 flex-col items-center gap-1.5">

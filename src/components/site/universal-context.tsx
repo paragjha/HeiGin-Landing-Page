@@ -92,7 +92,7 @@ export function UniversalContext() {
                 </div>
               ))}
               <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
-                <LogoMark inverted className="size-16 rounded-2xl shadow-float" />
+                <LogoMark tile inverted className="size-16 rounded-2xl shadow-float" />
               </div>
             </div>
 
@@ -100,7 +100,7 @@ export function UniversalContext() {
             <div className="space-y-3 md:hidden">
               {inputs.map((n) => <NodeCard key={n.name} {...n} />)}
               <div className="flex justify-center py-2">
-                <LogoMark inverted className="size-12 rounded-xl" />
+                <LogoMark tile inverted className="size-12 rounded-xl" />
               </div>
               {outputs.map((n) => <NodeCard key={n.name} {...n} />)}
             </div>

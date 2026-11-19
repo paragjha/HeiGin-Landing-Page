@@ -84,7 +84,7 @@ export function IntegrationHub({ className }: { className?: string }) {
         {/* Hub */}
         <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
           <div className="flex size-28 items-center justify-center rounded-[2rem] border border-border bg-surface shadow-float">
-            <LogoMark className="size-14 rounded-2xl" />
+            <LogoMark tile className="size-14 rounded-2xl" />
           </div>
         </div>
 
@@ -126,7 +126,7 @@ export function IntegrationHub({ className }: { className?: string }) {
         </div>
         <div className="flex justify-center py-1">
           <div className="flex size-16 items-center justify-center rounded-2xl border border-border bg-surface shadow-card">
-            <LogoMark className="size-9 rounded-xl" />
+            <LogoMark tile className="size-9 rounded-xl" />
           </div>
         </div>
         <div className="rounded-xl border border-border bg-surface p-4 shadow-card">

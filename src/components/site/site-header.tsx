@@ -209,7 +209,7 @@ function NavFeatureTile({ feature, onClose }: { feature: NonNullable<NavGroup["f
       />
       <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-br from-foreground/70 via-foreground/55 to-foreground/75" />
       <div className="relative flex items-center gap-2">
-        <LogoMark className="size-6 text-background" />
+        <LogoMark className="h-5 text-background" />
         <span className="text-xs font-semibold uppercase tracking-[0.1em] text-background/80">{feature.eyebrow}</span>
       </div>
       <div className="relative">

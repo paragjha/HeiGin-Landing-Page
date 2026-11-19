@@ -150,7 +150,7 @@ function Sidebar({ activeRoute }: { activeRoute: string }) {
   return (
     <aside className="hidden h-full w-[200px] shrink-0 flex-col border-r border-border bg-sidebar md:flex lg:w-[232px]">
       <div className="flex h-14 items-center gap-2 border-b border-border px-3.5">
-        <LogoMark className="size-6" />
+        <LogoMark className="h-[18px]" />
         <span className="text-[13.5px] font-semibold tracking-tight text-foreground">HeiGin</span>
         <span className="ml-auto flex size-6 items-center justify-center rounded-[var(--radius-md)] text-muted-foreground">
           <ChevronsLeft size={13} strokeWidth={1.6} aria-hidden="true" />
