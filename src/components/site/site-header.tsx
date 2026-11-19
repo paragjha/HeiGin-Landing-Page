@@ -197,7 +197,7 @@ function NavFeatureTile({ feature, onClose }: { feature: NonNullable<NavGroup["f
     <Link
       to={feature.to}
       onClick={onClose}
-      className="group/feature relative flex h-full flex-col justify-between overflow-hidden rounded-md p-5 text-background no-underline transition-transform"
+      className="group/feature relative flex h-full flex-col justify-end gap-6 overflow-hidden rounded-md p-5 text-background no-underline transition-transform"
     >
       {/* Painterly backdrop keeps the site's visual language inside the nav panel. */}
       <img
