@@ -5,6 +5,7 @@ import { ThumbAgentTrust } from "./thumb-agent-trust";
 import { ThumbDpdpReadiness } from "./thumb-dpdp-readiness";
 import { ThumbLeadIntent } from "./thumb-lead-intent";
 import { ThumbSheetImport } from "./thumb-sheet-import";
+import { ThumbGroundedReply } from "./thumb-grounded-reply";
 
 /**
  * Registry mapping a blog post's `thumb` frontmatter value to its coded
@@ -15,7 +16,13 @@ import { ThumbSheetImport } from "./thumb-sheet-import";
  * NewsroomCard renders a dark backdrop; the article hero renders light.
  */
 export type ThumbKey =
-  "agentic-crm" | "follow-ups" | "agent-trust" | "dpdp-readiness" | "lead-intent" | "sheet-import";
+  | "agentic-crm"
+  | "follow-ups"
+  | "agent-trust"
+  | "dpdp-readiness"
+  | "lead-intent"
+  | "sheet-import"
+  | "grounded-reply";
 
 export const blogThumbs: Record<ThumbKey, ComponentType<{ tone?: "light" | "dark" }>> = {
   "agentic-crm": ThumbAgenticCrm,
@@ -24,6 +31,7 @@ export const blogThumbs: Record<ThumbKey, ComponentType<{ tone?: "light" | "dark
   "dpdp-readiness": ThumbDpdpReadiness,
   "lead-intent": ThumbLeadIntent,
   "sheet-import": ThumbSheetImport,
+  "grounded-reply": ThumbGroundedReply,
 };
 
 export function isThumbKey(value: unknown): value is ThumbKey {
