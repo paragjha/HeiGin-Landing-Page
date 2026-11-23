@@ -7,6 +7,7 @@ import { ThumbLeadIntent } from "./thumb-lead-intent";
 import { ThumbSheetImport } from "./thumb-sheet-import";
 import { ThumbGroundedReply } from "./thumb-grounded-reply";
 import { ThumbPipelineStages } from "./thumb-pipeline-stages";
+import { ThumbGstQuote } from "./thumb-gst-quote";
 
 /**
  * Registry mapping a blog post's `thumb` frontmatter value to its coded
@@ -24,7 +25,8 @@ export type ThumbKey =
   | "lead-intent"
   | "sheet-import"
   | "grounded-reply"
-  | "pipeline-stages";
+  | "pipeline-stages"
+  | "gst-quote";
 
 export const blogThumbs: Record<ThumbKey, ComponentType<{ tone?: "light" | "dark" }>> = {
   "agentic-crm": ThumbAgenticCrm,
@@ -35,6 +37,7 @@ export const blogThumbs: Record<ThumbKey, ComponentType<{ tone?: "light" | "dark
   "sheet-import": ThumbSheetImport,
   "grounded-reply": ThumbGroundedReply,
   "pipeline-stages": ThumbPipelineStages,
+  "gst-quote": ThumbGstQuote,
 };
 
 export function isThumbKey(value: unknown): value is ThumbKey {
