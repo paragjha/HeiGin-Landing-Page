@@ -9,6 +9,7 @@ import { ThumbGroundedReply } from "./thumb-grounded-reply";
 import { ThumbPipelineStages } from "./thumb-pipeline-stages";
 import { ThumbGstQuote } from "./thumb-gst-quote";
 import { ThumbCallCapture } from "./thumb-call-capture";
+import { ThumbResponseDecay } from "./thumb-response-decay";
 
 /**
  * Registry mapping a blog post's `thumb` frontmatter value to its coded
@@ -28,7 +29,8 @@ export type ThumbKey =
   | "grounded-reply"
   | "pipeline-stages"
   | "gst-quote"
-  | "call-capture";
+  | "call-capture"
+  | "response-decay";
 
 export const blogThumbs: Record<ThumbKey, ComponentType<{ tone?: "light" | "dark" }>> = {
   "agentic-crm": ThumbAgenticCrm,
@@ -41,6 +43,7 @@ export const blogThumbs: Record<ThumbKey, ComponentType<{ tone?: "light" | "dark
   "pipeline-stages": ThumbPipelineStages,
   "gst-quote": ThumbGstQuote,
   "call-capture": ThumbCallCapture,
+  "response-decay": ThumbResponseDecay,
 };
 
 export function isThumbKey(value: unknown): value is ThumbKey {
