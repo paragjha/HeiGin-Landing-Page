@@ -11,6 +11,7 @@ import { ThumbGstQuote } from "./thumb-gst-quote";
 import { ThumbCallCapture } from "./thumb-call-capture";
 import { ThumbResponseDecay } from "./thumb-response-decay";
 import { ThumbRuleOrAgent } from "./thumb-rule-or-agent";
+import { ThumbLostReason } from "./thumb-lost-reason";
 
 /**
  * Registry mapping a blog post's `thumb` frontmatter value to its coded
@@ -32,7 +33,8 @@ export type ThumbKey =
   | "gst-quote"
   | "call-capture"
   | "response-decay"
-  | "rule-or-agent";
+  | "rule-or-agent"
+  | "lost-reason";
 
 export const blogThumbs: Record<ThumbKey, ComponentType<{ tone?: "light" | "dark" }>> = {
   "agentic-crm": ThumbAgenticCrm,
@@ -47,6 +49,7 @@ export const blogThumbs: Record<ThumbKey, ComponentType<{ tone?: "light" | "dark
   "call-capture": ThumbCallCapture,
   "response-decay": ThumbResponseDecay,
   "rule-or-agent": ThumbRuleOrAgent,
+  "lost-reason": ThumbLostReason,
 };
 
 export function isThumbKey(value: unknown): value is ThumbKey {
